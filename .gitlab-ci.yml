@@ -6,7 +6,7 @@ before_script:
   - docker info
   - pip install -r requirements.txt
 
-test:
+build:
   image: registry.gitlab.com/jarv/jarv.org/ci-image
   stage: build
   script:
