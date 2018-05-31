@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>jarv</title>
+    <!-- <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=0, maximum-scale=1, user-scalable=yes"> -->
+    <meta name="viewport" content="width=device-width">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/theme/css/normalize.min.css">
+    <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="jarv RSS Feed" />
+    <script src="http://api.html5media.info/1.1.8/html5media.min.js"></script>
+<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-78464-7', 'auto');
+      ga('send', 'pageview');
+    </script>
+</head>
+
+  <body>
+    <div class="wrapper">
+    <header class="banner">
+      <div class="img-wrapper"><img src="/profile.jpg" alt="profile.pic"/></div>
+<div class="social-navigation">
+  <ul>
+    <li><a href="http://github.com/jarv"><i class="fa fa-github-square"></i></a></li>
+    <li><a href="https://twitter.com/__jarv__"><i class="fa fa-twitter-square"></i></a></li>
+    <li><a href="./rss.xml"><i class="fa fa-rss-square"></i></a></li>
+    <li><a href="mailto:john@jarv.org"><i class="fa fa-envelope-square"></i></a></li>
+  </ul>
+</div>
+      <div class="canvas-wrapper"><canvas id="canvas"></canvas></div>
+      <div class="navigation">
+        <a href="/">home</a>
+        <a href="/archives.html">archives</a>
+        <a href="/pages/about.html">about</a>
+      </div><!-- /#menu -->
+
+    </header>
+
+    <div class="content"><section id="content">
+  <header class="post">
+    <h1 class="archive-entry-title"> 191 ways to echo hello world on the command line </h1> 
+  </header>
+  <footer class="post-info">
+    <abbr>
+      Wed 08 February 2017 
+         By jarv
+  
+    </abbr>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>It's been about 12 days since the launch of <a href="https://cmdchallenge.com">cmdchallenge</a>, a weekend project
+to create some common command-line tasks that can be done in a single line of bash.
+One common request has been to share user-submitted solutions. Or to put it another way,
+you may be wondering <em>what do random people on the internet and hackernews type if you give them
+some basic command-line tasks and a shell prompt?</em>  Well lucky for me this is no longer a mystery!</p>
+<p>Starting off with Challenge #1:</p>
+<p><a href="https://cmdchallenge.com/#/hello_world">CMD Challenge #1</a>: <strong>print "hello world" at the bash prompt</strong></p>
+<p>There has been a lot of diverse input for such a simple task. I really love how people do weird stuff even when it is totally unnecessary.</p>
+<p>Here are some of my favorites:</p>
+<div class="highlight"><pre><span class="o">(</span> <span class="k">for</span> i in h e l l o <span class="se">\ </span> w o r l d <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> <span class="p">|</span>awk -F, <span class="s1">&#39; {print $NR}&#39;</span><span class="p">;</span> <span class="k">done</span> <span class="o">)</span> <span class="p">|</span>tr -d <span class="se">\\</span>n<span class="p">;</span> <span class="nb">echo</span>
+<span class="nb">echo </span>ifmmp xpsme <span class="p">|</span>tr bcdefghijklmnopqrstuvwxyza abcdefghijklmnopqrstuvwxyz
+touch helloworld <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; helloworld <span class="o">&amp;&amp;</span> cat helloworld
+sed <span class="s1">&#39;s.\.\...;yhHh\hh;ywWw\ww;2,$d&#39;</span> README
+</pre></div>
+
+
+<p>A few things to note that may clarify some of the more interesting submissions:</p>
+<ul>
+<li>There is a <code>README</code> in each challenge directory, in this case it contains the string "hello world" so some people took advantage of that.</li>
+<li>The directory itself was named <code>hello world</code>.</li>
+</ul>
+<p>Here are all of the correct submissions for the first challenge as of yesterday:</p>
+<div class="highlight"><pre><span class="nv">a</span><span class="o">=(</span>d e h l o r w X <span class="se">\&quot;</span><span class="o">)</span><span class="p">;</span><span class="nv">s</span><span class="o">=(</span><span class="m">2</span> <span class="m">1</span> <span class="m">3</span> <span class="m">3</span> <span class="m">4</span> <span class="m">7</span> <span class="m">6</span> <span class="m">4</span> <span class="m">5</span> <span class="m">3</span> 0<span class="o">)</span><span class="p">;</span><span class="k">for</span> i in <span class="si">${</span><span class="nv">s</span><span class="p">[@]</span><span class="si">}</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> -n <span class="si">${</span><span class="nv">a</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span><span class="p">|</span>tr X<span class="se">\n</span> <span class="s1">&#39; &#39;</span> <span class="p">;</span> <span class="k">done</span> <span class="p">;</span> <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
+<span class="o">(</span> <span class="k">for</span> i in h e l l o <span class="se">\ </span> w o r l d <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> <span class="p">|</span>awk -F, <span class="s1">&#39; {print $NR}&#39;</span><span class="p">;</span> <span class="k">done</span> <span class="o">)</span> <span class="p">|</span>tr -d <span class="se">\\</span>n<span class="p">;</span> <span class="nb">echo</span>
+<span class="k">for</span> i in h e l l o<span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> -n <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span><span class="p">;</span> <span class="nb">echo</span> -n <span class="s2">&quot; &quot;</span><span class="p">;</span> <span class="k">for</span> j in w o r l d<span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> -n <span class="nv">$j</span><span class="p">;</span> <span class="k">done</span>
+cat README <span class="p">|</span> head -n <span class="m">4</span> <span class="p">|</span> tail -n <span class="m">1</span> <span class="p">|</span> awk <span class="s1">&#39;{ print $3 &quot; &quot; $4 }&#39;</span> <span class="p">|</span> sed -e <span class="s1">&#39;s/\&quot;//g;s/\.//g&#39;</span>
+<span class="nb">echo </span>ifmmp xpsme <span class="p">|</span>tr bcdefghijklmnopqrstuvwxyza abcdefghijklmnopqrstuvwxyz
+&lt; README grep hello <span class="p">|</span> tr -d <span class="s1">&#39;#&#39;</span> <span class="p">|</span> cut -f3- -d<span class="s1">&#39; &#39;</span> <span class="p">|</span> tr -d <span class="s1">&#39;&quot;&#39;</span> <span class="p">|</span> tr -d <span class="s1">&#39;.&#39;</span>
+touch helloworld <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; helloworld <span class="o">&amp;&amp;</span> cat helloworld
+<span class="nv">letters</span><span class="o">=(</span>h e l l o <span class="se">\ </span> w o r l d<span class="o">)</span><span class="p">;</span> <span class="nb">printf</span> <span class="s1">&#39;%s&#39;</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">letters</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+touch test.txt <span class="p">;</span> <span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; test.txt <span class="p">;</span> cat test.txt
+grep <span class="s2">&quot;hello world&quot;</span> README <span class="p">|</span> sed -E <span class="s1">&#39;s/.*(hello world).*/\1/&#39;</span>
+cat README <span class="p">|</span> grep Print <span class="p">|</span> sed -E <span class="s1">&#39;s/^.+&quot;([^&quot;]+)&quot;.+$/\1/&#39;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; ./hiworld.txt <span class="o">&amp;&amp;</span> cat ./hiworld.txt
+head -n <span class="m">1</span> &lt; README  <span class="p">|</span> sed <span class="s1">&#39;s/# //&#39;</span> <span class="p">|</span> tr <span class="s1">&#39;[A-Z]&#39;</span> <span class="s1">&#39;[a-z]&#39;</span>
+cat <span class="nv">$0</span><span class="p">|</span>cut -d<span class="se">\;</span> -f4<span class="p">;</span><span class="nb">echo</span> <span class="s2">&quot;;hello world;&quot;</span> &gt; /dev/null
+touch file <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; file <span class="o">&amp;&amp;</span> cat file
+cat README <span class="p">|</span> sed -e <span class="s1">&#39;s/.*/hello world/&#39;</span> <span class="p">|</span> head -1
+touch <span class="s2">&quot;hello world&quot;</span><span class="p">;</span> ls *hell*<span class="p">;</span> rm <span class="s2">&quot;hello world&quot;</span>
+head -1 README <span class="p">|</span> cut -c3- <span class="p">|</span> tr <span class="s1">&#39;[A-Z]&#39;</span> <span class="s1">&#39;[a-z]&#39;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; hello.txt <span class="p">|</span> cat hello.txt
+awk <span class="s1">&#39;BEGIN {print &quot;hello world&quot;}&#39;</span> &lt; /dev/null
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; hello.txt<span class="p">;</span> cat hello.txt
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; testfile<span class="p">;</span> cat testfile
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; test.txt<span class="p">;</span> cat test.txt
+grep hello README <span class="p">|</span> awk -F<span class="se">\&quot;</span> <span class="s1">&#39;{ print $2 }&#39;</span>
+<span class="k">for</span> n in <span class="s1">&#39;hello world&#39;</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">n</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
+sed <span class="s1">&#39;s.\.\...;yhHh\hh;ywWw\ww;2,$d&#39;</span> README
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; foo.txt<span class="p">;</span> cat foo.txt
+<span class="nb">echo</span> -n <span class="s2">&quot;h&quot;&quot;e&quot;&quot;l&quot;&quot;l&quot;&quot;o&quot;&quot; &quot;&quot;w&quot;&quot;o&quot;&quot;r&quot;&quot;l&quot;&quot;d&quot;</span>
+touch <span class="s1">&#39;hello world&#39;</span> <span class="o">&amp;&amp;</span> ls h*<span class="p">|</span> xargs <span class="nb">echo</span>
+<span class="nv">msg</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">;</span> <span class="nb">printf</span> <span class="s1">&#39;%s\n&#39;</span> <span class="s2">&quot;</span><span class="nv">$msg</span><span class="s2">&quot;</span>
+cat README<span class="p">|</span> grep hello <span class="p">|</span> cut -d <span class="s1">&#39;&quot;&#39;</span> -f2
+<span class="nb">echo</span> <span class="s2">&quot; &quot;</span> <span class="p">|</span> awk <span class="s1">&#39;{print &quot;hello world&quot;}&#39;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span>&gt;hello <span class="p">|</span> tail hello
+awk <span class="s1">&#39; BEGIN { print &quot;hello world&quot; } &#39;</span>
+<span class="nb">export </span><span class="nv">HAHA</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">;</span><span class="nb">echo</span> <span class="nv">$HAHA</span>
+<span class="nb">echo</span> <span class="s1">&#39;hello world&#39;</span> &gt; henk <span class="p">|</span> cat henk
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; <span class="nb">test</span> <span class="p">&amp;</span> cat <span class="nb">test</span>
+awk <span class="s1">&#39;BEGIN { print &quot;hello world&quot;; }&#39;</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span><span class="nb">echo </span>hello<span class="k">)</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="k">$(</span><span class="nb">echo </span>world<span class="k">)</span><span class="s2">&quot;</span>
+perl -e <span class="s1">&#39;printf &quot;%s&quot;, &quot;hello world&quot;&#39;</span>
+mkdir <span class="s2">&quot;hello world&quot;</span> <span class="o">&amp;&amp;</span> ls <span class="p">|</span> tail -1
+awk <span class="s1">&#39;BEGIN { print &quot;hello world&quot; }&#39;</span>
+<span class="nb">pwd</span> <span class="p">|</span> cut -d<span class="s1">&#39;/&#39;</span> -f4 <span class="p">|</span> sed <span class="s1">&#39;s/_/ /g&#39;</span>
+touch <span class="s2">&quot;hello world&quot;</span><span class="p">;</span> ls <span class="p">|</span> grep ello
+<span class="nb">printf</span> <span class="s1">&#39;%s%s%s%s\n&#39;</span> hel lo<span class="se">\ </span> wor ld
+cat README <span class="p">|</span> grep -o <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> <span class="p">|</span> sed <span class="s1">&#39;s/b/h/g&#39;</span>
+<span class="nb">echo</span> <span class="p">|</span> awk <span class="s1">&#39;{print &quot;hello world&quot;}&#39;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; tmp<span class="p">;</span> cat tmp
+<span class="nb">echo </span>hello world &gt; henk<span class="p">;</span> cat henk
+cat &gt;/dev/stdout <span class="o">&lt;&lt;&lt;</span><span class="s2">&quot;hello world&quot;</span>
+awk <span class="s1">&#39;BEGIN{print &quot;hello world&quot;;}&#39;</span>
+awk <span class="s1">&#39;BEGIN{print(&quot;hello world&quot;)}&#39;</span>
+cat &gt;/dev/stderr <span class="o">&lt;&lt;&lt;</span><span class="s2">&quot;hello world&quot;</span>
+awk <span class="s1">&#39;BEGIN {print &quot;hello world&quot;}&#39;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span>&gt;algo<span class="p">;</span>cat algo
+<span class="nv">hello</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$hello</span>
+perl -e <span class="s1">&#39;print &quot;hello world\n&quot;;&#39;</span>
+<span class="nv">GGG</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span> <span class="p">;</span> cat <span class="o">&lt;&lt;&lt;</span> <span class="nv">$GGG</span>
+<span class="nb">echo</span><span class="p">|</span>awk <span class="s1">&#39;{print &quot;hello world&quot;}&#39;</span>
+<span class="nb">echo</span> <span class="s1">&#39;hello world&#39;</span> &gt; /dev/stdout
+awk <span class="s1">&#39;BEGIN{print &quot;hello world&quot;}&#39;</span>
+ls .. <span class="p">|</span> grep hel <span class="p">|</span> sed <span class="s1">&#39;s/_/ /g&#39;</span>
+<span class="nb">printf</span> <span class="s2">&quot;%s %s\n&quot;</span> <span class="s2">&quot;hello&quot;</span> <span class="s2">&quot;world&quot;</span>
+perl -e <span class="s1">&#39;print &quot;hello world\n&quot;&#39;</span>
+<span class="nb">echo </span>s <span class="p">|</span> sed <span class="s1">&#39;s/s/hello world/&#39;</span>
+<span class="nb">echo</span> -n <span class="s2">&quot;hello&quot;</span><span class="p">;</span> <span class="nb">echo</span> <span class="s2">&quot; world&quot;</span><span class="p">;</span>
+<span class="c">#!/bin/bash\necho &quot;hello world&quot;</span>
+<span class="nb">printf</span> -- <span class="s1">&#39;%s\n&#39;</span> <span class="s1">&#39;hello world&#39;</span>
+<span class="nb">printf</span> <span class="s1">&#39;%s %s&#39;</span> <span class="s1">&#39;hello&#39;</span> <span class="s1">&#39;world&#39;</span>
+<span class="nb">printf</span> <span class="s2">&quot;%s %s&quot;</span> <span class="s2">&quot;hello&quot;</span> <span class="s2">&quot;world&quot;</span>
+perl -le <span class="s1">&#39;print &quot;hello world&quot;&#39;</span>
+<span class="nv">text</span><span class="o">=</span><span class="s1">&#39;hello world&#39;</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$text</span>
+perl -e <span class="s1">&#39;print &quot;hello world&quot;;&#39;</span>
+perl -e <span class="s2">&quot;print &#39;hello world&#39;;&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; a <span class="p">;</span> cat a
+<span class="nb">echo</span> -n hello <span class="p">;</span> <span class="nb">echo</span> <span class="s2">&quot; world&quot;</span>
+perl -e <span class="s1">&#39;print &quot;hello world&quot;&#39;</span>
+perl -e <span class="s2">&quot;print &#39;hello world&#39;&quot;</span>
+<span class="nv">STR</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$STR</span>
+perl -E <span class="s1">&#39;say &quot;hello world&quot;;&#39;</span>
+grep hello <span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;hello world&quot;</span>
+perl -e<span class="s1">&#39;print &quot;hello world&quot;&#39;</span>
+<span class="nb">printf</span> <span class="s2">&quot;%s\\n&quot;</span> <span class="s2">&quot;hello world&quot;</span>
+perl -E <span class="s1">&#39;say q[hello world]&#39;</span>
+touch <span class="s2">&quot;hello world&quot;</span><span class="p">;</span> ls *<span class="se">\ </span>*
+<span class="nb">printf</span> <span class="s1">&#39;%s %s\n&#39;</span> hello world
+<span class="nb">printf</span> <span class="s2">&quot;hello world&quot;</span> <span class="p">|</span> cat -
+<span class="nv">VAR</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">;</span><span class="nb">echo</span> <span class="nv">$VAR</span>
+cat &lt; &lt;<span class="o">(</span><span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span><span class="o">)</span>
+perl -E <span class="s1">&#39;say &quot;hello world&quot;&#39;</span>
+date<span class="p">|</span>sed s/.*/hello<span class="se">\ </span>world/
+touch <span class="s1">&#39;hello world&#39;</span><span class="p">;</span> ls he*
+<span class="nb">echo</span>  <span class="s2">&quot;hello world&quot;</span> <span class="p">|</span> cat -
+<span class="nb">printf</span> <span class="s1">&#39;%s\n&#39;</span> <span class="s1">&#39;hello world&#39;</span>
+perl -e<span class="s1">&#39;print&quot;hello world&quot;&#39;</span>
+<span class="nb">printf</span> <span class="s1">&#39;%s\n&#39;</span> <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;%s\n&quot;</span> <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;hello %s\n&quot;</span> <span class="s2">&quot;world&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;%b\n&quot;</span> <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">echo</span><span class="p">|</span>sed -n <span class="s2">&quot;i hello world&quot;</span>
+touch <span class="s1">&#39;hello world&#39;</span><span class="p">;</span> ls h*
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> <span class="p">|</span> cat -
+<span class="nb">printf</span> %s<span class="se">\\</span>n <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf</span> <span class="s1">&#39;dlrow olleh&#39;</span> <span class="p">|</span> rev
+<span class="nb">printf</span> <span class="s1">&#39;%s %s&#39;</span> hello world
+<span class="nb">true</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;%s %s&quot;</span> hello world
+<span class="nv">i</span><span class="o">=</span><span class="s1">&#39;hello world&#39;</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span>
+<span class="nb">printf</span> <span class="s1">&#39;%s&#39;</span> <span class="s2">&quot;hello world&quot;</span>
+cat <span class="s">&lt;&lt;EOF\nhello world\nEOF</span>
+<span class="nb">printf</span> -- <span class="s1">&#39;hello world\n&#39;</span>
+cat &lt;<span class="o">(</span><span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span><span class="o">)</span>
+<span class="nb">echo</span> <span class="sb">`</span><span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span><span class="sb">`</span>
+<span class="nb">printf</span> <span class="s1">&#39;hello %s&#39;</span> <span class="s2">&quot;world&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;hello %s&quot;</span> <span class="s2">&quot;world&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;%s&quot;</span> <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf</span> <span class="s1">&#39;%s&#39;</span> <span class="s1">&#39;hello world&#39;</span>
+<span class="nb">printf</span> -- <span class="s2">&quot;hello world\n&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;dlrow olleh&quot;</span> <span class="p">|</span> rev
+<span class="nb">echo</span> <span class="s1">&#39;hello world&#39;</span> <span class="p">|</span> cat
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">PWD</span><span class="p">##*/</span><span class="si">}</span><span class="p">|</span>tr _ <span class="s1">&#39; &#39;</span>
+<span class="nb">printf</span> <span class="s2">&quot;hello world\013&quot;</span>
+<span class="nb">printf</span> <span class="s1">&#39;%s &#39;</span> hello world
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> <span class="p">|</span> cat
+/bin/echo <span class="s1">&#39;hello world&#39;</span>
+/bin/echo <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf</span> %s <span class="s1">&#39;hello world&#39;</span>
+cat - <span class="o">&lt;&lt;&lt;</span> <span class="s1">&#39;hello world&#39;</span>
+<span class="nb">echo</span> -e <span class="s2">&quot;hello world\n&quot;</span>
+<span class="nv">a</span><span class="o">=</span><span class="s1">&#39;hello world&#39;</span><span class="p">;</span><span class="nb">echo</span> <span class="nv">$a</span>
+<span class="nb">printf</span> -- <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;hello world&quot;</span> <span class="se">\n</span>
+<span class="nb">printf</span> %s <span class="s2">&quot;hello world&quot;</span>
+cat - <span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;hello world&quot;</span>
+cat - <span class="o">&lt;&lt;&lt;</span><span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;hello world\n&quot;</span>
+<span class="nb">echo</span> -ne <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">echo</span> <span class="s1">&#39;hello world&#39;</span><span class="p">|</span>cat
+<span class="nb">printf</span> <span class="s1">&#39;hello world\n&#39;</span>
+<span class="nb">echo </span>hello world <span class="p">|</span> cat
+<span class="nb">echo</span> <span class="s2">&quot;&quot;&quot;hello world&quot;&quot;&quot;</span>
+<span class="nb">echo</span> -n  <span class="s2">&quot;hello world&quot;</span>
+cat <span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;hello world&quot;</span>
+/bin/echo hello world
+<span class="nb">echo</span> -e <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;hello world&quot;</span><span class="p">;</span>
+<span class="nb">echo</span> -n <span class="s1">&#39;hello world&#39;</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;hello world&#39;</span>
+<span class="nb">echo</span> -n <span class="s2">&quot;hello world&quot;</span>
+cat <span class="o">&lt;&lt;&lt;</span> <span class="s1">&#39;hello world&#39;</span>
+<span class="nb">echo </span>dlrow olleh<span class="p">|</span>rev
+<span class="o">(</span><span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span><span class="o">)</span>
+cat <span class="o">&lt;&lt;&lt;</span><span class="s2">&quot;hello world&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> <span class="p">;</span>
+<span class="s1">&#39;echo&#39;</span> <span class="s1">&#39;hello world&#39;</span>
+<span class="nb">echo</span>   <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf</span> <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">echo</span> <span class="s1">&#39;&#39;</span>hello world<span class="s1">&#39;&#39;</span>
+<span class="nb">printf</span> <span class="s1">&#39;hello world&#39;</span>
+cat <span class="o">&lt;&lt;&lt;</span><span class="s1">&#39;hello world&#39;</span>
+<span class="nb">echo</span> <span class="s2">&quot;&quot;</span>hello world<span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span> -n hello world
+<span class="nb">echo</span>  <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">printf </span>hello<span class="se">\ </span>world
+<span class="nb">echo</span> <span class="s1">&#39;hello world&#39;</span><span class="se">\</span>
+<span class="nb">echo</span> <span class="s2">$&quot;hello world&quot;</span>
+<span class="nb">echo</span> <span class="s1">&#39;hello world&#39;</span><span class="p">;</span>
+<span class="nb">echo</span> <span class="s1">&#39;hello world &#39;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello world &quot;</span>
+<span class="nb">echo</span> <span class="s1">$&#39;hello world&#39;</span>
+<span class="nb">echo</span>  <span class="s1">&#39;hello world&#39;</span>
+<span class="nb">echo</span> -e hello world
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span><span class="p">;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span><span class="se">\</span>
+<span class="nb">echo </span>hello world<span class="s2">&quot;&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;&quot;</span>hello world
+<span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span>
+<span class="nb">echo </span>hello<span class="se">\ </span>world<span class="p">;</span>
+<span class="nb">echo</span> <span class="s1">&#39;hello world&#39;</span>
+<span class="nb">echo </span>hello   world
+<span class="s1">&#39;echo&#39;</span> hello world
+<span class="nb">echo </span>hello world <span class="se">\</span>
+<span class="nb">echo </span>hello<span class="s1">&#39; &#39;</span>world
+<span class="nb">echo </span>hello world<span class="se">\</span>
+<span class="nb">echo </span>hello world<span class="p">;</span>
+<span class="nb">echo </span>hello <span class="se">\w</span>orld
+<span class="nb">echo </span>hello  world
+<span class="nb">echo </span>hello<span class="se">\ </span>world
+<span class="nb">echo  </span>hello world
+<span class="nb">echo </span>hello world
+</pre></div>
+
+
+<p><br /></p>
+<p>Of course there are a lot of quoting and space variations here as well. I will make a
+data-dump available soon with the responses for all challenges.</p>
+<p>On the building and hosting side of things this is getting more than the usual tiny trickle of side-project internet traffic.
+So far I have tried to contain the entire thing in an AWS free tier account, it has worked out OK so far with a
+few hiccups here and there. Since several people have asked, I will share more details about how the site is put
+together in a future post, follow <a href="https://twitter.com/thecmdchallenge">cmdchallenge on twitter</a> or
+use <a href="/rss.xml">rss</a>.</p>
+  </div><!-- /.entry-content -->
+</section>
+</div>
+
+    <footer id="page-footer">
+      <div>
+        <a href="http://github.com/jarv"><i class="icon-github"></i>  </a>
+        <a href="https://twitter.com/__jarv__"><i class="icon-twitter"></i>  </a>
+        <a href="mailto:john@jarv.org"><i class="icon-envelope"></i> </a>
+      </div>
+      <div>
+        powered by <a href="http://getpelican.com/">pelican</a> with the <a href="https://github.com/jarv/jarvican">jarvican</a> theme.
+      </div>
+      <div>The posts on this page represent my views and opinions do not represent those of my employer.</div>
+    </footer><!-- /#contentinfo -->
+    </div>
+    <script src="/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="/theme/js/vendor/jquery-1.11.0.min.js"></script>
+    <script src="/theme/js/jarvican.js"></script>
+  </body>
+</html>

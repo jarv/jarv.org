@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>jarv</title>
+    <!-- <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=0, maximum-scale=1, user-scalable=yes"> -->
+    <meta name="viewport" content="width=device-width">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/theme/css/normalize.min.css">
+    <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="jarv RSS Feed" />
+    <script src="http://api.html5media.info/1.1.8/html5media.min.js"></script>
+<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-78464-7', 'auto');
+      ga('send', 'pageview');
+    </script>
+</head>
+
+  <body>
+    <div class="wrapper">
+    <header class="banner">
+      <div class="img-wrapper"><img src="/profile.jpg" alt="profile.pic"/></div>
+<div class="social-navigation">
+  <ul>
+    <li><a href="http://github.com/jarv"><i class="fa fa-github-square"></i></a></li>
+    <li><a href="https://twitter.com/__jarv__"><i class="fa fa-twitter-square"></i></a></li>
+    <li><a href="./rss.xml"><i class="fa fa-rss-square"></i></a></li>
+    <li><a href="mailto:john@jarv.org"><i class="fa fa-envelope-square"></i></a></li>
+  </ul>
+</div>
+      <div class="canvas-wrapper"><canvas id="canvas"></canvas></div>
+      <div class="navigation">
+        <a href="/">home</a>
+        <a href="/archives.html">archives</a>
+        <a href="/pages/about.html">about</a>
+      </div><!-- /#menu -->
+
+    </header>
+
+    <div class="content"><section id="content">
+  <header class="post">
+    <h1 class="archive-entry-title"> Simple highscore tracking with Python / Flask </h1> 
+  </header>
+  <footer class="post-info">
+    <abbr>
+      Mon 17 December 2012 
+         By jarv
+  
+    </abbr>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Below is a quick tutorial on how flask web framework might be 
+used for simple highscore tracking. All of the source code the state game <a href="http://github.com/jarv/thestategame">is now on github</a>.</p>
+<p>This code will accept an AJAX GET or POST at the end of each game so that scores can be tracked and read. Since the use-cases are simple it's easy to write the tests first:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">StateTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db_fd</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;DATABASE&#39;</span><span class="p">]</span> <span class="o">=</span> 
+            <span class="n">tempfile</span><span class="o">.</span><span class="n">mkstemp</span><span class="p">()</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;TESTING&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">test_client</span><span class="p">()</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">init_db</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db_fd</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;DATABASE&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>This above code will create an sqlite db before each test-case and
+remove it when completed.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">test_empty_db</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/d&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">rv</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">test_single_entry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">test_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;john doe&#39;</span><span class="p">,</span>
+        <span class="s">&#39;score&#39;</span><span class="p">:</span> <span class="mi">1234</span><span class="p">,</span>
+        <span class="s">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1234</span>
+    <span class="p">}</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/d&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">test_data</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s">&#39;ok&#39;</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">rv</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/d&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">rv</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="n">test_data</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">test_multiple_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;john doe&#39;</span><span class="p">,</span>
+                <span class="s">&#39;score&#39;</span><span class="p">:</span> <span class="n">score</span><span class="p">,</span>
+                <span class="s">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1234</span><span class="p">}</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/d&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="s">&#39;ok&#39;</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">rv</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/d&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">rv</span><span class="o">.</span><span class="n">data</span><span class="p">))</span> <span class="o">==</span> <span class="mi">10</span>
+</pre></div>
+
+
+<p>These three test-cases cover basic functionality of the high-score
+tracker:</p>
+<ul>
+<li>Ensure that if a GET request is made before adding entries an empty
+    JSON array is returned.</li>
+<li>If a single entry is added with a POST ensure that the same results
+    are returned with a GET.</li>
+<li>If there are more than 10 entries added ensure that we only get 10
+    back.</li>
+</ul>
+<p>For the actual app there isn't much more code than what was written for
+the tests.</p>
+<div class="highlight"><pre><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/d&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_scores</span><span class="p">():</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="s">&#39;select name, score, time from hs order by score limit 10&#39;</span><span class="p">)</span>
+
+    <span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;score&#39;</span><span class="p">,</span> <span class="s">&#39;time&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]))</span>
+         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Retrieve the top 10 scores, return the results as JSON.</p>
+<div class="highlight"><pre><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/d&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">post_score</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&#39;[\s\w]{1,20}$&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">])):</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">&#39;error&#39;</span><span class="p">:</span> <span class="s">&#39;invalid name&#39;</span><span class="p">})</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&#39;[0-9]+\.?[0-9]*$&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;time&#39;</span><span class="p">])):</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">&#39;error&#39;</span><span class="p">:</span> <span class="s">&#39;invalid time&#39;</span><span class="p">})</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&#39;[0-9]{1,15}$&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;score&#39;</span><span class="p">])):</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">&#39;error&#39;</span><span class="p">:</span> <span class="s">&#39;invalid score&#39;</span><span class="p">})</span>
+
+    <span class="n">g</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;insert into hs (name, score, time) values (?, ?, ?)&#39;</span><span class="p">,</span>
+                 <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;score&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;time&#39;</span><span class="p">]])</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">&#39;ok&#39;</span><span class="p">:</span> <span class="s">&#39;success&#39;</span><span class="p">})</span>
+</pre></div>
+
+
+<p>Receive a new score, do some basic input validation and insert the new
+high score entry.</p>
+<p>Of course it's easy to inject fake high scores with something like this,
+abuse it, cheat, etc. But in this case it's just for fun.</p>
+  </div><!-- /.entry-content -->
+</section>
+</div>
+
+    <footer id="page-footer">
+      <div>
+        <a href="http://github.com/jarv"><i class="icon-github"></i>  </a>
+        <a href="https://twitter.com/__jarv__"><i class="icon-twitter"></i>  </a>
+        <a href="mailto:john@jarv.org"><i class="icon-envelope"></i> </a>
+      </div>
+      <div>
+        powered by <a href="http://getpelican.com/">pelican</a> with the <a href="https://github.com/jarv/jarvican">jarvican</a> theme.
+      </div>
+      <div>The posts on this page represent my views and opinions do not represent those of my employer.</div>
+    </footer><!-- /#contentinfo -->
+    </div>
+    <script src="/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="/theme/js/vendor/jquery-1.11.0.min.js"></script>
+    <script src="/theme/js/jarvican.js"></script>
+  </body>
+</html>

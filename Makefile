@@ -104,8 +104,6 @@ cf_upload: publish
 github: publish
 	ghp-import $(OUTPUTDIR)
 	git push origin gh-pages
-	ghp-import $(OUTPUTDIR)
-	git push git@github.com:jarv/jarv.github.io.git  gh-pages:master -f
 
 wsass:
 	sass --watch jarvican/sass:jarvican/static/css

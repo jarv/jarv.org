@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jarv - avr</title><link href="https://jarv.org/" rel="alternate"></link><link href="/feeds/avr.atom.xml" rel="self"></link><id>https://jarv.org/</id><updated>2009-09-15T18:16:00-04:00</updated><entry><title>Blinking motion sensor / Mario Brothers Candy Tin</title><link href="https://jarv.org/usb-powered-blinking-ir-motion-sensor-mounted-in-a-mario-brothers-candy-tin.html" rel="alternate"></link><published>2009-09-15T18:16:00-04:00</published><updated>2009-09-15T18:16:00-04:00</updated><author><name>jarv</name></author><id>tag:jarv.org,2009-09-15:/usb-powered-blinking-ir-motion-sensor-mounted-in-a-mario-brothers-candy-tin.html</id><summary type="html">&lt;p&gt;With an attiny13A, an IR motion sensor, and a candy Mario Brothers
+mushroom tin, this project turns them into a USB powered IR sensor that
+also blinks and sings. &lt;/p&gt;
+&lt;iframe src="http://www.youtube.com/embed/A2rH835xQhY" style="border: none"&gt;&lt;/iframe&gt;</summary><content type="html">&lt;p&gt;With an attiny13A, an IR motion sensor, and a candy Mario Brothers
+mushroom tin, this project turns them into a USB powered IR sensor that
+also blinks and sings. &lt;/p&gt;
+&lt;iframe src="http://www.youtube.com/embed/A2rH835xQhY" style="border: none"&gt;&lt;/iframe&gt;</content></entry></feed>
