@@ -1,4 +1,4 @@
 FROM gitlab/dind
 RUN apt-get update && \
-    apt-get install -y python-pip && \
+    apt-get install -y python-pip libxml2-dev libxslt1-dev python-dev && \
     pip install ghp-import==0.4.1 pelican==3.7.1 
