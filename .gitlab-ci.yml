@@ -1,0 +1,21 @@
+stages:
+  - test
+  - deploy
+
+before_script:
+  - docker info
+  - pip install -r requirements.txt
+
+test:
+  image: registry.gitlab.com/jarv/jarv.org/ci-image
+  stage: test
+  script:
+    - echo test
+
+deploy:
+  image: registry.gitlab.com/jarv/jarv.org/ci-image
+  stage: deploy
+  script:
+    - echo deploy
+  only:
+    - master

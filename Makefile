@@ -111,4 +111,7 @@ wsass:
 wcoffee:
 	coffee -o jarvican/static/js -cw jarvican/coffee/
 
+build-docker-ci:
+	docker build -t registry.gitlab.com/jarv/jarv.org/ci-image -f Dockerfile-ci .
+
 .PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
