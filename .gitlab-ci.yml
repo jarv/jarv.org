@@ -1,5 +1,5 @@
 stages:
-  - test
+  - build
   - deploy
 
 before_script:
@@ -8,9 +8,10 @@ before_script:
 
 test:
   image: registry.gitlab.com/jarv/jarv.org/ci-image
-  stage: test
+  stage: build
   script:
-    - echo test
+    - make clean
+    - make html
 
 deploy:
   image: registry.gitlab.com/jarv/jarv.org/ci-image
