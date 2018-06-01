@@ -1,4 +1,4 @@
-FROM gitlab/dind
+FROM python:2.7-stretch
 RUN apt-get update && \
     apt-get install -y python-pip libxml2-dev libxslt1-dev python-dev zlib* && \
-    pip install ghp-import==0.4.1 pelican==3.7.1 lxml==3.1.0
+    pip install ghp-import==0.4.1 pelican==3.7.1 lxml==3.1.0 Pillow==2.6.1
