@@ -13,10 +13,20 @@ build:
     - make clean
     - make html
 
-deploy:
+deploy_draft:
   image: registry.gitlab.com/jarv/jarv.org/ci-image
   stage: deploy
   script:
-    - echo deploy
+    - make clean
+    - export S3_BUCKET=draft.jarv.org
+    - make s3_upload
+
+deploy_prod:
+  image: registry.gitlab.com/jarv/jarv.org/ci-image
+  stage: deploy
+  script:
+    - make clean
+    - export S3_BUCKET=jarv.org
+    - make s3_upload
   only:
     - master
