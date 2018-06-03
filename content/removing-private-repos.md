@@ -1,4 +1,4 @@
-Title: Removing private repos
+Title: Removing all of my private repos from GitHub
 Date: 2018-05-31
 Slug: removing-private-repos
 
