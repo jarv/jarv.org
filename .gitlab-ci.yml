@@ -19,6 +19,7 @@ deploy_draft:
   script:
     - make clean
     - export S3_BUCKET=draft.jarv.org
+    - export DIST_ID=E1B0Q0MMPJQ79F
     - make s3_upload
 
 deploy_prod:
@@ -27,6 +28,7 @@ deploy_prod:
   script:
     - make clean
     - export S3_BUCKET=jarv.org
+    - export DIST_ID=EEN9NFVIDRTGS
     - make s3_upload
   only:
     - master

@@ -19,6 +19,10 @@ SSH_TARGET_DIR=/var/www
 
 S3_BUCKET ?= jarv.org
 
+# jarv.org EEN9NFVIDRTGS
+# draft.jarv.org E1B0Q0MMPJQ79F
+DISTID ?= EEN9NFVIDRTGS
+
 CLOUDFILES_USERNAME=my_rackspace_username
 CLOUDFILES_API_KEY=my_rackspace_api_key
 CLOUDFILES_CONTAINER=my_cloudfiles_container
@@ -97,6 +101,7 @@ ftp_upload: publish
 
 s3_upload: publish
 	aws s3 sync $(OUTPUTDIR)/ s3://$(S3_BUCKET) --acl public-read --delete
+	aws --region us-east-1 cloudfront create-invalidation --distribution-id $(DISTID) --paths '/*'
 
 cf_upload: publish
 	cd $(OUTPUTDIR) && swift -v -A https://auth.api.rackspacecloud.com/v1.0 -U $(CLOUDFILES_USERNAME) -K $(CLOUDFILES_API_KEY) upload -c $(CLOUDFILES_CONTAINER) .
