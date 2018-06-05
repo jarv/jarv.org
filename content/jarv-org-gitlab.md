@@ -11,7 +11,7 @@ extremely easy to publish these posts automatically.
 Now, on every commit the followig pipeline runs that deploys to https://draft.jarv.org
 and on the master branch, https://jarv.org.
 
-<img src="{attach}static/jarv-cicd.png" alt="cicd"/>
+<img style="width: 200px;" src="{attach}static/jarv-cicd.png" alt="cicd"/>
 
 Here is what the `gitlab-ci.yml` configuration looks like for the [jarv.org repository](https://gitlab.com/jarv/jarv.org):
 
