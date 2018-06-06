@@ -5,11 +5,14 @@ Slug: jarv-org-cicd
 
 In the process of making all of my private repositories public on Github and moving off of GitHub
 pages I have also decided to move most of my repos over to GitLab. 
-One reason, other than working for them, is that setting up a CICD pipeline makes it 
-extremely easy to publish these posts automatically.
+One reason is that setting up a CICD pipeline makes it 
+extremely easy to publish these posts automatically. This in combination with GitLab's
+web IDE makes minor changes a little bit easier to make.
 
-Now, on every commit the following pipeline runs that deploys to https://draft.jarv.org
-and on the master branch, https://jarv.org.
+CICD piplines in GitLab are controlled with a single file, `.gitlab-ci.yml` that is placed
+at the root of the repository.
+Wit this file, on every commit, the following pipeline runs that deploys to [draft.jarv.org](https://draft.jarv.org)
+and on the master branch for [jarv.org](https://jarv.org).
 
 <img style="width: 200px;" src="{attach}static/jarv-cicd.png" alt="cicd"/>
 
