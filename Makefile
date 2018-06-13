@@ -86,6 +86,9 @@ stopserver:
 
 publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
+ifeq ($(S3_BUCKET), draft.jarv.org)
+	printf "User-agent: *\nDisallow: /\n" > $(OUTPUTDIR)/robots.txt
+endif
 
 ssh_upload: publish
 	scp -P $(SSH_PORT) -r $(OUTPUTDIR)/* $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)
