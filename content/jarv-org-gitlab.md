@@ -66,4 +66,4 @@ Some notes about the setup:
 
 That's it! It couldn't be simpler and I think one of the nicest things about this setup is the ability to use the GitLab web ide to make quick changes.
 
-_Disclaimer: I am working for GitLab though the opinions here are my own._
+_Disclaimer: I work for GitLab though the opinions here are my own._
