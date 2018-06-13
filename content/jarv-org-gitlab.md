@@ -14,7 +14,7 @@ at the root of the repository.
 Wit this file, on every commit, the following pipeline runs that deploys to [draft.jarv.org](https://draft.jarv.org)
 and on the master branch for [jarv.org](https://jarv.org).
 
-<img src="{attach}static/jarv-cicd.png" alt="cicd"/>
+<img src="{attach}static/jarv-cicd.png" width="600px" alt="cicd"/>
 
 Here is what the `gitlab-ci.yml` configuration looks like for the [jarv.org repository](https://gitlab.com/jarv/jarv.org/blob/master/.gitlab-ci.yml):
 
