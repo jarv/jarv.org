@@ -14,6 +14,10 @@ at the root of the repository.
 Wit this file, on every commit, the following pipeline runs that deploys to [draft.jarv.org](https://draft.jarv.org)
 and on the master branch for [jarv.org](https://jarv.org).
 
+GitLab has integrated CI/CD runners that allow you to execute whatever you want in a docker
+image of your choice. By creating the `.gitlab-ci.yml` below you get a nice 
+deployment pipeline like this:
+
 <img src="{attach}static/jarv-cicd.png" width="600px" alt="cicd"/>
 
 Here is what the `gitlab-ci.yml` configuration looks like for the [jarv.org repository](https://gitlab.com/jarv/jarv.org/blob/master/.gitlab-ci.yml):
@@ -62,7 +66,7 @@ Some notes about the setup:
 * Deploying to the main site only happens on the master branch.
 * I am using a custom image that has some of the blog depencencies preinstalled, it is created with [this docker file](https://gitlab.com/jarv/jarv.org/blob/master/Dockerfile-ci).
 * Every time the deploy happens, an invalidate is sent to the cloudfront distribution in front of it.
-* Since I am no longer using pages, the blog is hosted in an S3 bucket so the CICD pipeline does an `aws s3 sync ...` to get the static files on the bucket.
+* Since I am no longer using GitHub pages, the blog is hosted in an S3 bucket so the CICD pipeline does an `aws s3 sync ...` to get the static files on the bucket.
 
 That's it! It couldn't be simpler and I think one of the nicest things about this setup is the ability to use the GitLab web ide to make quick changes.
 
