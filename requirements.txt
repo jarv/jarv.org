@@ -12,7 +12,7 @@ feedgenerator==1.9
 futures==3.2.0
 Jinja2==2.7.3
 jmespath==0.9.3
-lxml==3.1.0
+lxml==4.2.1
 Markdown==2.2.1
 MarkupSafe==0.23
 paramiko==1.15.1
