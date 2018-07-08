@@ -33,5 +33,8 @@ deploy_prod:
     - export S3_BUCKET=jarv.org
     - export DISTID=EEN9NFVIDRTGS
     - make s3_upload
+  environment:
+    name: jarv
+    url: https://jarv.org
   only:
     - master
