@@ -21,6 +21,9 @@ deploy_draft:
     - export S3_BUCKET=draft.jarv.org
     - export DISTID=E1B0Q0MMPJQ79F
     - make s3_upload
+  environment:
+    name: draft
+    url: https://draft.jarv.org
 
 deploy_prod:
   image: registry.gitlab.com/jarv/jarv.org/ci-image
