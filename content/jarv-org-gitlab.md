@@ -45,8 +45,11 @@ deploy_draft:
   script:
     - make clean
     - export S3_BUCKET=draft.jarv.org
-    - export DIST_ID=E1B0Q0MMPJQ79F
+    - export DISTID=E1B0Q0MMPJQ79F
     - make s3_upload
+  environment:
+    name: draft
+    url: https://draft.jarv.org
 
 deploy_prod:
   image: registry.gitlab.com/jarv/jarv.org/ci-image
@@ -54,8 +57,11 @@ deploy_prod:
   script:
     - make clean
     - export S3_BUCKET=jarv.org
-    - export DIST_ID=EEN9NFVIDRTGS
+    - export DISTID=EEN9NFVIDRTGS
     - make s3_upload
+  environment:
+    name: jarv 
+    url: https://draft.jarv.org
   only:
     - master
 ```
@@ -67,6 +73,11 @@ Some notes about the setup:
 * I am using a custom image that has some of the blog depencencies preinstalled, it is created with [this docker file](https://gitlab.com/jarv/jarv.org/blob/master/Dockerfile-ci).
 * Every time the deploy happens, an invalidate is sent to the cloudfront distribution in front of it.
 * Since I am no longer using GitHub pages, the blog is hosted in an S3 bucket so the CICD pipeline does an `aws s3 sync ...` to get the static files on the bucket.
+
+There is a special key named `environment` that hints to GitLab that the stage is a deploy step. With this the URL provided will show up under operations->deployments like this:
+
+
+<img src="{attach}static/jarv-envs.png" width="600px" alt="envs"/>
 
 That's it! It couldn't be simpler and I think one of the nicest things about this setup is the ability to use the GitLab web ide to make quick changes.
 
