@@ -8,4 +8,4 @@ a time-lapse of reddit overnight on January 20th taken at 5minute intervals.
 This excludes images which is why there are occasional jumps where advertisements are.
 
 
-<video width="100%" height="100%" src="https://cdn.rawgit.com/jarv/page-watch-data/master/reddit/reddit.webm"  controls></video>
+<video width="100%" height="100%" src="https://cdn.jsdelivr.net/gh/jarv/page-watch-data@master/reddit/reddit.webm"  controls></video>
