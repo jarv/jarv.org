@@ -2,6 +2,7 @@ PY=python
 PELICAN=pelican
 PELICANOPTS=
 PORT=8080
+REF=$(shell git rev-parse --short HEAD)
 
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
