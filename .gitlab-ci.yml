@@ -2,7 +2,6 @@ image: registry.gitlab.com/jarv/jarv.org/ci-image:latest
 
 stages:
   - image
-  - build
   - deploy
 
 .image:
@@ -36,12 +35,6 @@ image:ci:manual:
 before_script:
   - git submodule update --init --recursive
   - pip install -r requirements.txt
-
-build:
-  stage: build
-  script:
-    - make clean
-    - make html
 
 deploy:draft:
   extends: .deploy
