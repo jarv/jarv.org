@@ -2,7 +2,7 @@ PY=python
 PELICAN=pelican
 PELICANOPTS=
 PORT=8080
-REF=$(shell git rev-parse --short HEAD)
+CI_COMMIT_TAG?=$(shell git rev-parse --short HEAD)
 
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
@@ -122,7 +122,7 @@ build-docker-ci:
 	docker push registry.gitlab.com/jarv/jarv.org/ci-image
 
 push-image-ci: build-image-ci
-	docker push $(CI_REGISTRY_IMAGE)/ci:$(REF)
+	docker push $(CI_REGISTRY_IMAGE)/ci:$(CI_COMMIT_TAG)
 	docker push $(CI_REGISTRY_IMAGE)/ci:latest
 
 build-image-ci:
