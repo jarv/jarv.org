@@ -1,6 +1,7 @@
 PY=python
 PELICAN=pelican
 PELICANOPTS=
+PORT=8080
 
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
@@ -66,11 +67,7 @@ regenerate:
 	$(PELICAN) -r $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 
 serve:
-ifdef PORT
-	cd $(OUTPUTDIR) && $(PY) -m pelican.server $(PORT)
-else
-	cd $(OUTPUTDIR) && $(PY) -m pelican.server
-endif
+	pelican --listen -p $(PORT)
 
 devserver:
 ifdef PORT
@@ -122,5 +119,13 @@ wcoffee:
 build-docker-ci:
 	docker build -t registry.gitlab.com/jarv/jarv.org/ci-image -f Dockerfile-ci .
 	docker push registry.gitlab.com/jarv/jarv.org/ci-image
+
+push-image-ci: build-image-ci
+	docker push $(CI_REGISTRY_IMAGE)/ci:$(REF)
+	docker push $(CI_REGISTRY_IMAGE)/ci:latest
+
+build-image-ci:
+	docker build -t $(CI_REGISTRY_IMAGE)/ci:latest \
+        --tag $(CI_REGISTRY_IMAGE)/ci:$(CI_COMMIT_TAG) -f Dockerfile-ci
 
 .PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github

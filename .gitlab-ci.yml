@@ -1,6 +1,27 @@
 stages:
+  - image
   - build
   - deploy
+
+.image:
+  stage: image
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_HOST: tcp://docker:2375
+  services:
+    - docker:19.03.5-dind
+  before_script:
+    - 'echo Running: docker login --password-stdin -u $CI_REGISTRY_USER $CI_REGISTRY'
+    - 'echo ${CI_JOB_TOKEN} | docker login --password-stdin -u $CI_REGISTRY_USER $CI_REGISTRY'
+
+image:ci:manual:
+  image: docker:19.03.8
+  extends: .image
+  allow_failure: true
+  when: manual
+  script:
+    - apk add make git
+    - make push-image-ci
 
 .deploy:
   image: registry.gitlab.com/jarv/jarv.org/ci-image

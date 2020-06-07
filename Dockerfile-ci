@@ -1,4 +1,8 @@
-FROM python:2.7-stretch
-RUN apt-get update && \
-    apt-get install -y python-pip libxml2-dev libxslt1-dev python-dev zlib* && \
-    pip install ghp-import==0.4.1 pelican==3.7.1 lxml==3.1.0 Pillow==2.6.1
+FROM python:3.7-alpine
+COPY Pipfile /Pipfile
+COPY Pipfile.lock /Pipfile.lock
+RUN apk add curl bash openssh-client openssl-dev libffi-dev alpine-sdk git \
+    && pip install --no-cache-dir pipenv && pipenv lock -r > requirements.txt \
+    && cat requirements.txt && pip install --no-cache-dir -r requirements.txt \
+    && apk del libffi-dev alpine-sdk \
+    && pip uninstall -y pipenv
