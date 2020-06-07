@@ -127,6 +127,6 @@ push-image-ci: build-image-ci
 
 build-image-ci:
 	docker build -t $(CI_REGISTRY_IMAGE)/ci:latest \
-        --tag $(CI_REGISTRY_IMAGE)/ci:$(CI_COMMIT_TAG) -f Dockerfile-ci
+        --tag $(CI_REGISTRY_IMAGE)/ci:$(CI_COMMIT_TAG) -f Dockerfile-ci .
 
 .PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
