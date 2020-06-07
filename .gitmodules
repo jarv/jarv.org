@@ -1,6 +1,3 @@
-[submodule "jarvican"]
-	path = jarvican
-	url = https://gitlab.com/jarv/jarvican
 [submodule "pelican-plugins"]
 	path = pelican-plugins
 	url = https://github.com/getpelican/pelican-plugins

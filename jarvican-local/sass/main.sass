@@ -1,0 +1,223 @@
+@import 'bourbon/bourbon'
+
+$medium: 760px
+$linkblue: #0066cc
+// http://paletton.com/#uid=72G0N0k8itH4JVv4QLebfn2bsg3
+// headers and picture outline
+$dkblue: #41A8DF
+$dkerblue: #298EC3
+$lightyellow: #fffb67
+$headers: #4D6774
+// links
+$links: #774D55
+// link hover
+$link-hover: #4D6774
+// outlines around navigation buttons
+$gray: #ccc 
+// matte background
+$light-gray: lighten(#CDE4EF, 30%)
+// all box shadows
+$default-box-shadow: 0 0 0 1px #d1d1d1,0 0 4px 1px #ccc
+// text color for hover over nav buttons
+$nav-hover: white
+// background for article text
+$article-bg: lighten(#E0F9D4, 50)
+$width: 65%
+$width-mobile: 95%
+
+@import "neat/neat"
+@import "base/base"
+
+h1, h2, h3, h4, h5, h6
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif
+  line-height: 1.25
+  margin: 0
+  text-rendering: optimizeLegibility
+  color: $headers
+
+h1
+  font-size: 1.8em
+
+h2
+  font-size: 1.5em
+
+h3
+  font-size: 1em
+
+h4
+  font-size: 1em
+
+h5
+  font-size: 1em
+
+h2.archive-entry-title
+  a
+    font-size: 1.2em
+body
+  -webkit-font-smoothing: antialiased
+  color: #333333
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif
+  font-size: 1em
+
+h2
+  color: $headers
+
+a            
+  color: $links
+  text-decoration: none
+
+a:hover      
+  color: $link-hover
+
+
+ol
+  margin: 0px
+  padding: 0px
+  ul.posts, li.posts
+    list-style-type: none
+  ul, li
+    list-style-type: disc
+
+.wrapper
+  @include outer-container
+
+body
+  background-color: white
+
+  // **************************   START HEADER
+  header.banner
+    position: relative
+    margin: 0px auto
+    @media all and (min-device-width: 900px)
+      width: $width
+    @media all and (max-device-width: 900px)
+      width: $width-mobile
+    text-align: center
+    padding: 10px 0px 10px 0px
+    img
+      box-sizing: border-box
+      width: 150px
+      border: 8px inset $headers
+      border-radius: 75px
+
+    div.canvas-wrapper
+      padding-top: 15px
+      display: none
+      #canvas
+        font-family: 'Courier New' monospace
+        z-index: 300
+        margin: 0
+        padding: 0
+
+    // ** start social
+    div.social-navigation
+
+      padding-top: 0
+      text-align: center
+      ul
+        -webkit-margin-before: 0px
+        -webkit-margin-after: 0px
+        -webkit-margin-start: 0px
+        -webkit-margin-end: 0px
+        -webkit-padding-start: 0px
+        display: inline
+        a
+
+          @media all and (min-device-width: 900px)
+            font-size: 2em
+          @media all and (max-device-width: 900px)
+            font-size: 2em
+
+        li
+          display: inline-block
+
+
+    // ** start nav links 
+    div.navigation
+
+      display: inline-block
+      ol
+        display: inline
+      text-align: right
+      right: 120px
+      top: 320px
+      a:hover
+        background-color: $link-hover
+        color: $nav-hover
+      a
+        padding: 5px 10px 5px 10px
+        border-radius: 2px
+        text-decoration: none
+        @media all and (min-device-width: 900px)
+          font-size: 2em
+        @media all and (max-device-width: 900px)
+          font-size: 1.5em
+        font-family: $helvetica
+        color: $links
+        display: inline-block
+        border: 1px solid $gray
+  // ******************************** END HEADER
+
+
+  div.entry-content 
+    box-shadow: $default-box-shadow 
+    color: #292f33
+    margin-bottom: 2em
+    margin-top: 1em
+    background-color: white
+    font-family: $helvetica
+    padding: 1em
+    border-radius: 10px
+    @include media(max-width $medium) 
+      border-radius: 0px
+      padding: .5em
+    
+    a:link, a:visited 
+      color: $linkblue
+    
+    a:hover 
+      color: darken($linkblue, 20%)
+    
+    pre 
+      padding: .5em
+      margin: auto
+      width: 90%
+      @include media(max-width $medium) 
+        width: 100%
+      
+      font-size: 1em
+    
+    ul
+      padding-left: 2em
+      list-style-type: circle
+
+  // about and archives div wrapper
+  div.page-wrapper, div.archives-wrapper
+    padding: 30px
+    box-shadow: $default-box-shadow
+    font-size: 1.2em
+    background-color: $article-bg
+
+  div.archives-wrapper
+    table.archives
+      font-family: $helvetica
+      font-size: .8em
+      width: 100%
+      td
+        padding: 5px 
+      td.even
+        background-color: $light-gray
+      td.date
+        font-family: Fixed, monospace
+        width: 100px
+      td.odd
+        background-color: darken($light-gray, 5%)
+
+
+  // ************* Footer
+  footer#page-footer
+    font-size: .8em
+    text-align: center
+    width: 100% 
+    margin-top: 20px
+    margin-bottom: 20px
