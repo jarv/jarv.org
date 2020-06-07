@@ -1,3 +1,5 @@
+image: registry.gitlab.com/jarv/jarv.org/ci-image:latest
+
 stages:
   - image
   - build
@@ -24,7 +26,6 @@ image:ci:manual:
     - make push-image-ci
 
 .deploy:
-  image: registry.gitlab.com/jarv/jarv.org/ci-image
   stage: deploy
   script:
     - make clean
@@ -37,7 +38,6 @@ before_script:
   - pip install -r requirements.txt
 
 build:
-  image: registry.gitlab.com/jarv/jarv.org/ci-image
   stage: build
   script:
     - make clean
