@@ -2,6 +2,15 @@ stages:
   - build
   - deploy
 
+.deploy:
+  image: registry.gitlab.com/jarv/jarv.org/ci-image
+  stage: deploy
+  script:
+    - make clean
+    - export S3_BUCKET=$S3_BUCKET
+    - export DISTID=$DISTID
+    - make s3_upload
+
 before_script:
   - git submodule update --init --recursive
   - pip install -r requirements.txt
@@ -13,28 +22,23 @@ build:
     - make clean
     - make html
 
-deploy_draft:
-  image: registry.gitlab.com/jarv/jarv.org/ci-image
-  stage: deploy
-  script:
-    - make clean
-    - export S3_BUCKET=draft.jarv.org
-    - export DISTID=E1B0Q0MMPJQ79F
-    - make s3_upload
+deploy:draft:
+  extends: .deploy
+  resource_group: deploy:draft
+  variables:
+    S3_BUCKET: draft.jarv.org
+    DISTID: E1B0Q0MMPJQ79F
   environment:
     name: draft
     url: https://draft.jarv.org
 
-deploy_prod:
-  image: registry.gitlab.com/jarv/jarv.org/ci-image
-  stage: deploy
-  script:
-    - make clean
-    - export S3_BUCKET=jarv.org
-    - export DISTID=EEN9NFVIDRTGS
-    - make s3_upload
+deploy:prod:
+  extends: .deploy
+  resource_group: deploy:prod
+  variables:
+    S3_BUCKET: jarv.org
+    DISTID: EEN9NFVIDRTGS
   environment:
     name: jarv
     url: https://jarv.org
-  only:
-    - master
+  when: manual
