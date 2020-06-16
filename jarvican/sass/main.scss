@@ -59,7 +59,7 @@ h2.archive-entry-title {
 
 body {
   width: 65%;
-  @media all and (max-width: $large) {
+  @media only screen and (max-width: $large) {
     width: 100%;
   }
   margin: auto;
