@@ -42,7 +42,7 @@ SOCIAL = [
         ('github', 'http://github.com/jarv'),
         ('twitter', 'https://twitter.com/__jarv__'),
         ]
-SUMMARY_MAX_LENGTH = 200
+SUMMARY_MAX_LENGTH = 1000
 GOOGLE_ANALYTICS_ID = None
 LOAD_CONTENT_CACHE = False
 RESPONSIVE_IMAGES = True
