@@ -2,14 +2,11 @@
 {% block content %}
 <section id="content">
   <header class="post">
-    <h1 class="archive-entry-title"> {{ article.title }} </h1> 
+    <h1 class="archive-entry-title"> {{ article.title }} </h1>
   </header>
   <footer class="post-info">
     <abbr>
-      {{ article.locale_date }} 
-      {% if article.author %}
-         By {{ article.author }}
-      {% endif %}  
+      {{ article.locale_date }}
     </abbr>
   </footer><!-- /.post-info -->
   <div class="entry-content">

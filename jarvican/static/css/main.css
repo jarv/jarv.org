@@ -63,27 +63,25 @@ header.banner {
   margin: 0px auto;
   text-align: center; }
   header.banner div.navigation {
-    margin-bottom: 1em;
+    margin-bottom: .5em;
     text-align: right;
     right: 120px;
     top: 320px; }
     header.banner div.navigation ol {
       display: inline; }
     header.banner div.navigation a:hover {
-      background-color: #4D6774;
-      color: white; }
+      color: #4D6774; }
     header.banner div.navigation a {
       padding: 5px 10px 5px 10px;
       border-radius: 2px;
       text-decoration: none;
       color: #774D55;
-      display: inline-block;
-      border: 1px solid #ccc; }
+      display: inline-block; }
 
 div.entry-content {
   color: #292f33;
-  margin-bottom: 2em;
   margin-top: 1em;
+  margin-bottom: 1em;
   background-color: white;
   padding: 1em; }
   div.entry-content a:link, div.entry-content a:visited {
@@ -107,15 +105,16 @@ div.entry-content {
     object-fit: cover; }
 
 div.page-wrapper, div.archives-wrapper {
-  padding: 30px;
+  padding: 1em;
   font-size: 1.2em;
-  background-color: white; }
+  background-color: #fdf5e8; }
 
 div.archives-wrapper table.archives {
+  margin-top: 1em;
   font-size: .8em;
   width: 100%; }
   div.archives-wrapper table.archives td {
-    padding: 5px; }
+    padding: .5em; }
   div.archives-wrapper table.archives td.even {
     background-color: white; }
   div.archives-wrapper table.archives td.date {

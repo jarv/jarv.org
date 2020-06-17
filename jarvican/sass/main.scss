@@ -15,7 +15,7 @@ $article-bg: lighten(#E0F9D4, 50);
 $small: 320px;
 $medium: 760px;
 $large: 1024px;
-
+$paperwhite: #fdf5e8;
 
 * {
   box-sizing: border-box;
@@ -66,13 +66,13 @@ body {
   -webkit-font-smoothing: antialiased;
   color: #333333;
   font-size: 1em;
-  background-color: #fdf5e8;
+  background-color: $paperwhite;
 }
 
 div.wrapper {
   padding: .5em;
   background-color: white;
-  background-color: #fdf5e8;
+  background-color: $paperwhite;
 }
 
 a {             
@@ -101,8 +101,9 @@ header.banner {
   position: relative;
   margin: 0px auto;
   text-align: center;
+  // border-bottom: 1px solid lighten(gray, 20%);
   div.navigation {
-    margin-bottom: 1em;
+    margin-bottom: .5em;
     ol {
       display: inline;
     }
@@ -110,22 +111,16 @@ header.banner {
     right: 120px;
     top: 320px;
     a:hover {
-      background-color: $link-hover;
-      color: $nav-hover;
+      // border-bottom: 1px solid black; 
+      // background-color: $link-hover;
+      color: $link-hover;
     }
     a {
       padding: 5px 10px 5px 10px;
       border-radius: 2px;
       text-decoration: none;
-      // @media all and (max-width: $large) {
-      //   font-size: 2em;
-      // }
-      // @media all and (max-width: $large) {
-      //   font-size: 1.5em;
-      // }
       color: $links;
       display: inline-block;
-      border: 1px solid $gray;
     }
   }
 }
@@ -135,8 +130,8 @@ header.banner {
 div.entry-content {
   // border-top: 1px solid black;
   color: #292f33;
-  margin-bottom: 2em;
   margin-top: 1em;
+  margin-bottom: 1em;
   background-color: white;
   padding: 1em;
  
@@ -170,16 +165,17 @@ div.entry-content {
 }
 // about and archives div wrapper
 div.page-wrapper, div.archives-wrapper {
-  padding: 30px;
+  padding: 1em;
   font-size: 1.2em;
-  background-color: $article-bg;
+  background-color: $paperwhite;
 }
 div.archives-wrapper {
   table.archives {
+    margin-top: 1em;
     font-size: .8em;
     width: 100%;
     td {
-      padding: 5px ;
+      padding: .5em;
     }
     td.even {
       background-color: $light-gray;
