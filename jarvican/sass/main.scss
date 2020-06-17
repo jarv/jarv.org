@@ -161,6 +161,12 @@ div.entry-content {
     padding-left: 2em;
     list-style-type: circle;
   }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 // about and archives div wrapper
 div.page-wrapper, div.archives-wrapper {

@@ -29,7 +29,7 @@ Some notes about the setup:
 
 There is a special key named `environment` that hints to GitLab that the stage is a deploy step. With this the URL provided will show up under operations->deployments like this:
 
-<img src="{attach}static/jarv-envs.png" width="600px" alt="envs"/>
+<img src="{attach}static/jarv-envs.png" alt="envs"/>
 
 That's it! It couldn't be simpler and I think one of the nicest things about this setup is the ability to use the GitLab web ide to make quick changes.
 

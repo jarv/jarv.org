@@ -5,7 +5,7 @@ FEED_DOMAIN = ''
 THEME = 'jarvican'
 AUTHOR = u'jarv'
 SITENAME = u'jarv'
-SITEURL = 'http://localhost:8000'
+SITEURL = 'http://localhost:8080'
 TIMEZONE = 'US/Eastern'
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = []
@@ -46,31 +46,3 @@ SUMMARY_MAX_LENGTH = 200
 GOOGLE_ANALYTICS_ID = None
 LOAD_CONTENT_CACHE = False
 RESPONSIVE_IMAGES = True
-ASCII_BANNER = r"""            OOOO
-           O::::O
-            OOOO
-          OOOOOOO  OOOOOOOOOOOOO  OOOOO   OOOOOOOOOOOOOOOO           OOOOOOO
-          O:::::O  O::::::::::::O O::::OOO:::::::::OO:::::O         O:::::O
-           O::::O  OOOOOOOOO:::::OO:::::::::::::::::OO:::::O       O:::::O
-           O::::O           O::::OOO::::::OOOOO::::::OO:::::O     O:::::O
-           O::::O    OOOOOOO:::::O O:::::O     O:::::O O:::::O   O:::::O
-           O::::O  OO::::::::::::O O:::::O     OOOOOOO  O:::::O O:::::O
-           O::::O O::::OOOO::::::O O:::::O               O:::::O:::::O
-           O::::OO::::O    O:::::O O:::::O                O:::::::::O
-           O::::OO::::O    O:::::O O:::::O                 O:::::::O
-           O::::OO:::::OOOO::::::O O:::::O                  O:::::O
-           O::::O O::::::::::OO:::OO:::::O                   O:::O
-           O::::O  OOOOOOOOOO  OOOOOOOOOOO                    OOO
-           O::::O
- OOOO      O::::O
-O::::OO   O:::::O
-O::::::OOO::::::O
- OO::::::::::::O
-   OOO::::::OOO
-      OOOOOO"""
-ASCII_BANNER_MOBILE = r"""       __       ___      .______     ____    ____
-      |  |     /   \     |   _  \    \   \  /   /
-      |  |    /  ^  \    |  |_)  |    \   \/   /
-.--.  |  |   /  /_\  \   |      /      \      /
-|  `--'  |  /  _____  \  |  |\  \----.  \    /
- \______/  /__/     \__\ | _| `._____|   \__/"""

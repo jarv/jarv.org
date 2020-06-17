@@ -101,6 +101,10 @@ div.entry-content {
   div.entry-content ul {
     padding-left: 2em;
     list-style-type: circle; }
+  div.entry-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
 
 div.page-wrapper, div.archives-wrapper {
   padding: 30px;
