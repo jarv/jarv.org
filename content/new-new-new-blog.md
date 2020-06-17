@@ -1,6 +1,5 @@
 Title: A new new new blog
-Date: 2020-06-18
-Author: jarv
+Date: 2020-06-17
 Slug: new-new-new-blog
 
 Yeah it's another blog update, just really some style updates and looking back at something I did a long time ago and say _what the heck was I thinking?_. I don't know, I think things that I don't have time to spend up usually end up being a craptastic design by copy-and-paste. Anyway, still using Pelican but upgraded to Python3 and fixed the CI configuration a bit. Got rid of the bourbon/{sass,neat} mixins because that was so 2013. Still using sass though.
