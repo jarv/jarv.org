@@ -1,6 +1,6 @@
 Title: The stages of a side project
 Date: 2020-06-17
-Slug: cmdchallenge-revival
+Slug: side-projects
 
 One experience of mine, though it has roughly mapped to previous side projects:
 
