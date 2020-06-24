@@ -31,7 +31,6 @@ STATIC_PATHS = ['extra', 'static']
 ARTICLE_EXCLUDES = ['extra', 'static']
 EXTRA_PATH_METADATA = {
     'extra/robots.txt': {'path': 'robots.txt'},
-    'extra/favicon.ico': {'path': 'favicon.ico'},
     'extra/jarv.json': {'path': 'jarv.json'},
     'extra/profile.jpg': {'path': 'profile.jpg'},
     'extra/reddit.webm': {'path': 'reddit.webm'},
