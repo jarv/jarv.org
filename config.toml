@@ -6,7 +6,7 @@ copyright = "Copyright 2007-{year}"
 
 [author]
   name = "jarv"
-  gitlab = "https://gitlab.com/jarv"
+  gitlab = "jarv"
   email = "john@jarv.org"
 
 [markup.goldmark.renderer]
