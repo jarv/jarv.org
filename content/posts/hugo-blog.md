@@ -1,6 +1,6 @@
 +++
 title = "Switching to Hugo"
-date = "2020-06-26"
+date = "2020-07-26"
 slug = "hugo-blog"
 tags = ["blog"]
 +++
