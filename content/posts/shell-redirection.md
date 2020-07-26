@@ -1,5 +1,5 @@
 +++
-title = "Learning a bit more about shell redirection"
+title = "Understanding shell redirection "
 date = "2020-07-25"
 slug = "shell-redirection"
 +++
