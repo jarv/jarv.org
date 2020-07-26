@@ -80,7 +80,7 @@ Redirecting input is almost exactly the same, from the bash man page:
 
 Note that again there is a file descriptor on the left, and a file on the right. The only difference is that when using a `<` the default file descriptor is `0` (STDIN) if one isn't specified. Therefore, all of these commands are equivalent:
 
-```
+```bash
 $ cat < path/to/file
 $ < path/to/file cat
 $ 0< path/to/file cat
