@@ -179,9 +179,3 @@ id = "devto"
 url = "https://dev.to/%s"
 title = "devto"
 icon = "fab fa-dev"
-
-[[social_icons]]
-id = "rss"
-url = "//index.xml"
-title = "Subscrbe"
-icon = "fa fa-rss"

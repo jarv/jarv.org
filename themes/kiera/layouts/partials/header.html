@@ -30,6 +30,11 @@
              </li>
            {{- end -}}
         {{ end }}
+             <li>
+               <a href="{{.Site.BaseURL}}index.xml">
+               <i class="fa fa-rss"></i>
+               </a>
+             </li>
       </ul>
       {{ with .Site.Params.tagline }}
       <p><em>{{ . | markdownify }}</em></p>

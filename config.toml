@@ -6,7 +6,6 @@ copyright = "Copyright 2007-{year}"
 
 [author]
   name = "jarv"
-  rss = ""
   gitlab = "https://gitlab.com/jarv"
   email = "john@jarv.org"
 
