@@ -1,0 +1,14 @@
+languageCode = "en-us"
+title = "jarv.org"
+theme = "kiera"
+pygmentsCodeFences = true
+copyright = "Copyright 2007-{year}"
+
+[author]
+  name = "jarv"
+  rss = ""
+  gitlab = "https://gitlab.com/jarv"
+  email = "john@jarv.org"
+
+[markup.goldmark.renderer]
+  unsafe = "true"  

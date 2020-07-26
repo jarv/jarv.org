@@ -1,4 +1,4 @@
-image: registry.gitlab.com/jarv/jarv.org/ci-image:latest
+image: registry.gitlab.com/jarv/jarv.org/ci:latest
 
 stages:
   - image
@@ -27,14 +27,9 @@ image:ci:manual:
 .deploy:
   stage: deploy
   script:
-    - make clean
     - export S3_BUCKET=$S3_BUCKET
     - export DISTID=$DISTID
     - make s3_upload
-
-before_script:
-  - git submodule update --init --recursive
-  - pip install -r requirements.txt
 
 deploy:draft:
   extends: .deploy
