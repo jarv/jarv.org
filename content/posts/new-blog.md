@@ -2,6 +2,7 @@
 title = "A new blog"
 date = "2013-11-24"
 slug = "new-blog"
+tags = ["blog"]
 +++
 
 Hello world! It's been awhile and what better way to re-visit a blog then to do a re-design.
