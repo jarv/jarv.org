@@ -97,4 +97,4 @@ So the main things to remember when it comes to shell redirection:
 * For redirecting input **and** redirecting output, there should always be a file descriptor on the left, and a file (for reading, or writing) on the right.
 * If a file descriptor is not specified, the default for output `>` is `1` (STDOUT) and the default for input `<` is `0` (STDIN).
 * For redirecting STDOUT to STDERR, the `&` is necessary on the right side, because you are redirecting to another file descriptor, instead of a file
-* The best reference for all of this is the bash man page, which contains a lot more depth information on ways to redirect!
+* The best reference for all of this is the bash man page, which contains a lot more in-depth information on ways to redirect!
