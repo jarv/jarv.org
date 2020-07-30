@@ -52,11 +52,9 @@ Where `0` refers to STDOUT of `ls`
 
 Let's break down exactly what `>` is doing, from the bash man page:
 
-```
-       The general format for redirecting output is:
-
-              [n]>word
-```
+> The general format for redirecting output is:
+>
+>         [n]>word
 
 Where `[n]` is a file descriptor, but in the example `> /path/to/file cmd` there isn't a file descriptor on left side! But there is actually, if you don't specify a specific file descriptor, for output redirection, STDOUT is the default. Which means all of these redirections are exactly the same:
 
@@ -72,11 +70,10 @@ Note where it is more intuitive to put the `>` after the command, it's not neces
 
 Redirecting input is almost exactly the same, from the bash man page:
 
-```
-       The general format for redirecting input is:
+> The general format for redirecting output is:
+>
+>         [n]<word
 
-              [n]<word
-```
 
 Note that again there is a file descriptor on the left, and a file on the right. The only difference is that when using a `<` the default file descriptor is `0` (STDIN) if one isn't specified. Therefore, all of these commands are equivalent:
 

@@ -35,10 +35,7 @@ done <file.txt
 
 From the help page for `read`:
 
-```
-One line is read from the standard input, or from file descriptor FD if the
-    -u option is supplied, and the first word is assigned to the first NAME,
-```
+> One line is read from the standard input, or from file descriptor FD if the -u option is supplied, and the first word is assigned to the first NAME,
 
 In this example, the contents of file.txt are redirected to the STDIN of `read`, which processes the input line by line, until it reaches the end of the file. `read` also can take a file descriptor as its input instead of STDIN, so this will also work:
 
@@ -55,16 +52,16 @@ This ends up being a lot more typing than just `cat file.txt`. With the `bash` o
 echo "$(<file.txt)"
 ```
 
-this method uses redirection and command substitution, and is mentioned in the bash manpage:
+this method uses redirection and command substitution, and is mentioned in the bash man page:
 
-```
-The command substitution $(cat file) can be replaced by the equivalent but faster $(< file).
-```
+> The command substitution $(cat file) can be replaced by the equivalent but faster $(< file).
 
-It's faster because you are not forking a cat, but does it matter? Probably not, and may not be clear to everyone what you are doing, but you can see a difference with a quick test on your shell:
+It's faster, because you are not forking a cat, but does it matter? Probably not, and may not be clear to everyone what you are doing, but you can see a difference with a quick test on your shell:
 
 ```bash
- $ time for n in {1..1000}; do echo $(</etc/resolv.conf) >/dev/null; done
+$ time for n in {1..1000}; do \
+    echo $(</etc/resolv.conf) >/dev/null; \
+  done
 
 real	0m0.977s
 user	0m0.380s
@@ -72,12 +69,16 @@ sys	0m0.604s
 ```
 
 ```bash
- $ time for n in {1..1000}; do cat /etc/resolv.conf >/dev/null; done
+$ time for n in {1..1000}; do \
+    cat /etc/resolv.conf >/dev/null;
+  done
 
 real	0m1.980s
 user	0m0.626s
 sys	0m1.224s
 ```
+
+This syntax `$(<file.text)` may look a bit strange, what you are doing is command substitution, where the contents of `file.txt` are sent to STDIN which is then echo'd as STDOUT. If you want to learn a bit more about redirection using `>` and `<` see my earlier post about [shell redirection](posts/shell-redirection/).
 
 ## Using other utilities
 
@@ -91,9 +92,11 @@ ul < /file
 
 ```bash
 tac /file | tac
-
 ```
 
 If you didn't already guess, `tac` is GNU core util that is the reverse of `cat` so if you want to be clever you can pipe the output of `tac` to `tac` which is just a `cat`.
 
 Of course using tools like `sed`, `perl`, `python`, etc. will allow you to cat files as well, happy cat'ing!
+
+**Interested in other ways to cat without cat? Try the [oops challenge](https://oops.cmdchallenge.com/#/oops_print_file_contents)!**
+
