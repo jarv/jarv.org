@@ -4,19 +4,8 @@ date = "2020-07-30"
 slug = "cat-without-cat"
 +++
 
-Say you want to display the contents of a file on the command line. The first tool we most of us reach for is `cat`, which does a fine job at just this. In fact, if you are like me you might catch yourself doing something like:
-
-```bash
-cat file.txt | grep some-string
-```
-
-Instead of:
-
-```bash
-grep some-string file.txt
-```
-
-This is OK, but let's say you are on a Linux machine and you can't cat, maybe when you try to cat a file:
+Say you want to display the contents of a file on the command line. The first tool we most of us reach for is `cat`, which does a fine job at just this.
+But what happens when you are on a Linux machine and when you try to cat a file this happens:
 
 ```bash
 $ cat file.txt
@@ -60,7 +49,7 @@ while read -u 3 line; do
 done
 ```
 
-This ends up being a lot more typing than just `cat file.txt`, with the `bash` or `zsh` there is a another way to display a file's contents without using `cat`:
+This ends up being a lot more typing than just `cat file.txt`. With the `bash` or `zsh` there is a another way to display a file's contents without using `cat`:
 
 ```bash
 echo "$(<file.txt)"
