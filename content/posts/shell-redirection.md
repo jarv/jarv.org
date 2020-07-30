@@ -2,6 +2,7 @@
 title = "Understanding shell redirection "
 date = "2020-07-25"
 slug = "shell-redirection"
+tags = ["cmdchallenge"]
 +++
 
 When I was learning to use the shell for the first time I remember teaching myself to do things as I ran into problems, and the first problem I ran into was how to take the output of one command and write it to a file or pipe it a second command.

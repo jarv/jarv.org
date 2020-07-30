@@ -2,6 +2,7 @@
 title = "Cat without cat on the commandline"
 date = "2020-07-30"
 slug = "cat-without-cat"
+tags = ["cmdchallenge"]
 +++
 
 Say you want to display the contents of a file on the command line. The first tool we most of us reach for is `cat`, which does a fine job at just this.
