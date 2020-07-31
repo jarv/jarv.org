@@ -1,6 +1,6 @@
 +++
-title = "Ensuring a consistent PID in docker"
-date = "2020-08-02"
+title = "Ensuring a consistent PID in a container"
+date = "2020-07-31"
 slug = "pid-docker"
 tags = ["cmdchallenge"]
 +++
@@ -22,12 +22,13 @@ You might get a cached result, which doesn't represent the PIDs that are running
 
 So like most, I went to stackoverflow and found [this stackoverflow post](https://stackoverflow.com/questions/18122592/how-to-set-process-id-in-linux-for-a-specific-program) it can be done by setting `ns_last_pid`
 
-> Open /proc/sys/kernel/ns_last_pid and get fd
-> flock it with LOCK_EX
-> write PID-1
-> fork
+> * Open /proc/sys/kernel/ns_last_pid and get fd
+> * flock it with LOCK_EX
+> * write PID-1
+> * fork
 
 But you can't set this in a docker container unless you run it privileged, which is not a great idea for running arbitrary commands passed in by the Internet.
+
 Instead, this ended up getting solved with a very boring solution. For challenges where we need a running process, the wrapper cycles through all the PIDs up to PID number `41`, and then forks the process that needed to be killed. The logic is quite simple, and looks something like this:
 
 ```nim
@@ -51,4 +52,4 @@ proc start*(oopsProc: var OopsProc, prog: string = OOPS_PROG, targetPid: int = 4
   oopsProc.pid = oopsProc.p.processId
 ```
 
-This is how for [kill a process](https://oops.cmdchallenge.com/#/oops_kill_a_process), the answer is always `kill -9 42`!
+This is how for challenge "[kill a process](https://oops.cmdchallenge.com/#/oops_kill_a_process)", the answer is always `kill -9 42`!

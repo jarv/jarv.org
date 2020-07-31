@@ -1,6 +1,5 @@
 +++
 title = "figlet breakout"
-tags = ["cmdchallenge"]
 date = "2017-02-24"
 slug = "figlet-breakout"
 +++
