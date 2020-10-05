@@ -1,11 +1,11 @@
 +++
-title = "Displaying the host percentage in an Ansible Deploy"
+title = "Displaying the percentage of hosts completed during a rolling Ansible Deploy using serial"
 date = "2020-10-02"
 slug = "host-percentage"
 tags = ["ansible"]
 +++
 
-Recently we were looking at enhancing our deployment pipeline so that we run validation checks between every batch that is ugpraded. For our VM deployments in Ansible we normally have
+Recently we were looking at enhancing our deployment pipeline so that we run validation checks between every batch that is upgraded. For our VM deployments in Ansible we normally have
 
 ```
 serial: 10%
