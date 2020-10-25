@@ -50,4 +50,3 @@ deploy:prod:
   environment:
     name: jarv
     url: https://jarv.org
-  when: manual
