@@ -54,7 +54,7 @@ For a full working example, see [the API Gateway Terraform configuration](https:
 
 REST API Gateway:
 
-```
+```bash
  $ bombardier --latencies --rate 50 -d 30s 'https://g4jrkpyb3d.execute-api.us-east-1.amazonaws.com/r/?cmd=echo+hello+world&challenge_slug=hello_world'
 Bombarding https://g4jrkpyb3d.execute-api.us-east-1.amazonaws.com:443/r/?cmd=echo+hello+world&challenge_slug=hello_world for 30s using 125 connection(s)
 [============================================================================================================================================================================] 30s
@@ -76,7 +76,7 @@ Statistics        Avg      Stdev        Max
 
 HTTP API Gateway:
 
-```
+```bash
 $ bombardier --latencies --rate 50 -d 30s 'https://ddzt9hixi4.execute-api.us-east-1.amazonaws.com/?cmd=echo+hello+world&challenge_slug=hello_world'
 Bombarding https://ddzt9hixi4.execute-api.us-east-1.amazonaws.com:443/?cmd=echo+hello+world&challenge_slug=hello_world for 30s using 125 connection(s)
 [============================================================================================================================================================================] 30s
@@ -99,7 +99,7 @@ Statistics        Avg      Stdev        Max
 ## Caching Responses with the HTTP API Gateway
 
 [Command Challenge](https://cmdchallenge.com) has multiple layers of caching for anonymous usage.
-If there wasn't any caching, every single submission would execute in a docker container, which would not only be atrocious from a performance standpoint but also expensive as it would require multiple/large VMs executing commands in containers.
+If there wasn't any caching, every single submission would execute in a Docker container, which would not only be atrocious from a performance standpoint but also expensive as it would require multiple/large VMs executing commands in containers.
 
 Every command that is submitted is hashed, and written to a DynamoDB table. If a subsequent command is identical for the same challenge, we return a cached response.
-Putting CloudFront in front of API Gateway is a nice way to get additional caching for free, which works for the HTTP Gateway which [doesn't have a caching feature](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html). To cache HTTP API Gateway response, simple create a CloudFront distribution with the API endpoint as the `Origin Domain Name`.
+Putting CloudFront in front of API Gateway is a nice way to get additional caching for free, which works for the HTTP Gateway which [doesn't have a caching feature](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html). To cache HTTP API Gateway responses, create a CloudFront distribution with the API endpoint as the `Origin Domain Name`.
