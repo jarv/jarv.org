@@ -21,11 +21,13 @@ Where we could probably move all of this to a single VM and reduce some of the c
 As you can see in the diagram, this project isn't completely "serverless" because a server is required for executing user-submitted commands in Docker.
 For this, it's a matter of finding the cheapest VM available for this type of workload.
 
-## Cloud Services - Free
+## Free Cloud Services
 
 - **[GoatCounter](https://www.goatcounter.com)**: An analytics service [that respects your privacy](https://www.goatcounter.com/why#what-are-goatcounters-goals).
 - **Slack**: Used to receive notifications for unique submissions and errors, useful to keep an eye on what is going on.
 - **Grafana Cloud**: Grafana offers a [free starter plan](https://grafana.com/signup/starter/connect-account). This connects to Prometheus which is running on the GCP VM for monitoring Docker and node level metrics.
+- **Sentry**: [Sentry.io](https://sentry.io) is very nice for side-projects, offering a free tier that I found indispensable for tracking down front-end JS errors in different browser configurations.
+- **GitLab**: [GitLab.com](https://gitlab.com) drives the CI pipeline, every new commit on master updates [the testing environment](https://testing.cmdchallenge.com), with a manual promotion to prod.
 
 ## AWS - $2/month
 
