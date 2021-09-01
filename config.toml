@@ -3,6 +3,7 @@ title = "jarv.org"
 theme = "kiera"
 pygmentsCodeFences = true
 copyright = "Copyright 2007-{year}"
+description = "Hugo Theme for creative and technical writing"
 
 [author]
   name = "jarv"
@@ -10,4 +11,4 @@ copyright = "Copyright 2007-{year}"
   email = "john@jarv.org"
 
 [markup.goldmark.renderer]
-  unsafe = "true"  
+  unsafe = "true"
