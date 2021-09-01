@@ -264,12 +264,8 @@ width: 100%;
 }
 
 a {
-  color: #0000EE;
+  color: #fff2aa;
   text-decoration: none;
-}
-
-a:visited {
-  color: #551A8B;
 }
 
 .image, figure img, img {
