@@ -5,7 +5,7 @@ date = "2021-07-05"
 slug = "golang-rewrite-cmdchallenge"
 +++
 
-I've decided to take what was written years ago for [cmdchallenge.com](https://cmdchallenge.com) and port it to a single Golang app. This is a pretty big change because I will be removing most of the AWS serverless components including API Gateway, Dynamo and possibly Cloudflare.
+I've decided to take what was written years ago for [cmdchallenge.com](https://cmdchallenge.com) and port it to a single Golang app. This is a pretty big change because I will be removing most of the AWS serverless components including API Gateway, Dynamo and possibly CloudFront.
 In the process, I would also like to simplify the architecture a bit. It seems like a single process with Docker running locally, and a db like sqlite should be sufficient. Here are some notes for the transition:
 
 - This will be a small program and I'm pretty sure I won't need any frameworks for the REST server
