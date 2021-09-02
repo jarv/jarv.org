@@ -16,7 +16,7 @@
   {{ else}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
   {{ end }}
-  <link rel="stylesheet" type="text/css" href="{{ "css/styles.css" | relURL}}" />
+  <link rel="stylesheet" type="text/css" href="{{ "css/styles.css" | relURL}}?{{ now.Unix }}" />
   {{- range .Site.Params.customCSS -}}
     <link rel='stylesheet' href='{{ . | absURL }}'>
   {{- end -}}
