@@ -5,7 +5,7 @@ date = "2021-09-02"
 slug = "rewrite-update-1"
 +++
 
-I've been stealing small chunks of time in the evening here and there and finally have a functioning Go rewrite of cmdchallenge which will all of the Python code that is running in AWS Lambda.
+I've been stealing small chunks of time in the evening here and there and finally have a functioning Go rewrite of cmdchallenge which will replace all of the Python code that is running in AWS Lambda.
 
 The first diff for this is massive, I am really looking forward to removing all of this vendored Python!
 
