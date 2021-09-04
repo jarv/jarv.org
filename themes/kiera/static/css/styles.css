@@ -193,6 +193,10 @@ time {
   color: white;
 }
 
+#container main h1 a {
+  color: white;
+}
+
 #container footer {
   border-top: solid 1px #cecece;
 }
