@@ -50,5 +50,3 @@ With Prometheus running the VM for metrics, it's now more convenient to add metr
 ![cmd-errors](/img/cmd-errors.png)
 
 Another benefit that came out of this is that now it is much easier to validate and run locally, if you want to run the entire site yourself check out https://gitlab.com/jarv/cmdchallenge.
-
-That's about all there is to it! I think I'll write a counow more ple more posts in the coming weeks for some things I learned from creating a couple projects in this style.
