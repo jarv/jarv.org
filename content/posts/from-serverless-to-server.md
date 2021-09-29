@@ -8,16 +8,16 @@ slug = "from-serverless-to-server"
 I'm pleased to announce that the transition from a distributed serverless architecture in Python to a single VM with a service written in Go is done for [CMDChallenge](https://cmdchallenge.com).
 The final patch was merged and there is nothing sweeter than removing close to 100K lines of vendored Python:
 
-![final-MR](/Users/jarv/src/jarv.org/static/img/final-MR.png)
+![final-MR](/img/final-MR.png)
 
 It was around [4 months ago](/posts/golang-rewrite-cmdchallenge/) that I started on this adventure but honestly a lot of life got in the way and I probably spent a total of around 4 full days of work for the transition.
 Overall, I'm quite satisfied with the result, as you can see here many of the "cloud native" services went *poof*
 
-![single server arch](/Users/jarv/src/jarv.org/static/img/cmd-single-server-arch.png)
+![single server arch](/img/cmd-single-server-arch.png)
 
 What enabled this was moving all of the dispatching to the same server that was running containers for commands.
 I realize now in hindsight that other than wanting to play around with API gateway when I first built this, there was really no good reason why I shouldn't have done this from the beginning.
-Like many side-projects, I guess this turned into a yak-shave where you start thinking about how you can use one cloud service, which eventually ends up being ten.
+Like many side-projects, I guess this turned into a yak-shave where you start thinking about how you can use one cloud service, which eventually turns into ten.
 
 A quick summary of the "new" architecture for those who are curious:
 
@@ -45,11 +45,11 @@ I also got rid of GoatCounter for anlaytics, because most people have ad blocker
 
 With Prometheus running the VM for metrics, it's now more convenient to add metrics for everything imaginable for executing commands:
 
-![processed-cmds](/Users/jarv/src/jarv.org/static/img/processed-cmds.png)
+![processed-cmds](/img/processed-cmds.png)
 
-![req-per-min](/Users/jarv/src/jarv.org/static/img/req-per-min.png)
+![req-per-min](/img/req-per-min.png)
 
-![cmd-errors](/Users/jarv/src/jarv.org/static/img/cmd-errors.png)
+![cmd-errors](/img/cmd-errors.png)
 
 Another benefit that came out of this is that now it is much easier to validate and run locally, if you want to run the entire site yourself check out https://gitlab.com/jarv/cmdchallenge.
 
