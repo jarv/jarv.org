@@ -51,4 +51,4 @@ deploy:prod:
     name: jarv
     url: https://jarv.org
   when: delayed
-  start_in: '2 hours'
+  start_in: '30 minutes'
