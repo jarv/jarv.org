@@ -79,7 +79,7 @@ user	0m0.626s
 sys	0m1.224s
 ```
 
-This syntax `$(<file.text)` may look a bit strange, what you are doing is command substitution, where the contents of `file.txt` are sent to STDIN which is then echo'd as STDOUT. If you want to learn a bit more about redirection using `>` and `<` see my earlier post about [shell redirection](posts/shell-redirection/).
+This syntax `$(<file.text)` may look a bit strange, what you are doing is command substitution, where the contents of `file.txt` are sent to STDIN which is then echo'd as STDOUT. If you want to learn a bit more about redirection using `>` and `<` see my earlier post about [shell redirection](/posts/shell-redirection/).
 
 ## Using other utilities
 
@@ -100,4 +100,3 @@ If you didn't already guess, `tac` is GNU core util that is the reverse of `cat`
 Of course using tools like `sed`, `perl`, `python`, etc. will allow you to cat files as well, happy cat'ing!
 
 **Interested in other ways to cat without cat? Try the [oops challenge](https://oops.cmdchallenge.com/#/oops_print_file_contents)!**
-
