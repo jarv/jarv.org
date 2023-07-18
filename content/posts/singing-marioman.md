@@ -1,8 +1,7 @@
 +++
 title = "Singing Marioman"
-date = "2009-05-24 19:37"
+date = '2009-05-24'
 tags = ["avr"]
-category = "Uncategorized"
 slug = "singing-marioman"
 +++
 
