@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><title>John Jarvis</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" />
+<style type="text/css">@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono.woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono-Bold.woff2');
+  font-weight: bold;
+  font-display: block;
+}
+
+main h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+}
+
+html {
+  font-size: 14px;
+  color: black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: fabfont,  monospace;
+  background: #F5F5F0;
+}
+
+body > * {
+  width: 700px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  text-align: left;
+}
+
+@media only screen and (width <= 800px) {
+  body > * {
+    width: auto;
+    margin: 0 1.2em;
+  }
+}
+
+a {
+  font-weight: bold;
+  color: black;
+}
+
+p {
+  text-align: justify;
+}
+
+img {
+  width: 100%;
+}
+
+/* index.html */
+
+main {
+  line-height: 1.5;
+}
+
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* header */
+
+header {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4ch;
+  margin-top: 1em;
+  display: flex;
+}
+
+
+header a {
+  text-decoration: none;
+}
+
+header h2 {
+  font-size: 14px;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+header aside {
+  width: 50%;
+  text-align: right;
+}
+
+header aside ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+
+header aside ul > li {
+  display: inline-block;
+}
+
+/* articles */
+
+main article aside {
+  display: flex;
+  margin: 0;
+  color: gray;
+  font-size: .9em;
+}
+
+main article aside ul li a {
+  color: gray;
+  text-decoration: none;
+}
+
+main article aside time {
+  display: flex;
+  width: 50%;
+}
+
+main article aside ul {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  text-align: right;
+  list-style: none;
+  justify-content: space-between;
+}
+
+main article > pre {
+  background-color: #e1e1e1;
+  overflow-x: auto;
+  padding: .8em;
+  font-size: .9em;
+  box-shadow: 0 -1px 0 #bbb inset;
+}
+
+/* code hylights */
+main article .highlight pre {
+  overflow-x: auto;
+  font-size: .8em;
+  padding: .8em;
+}
+
+main article p code {
+    font-weight: bold;
+    background-color: #e1e1e1;
+    border-radius: 0.5ch;
+    padding-left: 0.3ch;
+    padding-right: 0.3ch;
+}
+
+/* blockquote */
+
+blockquote {
+  font-style:italic;
+  color: #555;
+  padding:1.2em 30px 1.2em 45px;
+  border-left:8px solid #696969;
+  position: relative;
+  background: #EDEDED;
+  line-height: 1.6;
+}
+
+blockquote p {
+  text-align: left;
+
+}
+
+blockquote::before {
+  font-family: Arial, Helvetica, sans-serif;
+  content: "\201C";
+  color: #696969;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: '';
+}
+
+@media only screen and (width <= 800px) {
+  blockquote {
+    margin: 1em 0;
+    padding: .5em;
+  }
+}
+</style>
+</head>
+    <body>
+        <header><h2><a href="/"><b>John Jarvis</b></a></h2>
+<aside>
+  <ul>
+    <li><a href="/about/">ABOUT</a></li>
+    <li><a href="/contact/">CONTACT</a></li>
+    <li><a href="https://jarv.org/index.xml">RSS</a></li>
+  </ul>
+</aside>
+</header>
+        <main>
+<article>
+    <h1>Understanding shell redirection </h1>
+    <aside>
+  
+  <time datetime="2020-07-25T00:00:00Z">Jul 25, 2020</time>
+  
+  <ul>
+    <li>
+    </li>
+    
+    <li>
+      <em>
+        
+        
+        <a href="/tags/cmdchallenge">#cmdchallenge</a>
+        
+      </em>
+    </li>
+    
+  </ul>
+</aside>
+
+    <p>When I was learning to use the shell for the first time I remember teaching myself to do things as I ran into problems, and the first problem I ran into was how to take the output of one command and write it to a file or pipe it a second command.</p>
+<p>So like most people, I learned:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmd1 | cmd2
+</span></span></code></pre></div><p>to take the output of <code>cmd1</code> and send it to <code>cmd2</code>, and</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmd1 &gt; path/to/file
+</span></span></code></pre></div><p>to take the output of <code>cmd1</code> and write it to a file.</p>
+<p>This got me pretty far for what I needed to do without fully understanding how it worked or why. Eventually, I learned as well that there were multiple types of output, STDOUT and STDERR, and you could redirect one to the other by adding <code>2&gt;&amp;1</code> to the end of commands. Early on, I wish I took the time to understand how redirection works and how it relates to file descriptors.</p>
+<hr>
+<p>To understand this a bit better, first it&rsquo;s helpful to understand file descriptors. At a very high level, file descriptors are numbers assigned by the operating system that reference open files. The shell will assign the following:</p>
+<ul>
+<li><code>0</code>: STDIN - program input</li>
+<li><code>1</code>: STDOUT - program output</li>
+<li><code>2</code>: STDERR - program error</li>
+</ul>
+<p>When using a pipe <code>|</code> or redirection <code>&lt;</code>/<code>&gt;</code> it&rsquo;s helpful to think abut these 3 file descriptors and their corresponding number assignments.</p>
+<p>Going back to the example where we are redirecting STDOUT of a program to a file:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls &gt; path/to/file
+</span></span></code></pre></div><p>This is is the same as:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>0&gt; /path/to/file ls
+</span></span></code></pre></div><p>Where <code>0</code> refers to STDOUT of <code>ls</code></p>
+<h3 id="redirecting-output">Redirecting Output</h3>
+<p>Let&rsquo;s break down exactly what <code>&gt;</code> is doing, from the bash man page:</p>
+<blockquote>
+<p>The general format for redirecting output is:</p>
+<pre><code>    [n]&gt;word
+</code></pre>
+</blockquote>
+<p>Where <code>[n]</code> is a file descriptor, but in the example <code>&gt; /path/to/file cmd</code> there isn&rsquo;t a file descriptor on left side! But there is actually, if you don&rsquo;t specify a specific file descriptor, for output redirection, STDOUT is the default. Which means all of these redirections are exactly the same:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls &gt; path/to/file
+</span></span><span style="display:flex;"><span>$ &gt; /path/to/file ls
+</span></span><span style="display:flex;"><span>$ 1&gt; /path/to/file ls
+</span></span></code></pre></div><p>Note where it is more intuitive to put the <code>&gt;</code> after the command, it&rsquo;s not necessary. This is because the position doesn&rsquo;t matter because the descriptor to the left of <code>&gt;</code> is implicit. Pretty neat!</p>
+<h3 id="redirecting-input">Redirecting Input</h3>
+<p>Redirecting input is almost exactly the same, from the bash man page:</p>
+<blockquote>
+<p>The general format for redirecting output is:</p>
+<pre><code>    [n]&lt;word
+</code></pre>
+</blockquote>
+<p>Note that again there is a file descriptor on the left, and a file on the right. The only difference is that when using a <code>&lt;</code> the default file descriptor is <code>0</code> (STDIN) if one isn&rsquo;t specified. Therefore, all of these commands are equivalent:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat &lt; path/to/file
+</span></span><span style="display:flex;"><span>$ &lt; path/to/file cat
+</span></span><span style="display:flex;"><span>$ 0&lt; path/to/file cat
+</span></span></code></pre></div><p>Again, I think the first one is a bit more intuitive but it doesn&rsquo;t matter whether the redirection is placed before or after the command.</p>
+<h3 id="redirecting-stdout-to-stderr">Redirecting stdout to stderr</h3>
+<p>So back to <code>2&gt;&amp;1</code>, why is the <code>&amp;</code> necessary and what does it mean? Remember that for <code>&gt;</code> there needs to be a file descriptor on the left and a file on the right? If we used <code>2&gt;1</code> this would simply redirect STDOUT to a file named <code>1</code>. By adding the <code>&amp;</code> it tells the shell that <code>1</code> is referring not to a file, but a file descriptor!</p>
+<p>So the main things to remember when it comes to shell redirection:</p>
+<ul>
+<li>For redirecting input <strong>and</strong> redirecting output, there should always be a file descriptor on the left, and a file (for reading, or writing) on the right.</li>
+<li>If a file descriptor is not specified, the default for output <code>&gt;</code> is <code>1</code> (STDOUT) and the default for input <code>&lt;</code> is <code>0</code> (STDIN).</li>
+<li>For redirecting STDOUT to STDERR, the <code>&amp;</code> is necessary on the right side, because you are redirecting to another file descriptor, instead of a file</li>
+<li>The best reference for all of this is the bash man page, which contains a lot more in-depth information on ways to redirect!</li>
+</ul>
+
+</article>
+
+
+        </main>
+        <footer></footer>
+    </body>
+</html>

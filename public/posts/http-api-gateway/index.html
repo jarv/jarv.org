@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><title>John Jarvis</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" />
+<style type="text/css">@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono.woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono-Bold.woff2');
+  font-weight: bold;
+  font-display: block;
+}
+
+main h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+}
+
+html {
+  font-size: 14px;
+  color: black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: fabfont,  monospace;
+  background: #F5F5F0;
+}
+
+body > * {
+  width: 700px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  text-align: left;
+}
+
+@media only screen and (width <= 800px) {
+  body > * {
+    width: auto;
+    margin: 0 1.2em;
+  }
+}
+
+a {
+  font-weight: bold;
+  color: black;
+}
+
+p {
+  text-align: justify;
+}
+
+img {
+  width: 100%;
+}
+
+/* index.html */
+
+main {
+  line-height: 1.5;
+}
+
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* header */
+
+header {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4ch;
+  margin-top: 1em;
+  display: flex;
+}
+
+
+header a {
+  text-decoration: none;
+}
+
+header h2 {
+  font-size: 14px;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+header aside {
+  width: 50%;
+  text-align: right;
+}
+
+header aside ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+
+header aside ul > li {
+  display: inline-block;
+}
+
+/* articles */
+
+main article aside {
+  display: flex;
+  margin: 0;
+  color: gray;
+  font-size: .9em;
+}
+
+main article aside ul li a {
+  color: gray;
+  text-decoration: none;
+}
+
+main article aside time {
+  display: flex;
+  width: 50%;
+}
+
+main article aside ul {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  text-align: right;
+  list-style: none;
+  justify-content: space-between;
+}
+
+main article > pre {
+  background-color: #e1e1e1;
+  overflow-x: auto;
+  padding: .8em;
+  font-size: .9em;
+  box-shadow: 0 -1px 0 #bbb inset;
+}
+
+/* code hylights */
+main article .highlight pre {
+  overflow-x: auto;
+  font-size: .8em;
+  padding: .8em;
+}
+
+main article p code {
+    font-weight: bold;
+    background-color: #e1e1e1;
+    border-radius: 0.5ch;
+    padding-left: 0.3ch;
+    padding-right: 0.3ch;
+}
+
+/* blockquote */
+
+blockquote {
+  font-style:italic;
+  color: #555;
+  padding:1.2em 30px 1.2em 45px;
+  border-left:8px solid #696969;
+  position: relative;
+  background: #EDEDED;
+  line-height: 1.6;
+}
+
+blockquote p {
+  text-align: left;
+
+}
+
+blockquote::before {
+  font-family: Arial, Helvetica, sans-serif;
+  content: "\201C";
+  color: #696969;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: '';
+}
+
+@media only screen and (width <= 800px) {
+  blockquote {
+    margin: 1em 0;
+    padding: .5em;
+  }
+}
+</style>
+</head>
+    <body>
+        <header><h2><a href="/"><b>John Jarvis</b></a></h2>
+<aside>
+  <ul>
+    <li><a href="/about/">ABOUT</a></li>
+    <li><a href="/contact/">CONTACT</a></li>
+    <li><a href="https://jarv.org/index.xml">RSS</a></li>
+  </ul>
+</aside>
+</header>
+        <main>
+<article>
+    <h1>Moving to HTTP from REST for the AWS API Gateway</h1>
+    <aside>
+  
+  <time datetime="2020-10-25T00:00:00Z">Oct 25, 2020</time>
+  
+  <ul>
+    <li>
+    </li>
+    
+    <li>
+      <em>
+        
+        
+        <a href="/tags/cmdchallenge">#cmdchallenge</a>
+        
+      </em>
+    </li>
+    
+  </ul>
+</aside>
+
+    <h2 id="http-api-gateway">HTTP API Gateway</h2>
+<p>When HTTP API Gateway was announced in 2019 the Amazon said:</p>
+<blockquote>
+<p>Our goal is to make it as easy as possible for developers to build and manage APIs with API Gateway. We encourage you to try the new HTTP APIs and let us know what you think.</p>
+</blockquote>
+<p>Today I decided to switch from using the REST API for cmdchallenge.com to the HTTP API and I must say it is <em>a lot</em> easier to build and setup for simple HTTP APIS.
+In Terraform, it now only requires two resources:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform" data-lang="terraform"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">resource</span> <span style="color:#d14">&#34;aws_apigatewayv2_api&#34;</span> <span style="color:#d14">&#34;default&#34;</span> {
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">resource</span> <span style="color:#d14">&#34;aws_lambda_permission&#34;</span> <span style="color:#d14">&#34;default&#34;</span> {
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Compare this to the previous configuration using REST API:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform" data-lang="terraform"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">resource</span> <span style="color:#d14">&#34;aws_api_gateway_rest_api&#34;</span> <span style="color:#d14">&#34;default&#34;</span> {
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">resource</span> <span style="color:#d14">&#34;aws_api_gateway_method&#34;</span> <span style="color:#d14">&#34;default&#34;</span> {
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">resource</span> <span style="color:#d14">&#34;aws_api_gateway_integration&#34;</span> <span style="color:#d14">&#34;default&#34;</span> {
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">resource</span> <span style="color:#d14">&#34;aws_lambda_permission&#34;</span> <span style="color:#d14">&#34;default&#34;</span> {
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">resource</span> <span style="color:#d14">&#34;aws_api_gateway_deployment&#34;</span> <span style="color:#d14">&#34;default&#34;</span> {
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>For a full working example, see <a href="https://gitlab.com/jarv/cmdchallenge/-/blob/master/terraform/modules/api/main.tf">the API Gateway Terraform configuration</a> for cmdchallenge.com. In addition to making the configuration simpler, it&rsquo;s supposed to be <em>optimized for performance</em> and this doesn&rsquo;t disappoint either. Testing against an API endpoint that invokes a Lambda function and makes some DynamoDB calls there is a nice saving of around 100ms for the 50th percentile and 200ms for the 90th.</p>
+<p>REST API Gateway:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> $ bombardier --latencies --rate <span style="color:#099">50</span> -d 30s <span style="color:#d14">&#39;https://g4jrkpyb3d.execute-api.us-east-1.amazonaws.com/r/?cmd=echo+hello+world&amp;challenge_slug=hello_world&#39;</span>
+</span></span><span style="display:flex;"><span>Bombarding https://g4jrkpyb3d.execute-api.us-east-1.amazonaws.com:443/r/?cmd<span style="color:#000;font-weight:bold">=</span>echo+hello+world&amp;<span style="color:#008080">challenge_slug</span><span style="color:#000;font-weight:bold">=</span>hello_world <span style="color:#000;font-weight:bold">for</span> 30s using <span style="color:#099">125</span> connection<span style="color:#000;font-weight:bold">(</span>s<span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">[============================================================================================================================================================================]</span> 30s
+</span></span><span style="display:flex;"><span>Done!
+</span></span><span style="display:flex;"><span>Statistics        Avg      Stdev        Max
+</span></span><span style="display:flex;"><span>  Reqs/sec        48.45      33.81     211.47
+</span></span><span style="display:flex;"><span>  Latency         1.13s   845.04ms      6.77s
+</span></span><span style="display:flex;"><span>  Latency Distribution
+</span></span><span style="display:flex;"><span>     50%      0.88s
+</span></span><span style="display:flex;"><span>     75%      0.99s
+</span></span><span style="display:flex;"><span>     90%      2.71s
+</span></span><span style="display:flex;"><span>     95%      2.92s
+</span></span><span style="display:flex;"><span>     99%      4.78s
+</span></span><span style="display:flex;"><span>  HTTP codes:
+</span></span><span style="display:flex;"><span>    1xx - 0, 2xx - 1501, 3xx - 0, 4xx - 0, 5xx - <span style="color:#099">0</span>
+</span></span><span style="display:flex;"><span>    others - <span style="color:#099">0</span>
+</span></span><span style="display:flex;"><span>  Throughput:    86.94KB/s
+</span></span></code></pre></div><p>HTTP API Gateway:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ bombardier --latencies --rate <span style="color:#099">50</span> -d 30s <span style="color:#d14">&#39;https://ddzt9hixi4.execute-api.us-east-1.amazonaws.com/?cmd=echo+hello+world&amp;challenge_slug=hello_world&#39;</span>
+</span></span><span style="display:flex;"><span>Bombarding https://ddzt9hixi4.execute-api.us-east-1.amazonaws.com:443/?cmd<span style="color:#000;font-weight:bold">=</span>echo+hello+world&amp;<span style="color:#008080">challenge_slug</span><span style="color:#000;font-weight:bold">=</span>hello_world <span style="color:#000;font-weight:bold">for</span> 30s using <span style="color:#099">125</span> connection<span style="color:#000;font-weight:bold">(</span>s<span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">[============================================================================================================================================================================]</span> 30s
+</span></span><span style="display:flex;"><span>Done!
+</span></span><span style="display:flex;"><span>Statistics        Avg      Stdev        Max
+</span></span><span style="display:flex;"><span>  Reqs/sec        48.44      30.62     235.42
+</span></span><span style="display:flex;"><span>  Latency         0.93s   679.98ms      6.70s
+</span></span><span style="display:flex;"><span>  Latency Distribution
+</span></span><span style="display:flex;"><span>     50%   703.40ms
+</span></span><span style="display:flex;"><span>     75%   731.99ms
+</span></span><span style="display:flex;"><span>     90%      1.66s
+</span></span><span style="display:flex;"><span>     95%      2.70s
+</span></span><span style="display:flex;"><span>     99%      3.98s
+</span></span><span style="display:flex;"><span>  HTTP codes:
+</span></span><span style="display:flex;"><span>    1xx - 0, 2xx - 1501, 3xx - 0, 4xx - 0, 5xx - <span style="color:#099">0</span>
+</span></span><span style="display:flex;"><span>    others - <span style="color:#099">0</span>
+</span></span><span style="display:flex;"><span>  Throughput:    33.19KB/s
+</span></span></code></pre></div><h2 id="caching-responses-with-the-http-api-gateway">Caching Responses with the HTTP API Gateway</h2>
+<p><a href="https://cmdchallenge.com">Command Challenge</a> has multiple layers of caching for anonymous usage.
+If there wasn&rsquo;t any caching, every single submission would execute in a Docker container, which would not only be atrocious from a performance standpoint but also expensive as it would require multiple/large VMs executing commands in containers.</p>
+<p>Every command that is submitted is hashed, and written to a DynamoDB table. If a subsequent command is identical for the same challenge, we return a cached response.
+Putting CloudFront in front of API Gateway is a nice way to get additional caching for free, which works for the HTTP Gateway which <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html">doesn&rsquo;t have a caching feature</a>. To cache HTTP API Gateway responses, create a CloudFront distribution with the API endpoint as the <code>Origin Domain Name</code>.</p>
+
+</article>
+
+
+        </main>
+        <footer></footer>
+    </body>
+</html>

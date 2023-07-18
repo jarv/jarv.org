@@ -1,0 +1,23 @@
+{{ define "main" }}
+
+<section id="list">
+    {{ if eq .Data.Singular "tag" }}
+        <h2>#{{ .Title | lower }}</h2>
+    {{ else }}
+        <h2>{{ .Title }}</h2>
+    {{ end }}
+
+    {{ .Content }}
+
+    {{ range .Data.Pages }}
+
+    <ul>
+      <li>
+      {{ .Date.Format "2006-01-02" }}:
+      <a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a>
+      </li>
+    </ul>
+    {{ end }}
+</section>
+
+{{ end }}
