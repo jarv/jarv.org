@@ -1,8 +1,7 @@
 +++
 title = "Simple highscore tracking with Python / Flask"
-date = "2012-12-17 22:26"
+date = '2012-12-17'
 tags = ["python"]
-category = "Uncategorized"
 slug = "simple-highscore-tracking-with-python-flask"
 +++
 

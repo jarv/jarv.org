@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euf -o pipefail
+
+HOST="i.jarv.org"
+dir=$(dirname "$0")
+site_dir="/var/opt/www/jarv.org"
+
+cd "$dir/.."
+hugo
+rsync -v  -r --delete "$dir"/../public/ root@$HOST:$site_dir
