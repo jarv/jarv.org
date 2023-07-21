@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><title>John Jarvis</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" />
+<link rel="alternate" type="application/rss+xml" href="https://jarv.org/posts/index.xml" title="John Jarvis" />
+<style type="text/css">@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono.woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono-Bold.woff2');
+  font-weight: bold;
+  font-display: block;
+}
+
+main h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+}
+
+html {
+  font-size: 14px;
+  color: black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: fabfont,  monospace;
+  background: #F5F5F0;
+}
+
+body > * {
+  width: 700px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  text-align: left;
+}
+
+@media only screen and (width <= 800px) {
+  body > * {
+    width: auto;
+    margin: 0 1.2em;
+  }
+}
+
+a {
+  font-weight: bold;
+  color: black;
+}
+
+p {
+  text-align: justify;
+}
+
+img {
+  width: 100%;
+}
+
+/* index.html */
+
+main {
+  line-height: 1.5;
+}
+
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* header */
+
+header {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4ch;
+  margin-top: 1em;
+  display: flex;
+}
+
+
+header a {
+  text-decoration: none;
+}
+
+header h2 {
+  font-size: 14px;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+header aside {
+  width: 50%;
+  text-align: right;
+}
+
+header aside ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+
+header aside ul > li {
+  display: inline-block;
+}
+
+/* articles */
+
+main article aside {
+  display: flex;
+  margin: 0;
+  color: gray;
+  font-size: .9em;
+}
+
+main article aside ul li a {
+  color: gray;
+  text-decoration: none;
+}
+
+main article aside time {
+  display: flex;
+  width: 50%;
+}
+
+main article aside ul {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  text-align: right;
+  list-style: none;
+  justify-content: space-between;
+}
+
+main article > pre {
+  background-color: #e1e1e1;
+  overflow-x: auto;
+  padding: .8em;
+  font-size: .9em;
+  box-shadow: 0 -1px 0 #bbb inset;
+}
+
+/* code hylights */
+main article .highlight pre {
+  overflow-x: auto;
+  font-size: .8em;
+  padding: .8em;
+}
+
+main article p code {
+    font-weight: bold;
+    background-color: #e1e1e1;
+    border-radius: 0.5ch;
+    padding-left: 0.3ch;
+    padding-right: 0.3ch;
+}
+
+/* blockquote */
+
+blockquote {
+  font-style:italic;
+  color: #555;
+  padding:1.2em 30px 1.2em 45px;
+  border-left:8px solid #696969;
+  position: relative;
+  background: #EDEDED;
+  line-height: 1.6;
+}
+
+blockquote p {
+  text-align: left;
+
+}
+
+blockquote::before {
+  font-family: Arial, Helvetica, sans-serif;
+  content: "\201C";
+  color: #696969;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: '';
+}
+
+@media only screen and (width <= 800px) {
+  blockquote {
+    margin: 1em 0;
+    padding: .5em;
+  }
+}
+</style>
+</head>
+    <body>
+        <header><h2><a href="/"><b>John Jarvis</b></a></h2>
+<aside>
+  <ul>
+    <li><a href="/about/">ABOUT</a></li>
+    <li><a href="/contact/">CONTACT</a></li>
+    <li><a href="https://jarv.org/index.xml">RSS</a></li>
+  </ul>
+</aside>
+</header>
+        <main>
+
+<section id="list">
+    
+        <h2>Posts</h2>
+    
+
+    
+
+    
+
+    <ul>
+      <li>
+      2023-06-10:
+      <a href="https://jarv.org/posts/caddy-containers/" title="Caddy and containers are my new goto stack for side projects">Caddy and containers are my new goto stack for side projects</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2022-09-27:
+      <a href="https://jarv.org/posts/command-with-timeout/" title="Running a command with a timeout in Go">Running a command with a timeout in Go</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2021-09-29:
+      <a href="https://jarv.org/posts/from-serverless-to-server/" title="From serverless to server">From serverless to server</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2021-09-02:
+      <a href="https://jarv.org/posts/rewrite-update-1/" title="Update on the Golang rewrite">Update on the Golang rewrite</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2021-07-05:
+      <a href="https://jarv.org/posts/golang-rewrite-cmdchallenge/" title="Golang rewrite of cmdchallenge">Golang rewrite of cmdchallenge</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2020-11-28:
+      <a href="https://jarv.org/posts/does-serverless-make-sense/" title="Does Serverless make sense for a side project?">Does Serverless make sense for a side project?</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2020-10-25:
+      <a href="https://jarv.org/posts/http-api-gateway/" title="Moving to HTTP from REST for the AWS API Gateway">Moving to HTTP from REST for the AWS API Gateway</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2020-10-02:
+      <a href="https://jarv.org/posts/host-percentage/" title="Displaying the percentage of hosts completed during a rolling Ansible Deploy using serial">Displaying the percentage of hosts completed during a rolling Ansible Deploy using serial</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2020-07-31:
+      <a href="https://jarv.org/posts/pid-docker/" title="Ensuring a consistent PID in a container">Ensuring a consistent PID in a container</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2020-07-30:
+      <a href="https://jarv.org/posts/cat-without-cat/" title="Cat without cat on the commandline">Cat without cat on the commandline</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2020-07-26:
+      <a href="https://jarv.org/posts/hugo-blog/" title="Switching to Hugo">Switching to Hugo</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2020-07-25:
+      <a href="https://jarv.org/posts/shell-redirection/" title="Understanding shell redirection ">Understanding shell redirection </a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2020-06-17:
+      <a href="https://jarv.org/posts/new-new-new-blog/" title="A new new new blog">A new new new blog</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2020-06-17:
+      <a href="https://jarv.org/posts/submodules/" title="Never use git submodules">Never use git submodules</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2020-06-17:
+      <a href="https://jarv.org/posts/side-projects/" title="The stages of a side project">The stages of a side project</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2018-06-05:
+      <a href="https://jarv.org/posts/jarv-org-cicd/" title="Using GitLab CICD for your static blog">Using GitLab CICD for your static blog</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2018-05-31:
+      <a href="https://jarv.org/posts/removing-private-repos/" title="Removing all of my private repos from GitHub">Removing all of my private repos from GitHub</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2017-04-24:
+      <a href="https://jarv.org/posts/building-cmdchallenge/" title="Building cmdchallenge using Lambda and API Gateway in the AWS free-tier with Docker and Go">Building cmdchallenge using Lambda and API Gateway in the AWS free-tier with Docker and Go</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2017-03-04:
+      <a href="https://jarv.org/posts/user-submitted-solutions/" title="User Submitted Solutions">User Submitted Solutions</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2017-02-24:
+      <a href="https://jarv.org/posts/figlet-breakout/" title="figlet breakout">figlet breakout</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2017-02-08:
+      <a href="https://jarv.org/posts/191-hello-worlds/" title="191 ways to echo hello world on the command line">191 ways to echo hello world on the command line</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2015-01-21:
+      <a href="https://jarv.org/posts/reddit-time-lapse/" title="Reddit front-page visualization">Reddit front-page visualization</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2014-12-18:
+      <a href="https://jarv.org/posts/new-new-blog/" title="A new new blog">A new new blog</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2013-11-24:
+      <a href="https://jarv.org/posts/new-blog/" title="A new blog">A new blog</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2012-12-17:
+      <a href="https://jarv.org/posts/simple-highscore-tracking-with-python-flask/" title="Simple highscore tracking with Python / Flask">Simple highscore tracking with Python / Flask</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2012-07-22:
+      <a href="https://jarv.org/posts/the-state-game/" title="The State Game">The State Game</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2011-12-04:
+      <a href="https://jarv.org/posts/musical-ms-pacman-candy-tin-hack/" title="Musical Ms. Pacman Candy Tin Hack">Musical Ms. Pacman Candy Tin Hack</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2011-11-20:
+      <a href="https://jarv.org/posts/custom-musical-greeting-card-for-less-than-5/" title="Custom musical greeting card for less than $5">Custom musical greeting card for less than $5</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2009-09-15:
+      <a href="https://jarv.org/posts/usb-powered-blinking-ir-motion-sensor-mounted-in-a-mario-brothers-candy-tin/" title="Blinking motion sensor / Mario Brothers Candy Tin">Blinking motion sensor / Mario Brothers Candy Tin</a>
+      </li>
+    </ul>
+    
+
+    <ul>
+      <li>
+      2009-05-24:
+      <a href="https://jarv.org/posts/singing-marioman/" title="Singing Marioman">Singing Marioman</a>
+      </li>
+    </ul>
+    
+</section>
+
+
+        </main>
+        <footer></footer>
+    </body>
+</html>

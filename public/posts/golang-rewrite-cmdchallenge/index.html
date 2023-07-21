@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><title>John Jarvis</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" />
+<style type="text/css">@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono.woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono-Bold.woff2');
+  font-weight: bold;
+  font-display: block;
+}
+
+main h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+}
+
+html {
+  font-size: 14px;
+  color: black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: fabfont,  monospace;
+  background: #F5F5F0;
+}
+
+body > * {
+  width: 700px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  text-align: left;
+}
+
+@media only screen and (width <= 800px) {
+  body > * {
+    width: auto;
+    margin: 0 1.2em;
+  }
+}
+
+a {
+  font-weight: bold;
+  color: black;
+}
+
+p {
+  text-align: justify;
+}
+
+img {
+  width: 100%;
+}
+
+/* index.html */
+
+main {
+  line-height: 1.5;
+}
+
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* header */
+
+header {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4ch;
+  margin-top: 1em;
+  display: flex;
+}
+
+
+header a {
+  text-decoration: none;
+}
+
+header h2 {
+  font-size: 14px;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+header aside {
+  width: 50%;
+  text-align: right;
+}
+
+header aside ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+
+header aside ul > li {
+  display: inline-block;
+}
+
+/* articles */
+
+main article aside {
+  display: flex;
+  margin: 0;
+  color: gray;
+  font-size: .9em;
+}
+
+main article aside ul li a {
+  color: gray;
+  text-decoration: none;
+}
+
+main article aside time {
+  display: flex;
+  width: 50%;
+}
+
+main article aside ul {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  text-align: right;
+  list-style: none;
+  justify-content: space-between;
+}
+
+main article > pre {
+  background-color: #e1e1e1;
+  overflow-x: auto;
+  padding: .8em;
+  font-size: .9em;
+  box-shadow: 0 -1px 0 #bbb inset;
+}
+
+/* code hylights */
+main article .highlight pre {
+  overflow-x: auto;
+  font-size: .8em;
+  padding: .8em;
+}
+
+main article p code {
+    font-weight: bold;
+    background-color: #e1e1e1;
+    border-radius: 0.5ch;
+    padding-left: 0.3ch;
+    padding-right: 0.3ch;
+}
+
+/* blockquote */
+
+blockquote {
+  font-style:italic;
+  color: #555;
+  padding:1.2em 30px 1.2em 45px;
+  border-left:8px solid #696969;
+  position: relative;
+  background: #EDEDED;
+  line-height: 1.6;
+}
+
+blockquote p {
+  text-align: left;
+
+}
+
+blockquote::before {
+  font-family: Arial, Helvetica, sans-serif;
+  content: "\201C";
+  color: #696969;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: '';
+}
+
+@media only screen and (width <= 800px) {
+  blockquote {
+    margin: 1em 0;
+    padding: .5em;
+  }
+}
+</style>
+</head>
+    <body>
+        <header><h2><a href="/"><b>John Jarvis</b></a></h2>
+<aside>
+  <ul>
+    <li><a href="/about/">ABOUT</a></li>
+    <li><a href="/contact/">CONTACT</a></li>
+    <li><a href="https://jarv.org/index.xml">RSS</a></li>
+  </ul>
+</aside>
+</header>
+        <main>
+<article>
+    <h1>Golang rewrite of cmdchallenge</h1>
+    <aside>
+  
+  <time datetime="2021-07-05T00:00:00Z">Jul 5, 2021</time>
+  
+  <ul>
+    <li>
+    </li>
+    
+    <li>
+      <em>
+        
+        
+        <a href="/tags/cmdchallenge">#cmdchallenge</a>
+        
+      </em>
+    </li>
+    
+  </ul>
+</aside>
+
+    <p>I&rsquo;ve decided to take what was written years ago for <a href="https://cmdchallenge.com">cmdchallenge.com</a> and port it to a single Golang app. This is a pretty big change because I will be removing most of the AWS serverless components including API Gateway, Dynamo and possibly CloudFront.
+In the process, I would also like to simplify the architecture a bit. It seems like a single process with Docker running locally, and a db like sqlite should be sufficient. Here are some notes for the transition:</p>
+<ul>
+<li>This will be a small program and I&rsquo;m pretty sure I won&rsquo;t need any frameworks for the REST server</li>
+<li>I&rsquo;ll need to do some lex parsing of the submission, <a href="https://pkg.go.dev/github.com/google/shlex">https://pkg.go.dev/github.com/google/shlex</a> should work.</li>
+<li>1 years worth of data is about 300K unique entries in the submission table, in dyamoDB this is about 300MB of data.</li>
+<li>Currently I&rsquo;m keeping track of every single request in a larger submissions table that is used for rate limits, I think this won&rsquo;t be necessary anymore since I can implement in-memory rate limiting without a tracking database.</li>
+<li>I recently moved the runner from Golang to <a href="https://nim-lang.org/">Nim</a>, but I think I&rsquo;ll stick with Nim for now for the runner.</li>
+<li>I would like to look into exporting some metrics to prometheus as well via a <code>/metrics</code> endpoint</li>
+</ul>
+<p>So first thing to do is create a schema for commands:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">CREATE</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">TABLE</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">`</span>commands<span style="color:#000;font-weight:bold">`</span><span style="color:#bbb"> </span>(<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#000;font-weight:bold">`</span>fingerprint<span style="color:#000;font-weight:bold">`</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">TEXT</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#000;font-weight:bold">`</span>challenge_slug<span style="color:#000;font-weight:bold">`</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">TEXT</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#000;font-weight:bold">`</span>cmd<span style="color:#000;font-weight:bold">`</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">TEXT</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#000;font-weight:bold">`</span>cmd_length<span style="color:#000;font-weight:bold">`</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">INT</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#000;font-weight:bold">`</span>correct<span style="color:#000;font-weight:bold">`</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">BOOL</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#000;font-weight:bold">`</span>create_time<span style="color:#000;font-weight:bold">`</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">INT</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#000;font-weight:bold">`</span>output<span style="color:#000;font-weight:bold">`</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">TEXT</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#000;font-weight:bold">`</span>source_ip<span style="color:#000;font-weight:bold">`</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">TEXT</span>,<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#000;font-weight:bold">`</span>resp<span style="color:#000;font-weight:bold">`</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">TEXT</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><ul>
+<li>We will use the fingerprint of the command as the primary key for fast cache lookups</li>
+<li>Scans on the sqlite db will be much cheaper than against dynamodb (in both time and money) so I don&rsquo;t think we need a sort key like we did for DyamoDB</li>
+</ul>
+<p>On removing Cloudflare caching, I think it will be interesting to remove it altogether, I assume that cache lookups in sqlite will be performant enought to bypass the extra caching layer.</p>
+
+</article>
+
+
+        </main>
+        <footer></footer>
+    </body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><title>John Jarvis</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" />
+<style type="text/css">@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono.woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono-Bold.woff2');
+  font-weight: bold;
+  font-display: block;
+}
+
+main h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+}
+
+html {
+  font-size: 14px;
+  color: black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: fabfont,  monospace;
+  background: #F5F5F0;
+}
+
+body > * {
+  width: 700px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  text-align: left;
+}
+
+@media only screen and (width <= 800px) {
+  body > * {
+    width: auto;
+    margin: 0 1.2em;
+  }
+}
+
+a {
+  font-weight: bold;
+  color: black;
+}
+
+p {
+  text-align: justify;
+}
+
+img {
+  width: 100%;
+}
+
+/* index.html */
+
+main {
+  line-height: 1.5;
+}
+
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* header */
+
+header {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4ch;
+  margin-top: 1em;
+  display: flex;
+}
+
+
+header a {
+  text-decoration: none;
+}
+
+header h2 {
+  font-size: 14px;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+header aside {
+  width: 50%;
+  text-align: right;
+}
+
+header aside ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+
+header aside ul > li {
+  display: inline-block;
+}
+
+/* articles */
+
+main article aside {
+  display: flex;
+  margin: 0;
+  color: gray;
+  font-size: .9em;
+}
+
+main article aside ul li a {
+  color: gray;
+  text-decoration: none;
+}
+
+main article aside time {
+  display: flex;
+  width: 50%;
+}
+
+main article aside ul {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  text-align: right;
+  list-style: none;
+  justify-content: space-between;
+}
+
+main article > pre {
+  background-color: #e1e1e1;
+  overflow-x: auto;
+  padding: .8em;
+  font-size: .9em;
+  box-shadow: 0 -1px 0 #bbb inset;
+}
+
+/* code hylights */
+main article .highlight pre {
+  overflow-x: auto;
+  font-size: .8em;
+  padding: .8em;
+}
+
+main article p code {
+    font-weight: bold;
+    background-color: #e1e1e1;
+    border-radius: 0.5ch;
+    padding-left: 0.3ch;
+    padding-right: 0.3ch;
+}
+
+/* blockquote */
+
+blockquote {
+  font-style:italic;
+  color: #555;
+  padding:1.2em 30px 1.2em 45px;
+  border-left:8px solid #696969;
+  position: relative;
+  background: #EDEDED;
+  line-height: 1.6;
+}
+
+blockquote p {
+  text-align: left;
+
+}
+
+blockquote::before {
+  font-family: Arial, Helvetica, sans-serif;
+  content: "\201C";
+  color: #696969;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: '';
+}
+
+@media only screen and (width <= 800px) {
+  blockquote {
+    margin: 1em 0;
+    padding: .5em;
+  }
+}
+</style>
+</head>
+    <body>
+        <header><h2><a href="/"><b>John Jarvis</b></a></h2>
+<aside>
+  <ul>
+    <li><a href="/about/">ABOUT</a></li>
+    <li><a href="/contact/">CONTACT</a></li>
+    <li><a href="https://jarv.org/index.xml">RSS</a></li>
+  </ul>
+</aside>
+</header>
+        <main>
+<article>
+    <h1>Running a command with a timeout in Go</h1>
+    <aside>
+  
+  <time datetime="2022-09-27T00:00:00Z">Sep 27, 2022</time>
+  
+  <ul>
+    <li>
+    </li>
+    
+    <li>
+      <em>
+        
+        
+        <a href="/tags/cmdchallenge">#cmdchallenge</a>
+        
+        /
+        <a href="/tags/go">#go</a>
+        
+      </em>
+    </li>
+    
+  </ul>
+</aside>
+
+    <p>I&rsquo;ve been slowly re-writing most of <a href="https://cmdchallenge.com">cmdchallenge</a> in Go.
+It started with <a href="/posts/from-serverless-to-server/">porting all of the Python code running in AWS Lambda</a>, and now I am in the process of re-writing the command runner.
+This is the component that executes user provided commands, originally written in <a href="https://nim-lang.org/">Nim</a>.</p>
+<p>The command runner takes user submitted shell commands and executes them in a Docker container.
+In the Go program, I initially used <code>exec.CommandContext()</code> and <code>.CombinedOutput()</code>.
+This met the following requirements:</p>
+<ul>
+<li>A command to be executed but the execution needs to be time constrained</li>
+<li>Fetching the output of the command with combined STDOUT and STDERR</li>
+<li>Getting the command&rsquo;s exit code</li>
+</ul>
+<p>Initially using <code>exec.CommandContext()</code> and <code>.CombinedOutput()</code> seemed like a good fit since I could use <a href="https://pkg.go.dev/context">context</a> to send a kill signal to constrain how long the command would run.
+However, I noticed some odd behavior as it related to setting timeouts.</p>
+<p>Take the following two examples:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>log.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;starting&#34;</span>)
+</span></span><span style="display:flex;"><span>ctx, cancel <span style="color:#000;font-weight:bold">:=</span> context.<span style="color:#900;font-weight:bold">WithTimeout</span>(context.<span style="color:#900;font-weight:bold">Background</span>(), <span style="color:#099">2</span><span style="color:#000;font-weight:bold">*</span>time.Second)
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">defer</span> <span style="color:#900;font-weight:bold">cancel</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>shArgs <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#458;font-weight:bold">string</span>{<span style="color:#d14">&#34;-c&#34;</span>, <span style="color:#d14">&#34;sleep 10&#34;</span>}
+</span></span><span style="display:flex;"><span>_, err <span style="color:#000;font-weight:bold">:=</span> exec.<span style="color:#900;font-weight:bold">CommandContext</span>(ctx, <span style="color:#d14">&#34;sh&#34;</span>, shArgs<span style="color:#000;font-weight:bold">...</span>).<span style="color:#900;font-weight:bold">CombinedOutput</span>(); err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>    log.<span style="color:#900;font-weight:bold">Fatalf</span>(err.<span style="color:#900;font-weight:bold">Error</span>())
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>log.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;finished&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// Output:
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">//
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 2022/09/27 19:08:04 starting
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 2022/09/27 19:08:14 signal: killed
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>ctx, cancel <span style="color:#000;font-weight:bold">:=</span> context.<span style="color:#900;font-weight:bold">WithTimeout</span>(context.<span style="color:#900;font-weight:bold">Background</span>(), <span style="color:#099">2</span><span style="color:#000;font-weight:bold">*</span>time.Second)
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">defer</span> <span style="color:#900;font-weight:bold">cancel</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>shArgs <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#458;font-weight:bold">string</span>{<span style="color:#d14">&#34;-c&#34;</span>, <span style="color:#d14">&#34;sleep 10&#34;</span>}
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">:=</span> exec.<span style="color:#900;font-weight:bold">CommandContext</span>(ctx, <span style="color:#d14">&#34;sh&#34;</span>, shArgs<span style="color:#000;font-weight:bold">...</span>).<span style="color:#900;font-weight:bold">Run</span>(); err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>    log.<span style="color:#900;font-weight:bold">Fatalf</span>(err.<span style="color:#900;font-weight:bold">Error</span>())
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>log.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;finished&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// Output:
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">//
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 2022/09/27 19:10:13 starting
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 2022/09/27 19:10:15 signal: killed
+</span></span></span></code></pre></div><p>Note how the first example reports that the program is killed, but not until a full 10 seconds.
+Here, setting the timeout doesn&rsquo;t seem to do anything at all.
+In the second example, the program resumes after the 2 second timeout as we would expect.</p>
+<p>The key difference is that in the second example, we fetch the output.
+Let&rsquo;s take a closer look at what process is being killed and what happens to the <code>sleep 10</code>.
+Assuming our program is called <code>timeouttest</code>, the process tree starts like this:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>bash,1
+</span></span><span style="display:flex;"><span>  `-timeouttest,8019
+</span></span><span style="display:flex;"><span>      |-sh,8024 -c sleep 10
+</span></span><span style="display:flex;"><span>      |   `-sleep,7694 10
+</span></span></code></pre></div><p>After 2 seconds, <code>sh</code> is sent a <code>SIGKILL</code> and we are left with:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>bash,1
+</span></span><span style="display:flex;"><span>  |-sleep,7694 10
+</span></span><span style="display:flex;"><span>  `-timeouttest,8019
+</span></span></code></pre></div><p>As seen above, <code>sleep 10</code> becomes an orphan that is adopted by PID 1.
+<code>sleep 10</code> is not killed, because the kill was sent to <code>sh</code>, and the signal is not propagated to its child.
+The main difference between calling <code>.Run()</code> and <code>.CombinedOutput()</code> is that the latter creates a buffer for <code>Stdout</code> for the process and its children, and that the program will wait for that descriptor to close.
+This causes Go to hang, while it waits to copy sleep&rsquo;s standard output to the buffer.</p>
+<p>To ensure we can timeout properly, and that the <code>sleep 10</code> is also killed, we will need to send a <code>SIGKILL</code> to the process group.
+This solves the problem because children created via fork will inherit the parent&rsquo;s process group ID, and a kill sent to the group ID will kill the process and all of its descendants.</p>
+<p>Here is code to kill the group ID after a 2 second timeout. There are multiple ways to implement this, here we are using a channel with select:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>log.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;starting&#34;</span>)
+</span></span><span style="display:flex;"><span>shArgs <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#458;font-weight:bold">string</span>{<span style="color:#d14">&#34;-c&#34;</span>, <span style="color:#d14">&#34;sleep 10&#34;</span>}
+</span></span><span style="display:flex;"><span>cmd <span style="color:#000;font-weight:bold">:=</span> exec.<span style="color:#900;font-weight:bold">Command</span>(<span style="color:#d14">&#34;sh&#34;</span>, shArgs<span style="color:#000;font-weight:bold">...</span>)
+</span></span><span style="display:flex;"><span>cmd.SysProcAttr = <span style="color:#000;font-weight:bold">&amp;</span>syscall.SysProcAttr{Setpgid: <span style="color:#000;font-weight:bold">true</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">type</span> cmdResult <span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>    outb []<span style="color:#458;font-weight:bold">byte</span>
+</span></span><span style="display:flex;"><span>    err  <span style="color:#458;font-weight:bold">error</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>cmdDone <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> cmdResult, <span style="color:#099">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">go</span> <span style="color:#000;font-weight:bold">func</span>() {
+</span></span><span style="display:flex;"><span>    outb, err <span style="color:#000;font-weight:bold">:=</span> cmd.<span style="color:#900;font-weight:bold">CombinedOutput</span>()
+</span></span><span style="display:flex;"><span>    cmdDone <span style="color:#000;font-weight:bold">&lt;-</span> cmdResult{outb, err}
+</span></span><span style="display:flex;"><span>}()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">select</span> {
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">case</span> <span style="color:#000;font-weight:bold">&lt;-</span>time.<span style="color:#900;font-weight:bold">After</span>(<span style="color:#099">2</span> <span style="color:#000;font-weight:bold">*</span> time.Second):
+</span></span><span style="display:flex;"><span>    syscall.<span style="color:#900;font-weight:bold">Kill</span>(<span style="color:#000;font-weight:bold">-</span>cmd.Process.Pid, syscall.SIGKILL)
+</span></span><span style="display:flex;"><span>    log.<span style="color:#900;font-weight:bold">Fatal</span>(<span style="color:#d14">&#34;signal: killed&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">case</span> <span style="color:#000;font-weight:bold">&lt;-</span>cmdDone:
+</span></span><span style="display:flex;"><span>    log.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;finished&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here we are sending a <code>SIGKILL</code> to the process ID negated, from the <a href="https://man7.org/linux/man-pages/man2/kill.2.html">kill man page</a></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>If pid is less than -1, then sig is sent to every process in the
+</span></span><span style="display:flex;"><span>process group whose ID is -pid.
+</span></span></code></pre></div><p>This ensures that we will both timeout after the given time, and that all processes including children are killed.</p>
+
+</article>
+
+
+        </main>
+        <footer></footer>
+    </body>
+</html>

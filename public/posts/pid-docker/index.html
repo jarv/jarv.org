@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><title>John Jarvis</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" />
+<style type="text/css">@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono.woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono-Bold.woff2');
+  font-weight: bold;
+  font-display: block;
+}
+
+main h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+}
+
+html {
+  font-size: 14px;
+  color: black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: fabfont,  monospace;
+  background: #F5F5F0;
+}
+
+body > * {
+  width: 700px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  text-align: left;
+}
+
+@media only screen and (width <= 800px) {
+  body > * {
+    width: auto;
+    margin: 0 1.2em;
+  }
+}
+
+a {
+  font-weight: bold;
+  color: black;
+}
+
+p {
+  text-align: justify;
+}
+
+img {
+  width: 100%;
+}
+
+/* index.html */
+
+main {
+  line-height: 1.5;
+}
+
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* header */
+
+header {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4ch;
+  margin-top: 1em;
+  display: flex;
+}
+
+
+header a {
+  text-decoration: none;
+}
+
+header h2 {
+  font-size: 14px;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+header aside {
+  width: 50%;
+  text-align: right;
+}
+
+header aside ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+
+header aside ul > li {
+  display: inline-block;
+}
+
+/* articles */
+
+main article aside {
+  display: flex;
+  margin: 0;
+  color: gray;
+  font-size: .9em;
+}
+
+main article aside ul li a {
+  color: gray;
+  text-decoration: none;
+}
+
+main article aside time {
+  display: flex;
+  width: 50%;
+}
+
+main article aside ul {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  text-align: right;
+  list-style: none;
+  justify-content: space-between;
+}
+
+main article > pre {
+  background-color: #e1e1e1;
+  overflow-x: auto;
+  padding: .8em;
+  font-size: .9em;
+  box-shadow: 0 -1px 0 #bbb inset;
+}
+
+/* code hylights */
+main article .highlight pre {
+  overflow-x: auto;
+  font-size: .8em;
+  padding: .8em;
+}
+
+main article p code {
+    font-weight: bold;
+    background-color: #e1e1e1;
+    border-radius: 0.5ch;
+    padding-left: 0.3ch;
+    padding-right: 0.3ch;
+}
+
+/* blockquote */
+
+blockquote {
+  font-style:italic;
+  color: #555;
+  padding:1.2em 30px 1.2em 45px;
+  border-left:8px solid #696969;
+  position: relative;
+  background: #EDEDED;
+  line-height: 1.6;
+}
+
+blockquote p {
+  text-align: left;
+
+}
+
+blockquote::before {
+  font-family: Arial, Helvetica, sans-serif;
+  content: "\201C";
+  color: #696969;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: '';
+}
+
+@media only screen and (width <= 800px) {
+  blockquote {
+    margin: 1em 0;
+    padding: .5em;
+  }
+}
+</style>
+</head>
+    <body>
+        <header><h2><a href="/"><b>John Jarvis</b></a></h2>
+<aside>
+  <ul>
+    <li><a href="/about/">ABOUT</a></li>
+    <li><a href="/contact/">CONTACT</a></li>
+    <li><a href="https://jarv.org/index.xml">RSS</a></li>
+  </ul>
+</aside>
+</header>
+        <main>
+<article>
+    <h1>Ensuring a consistent PID in a container</h1>
+    <aside>
+  
+  <time datetime="2020-07-31T00:00:00Z">Jul 31, 2020</time>
+  
+  <ul>
+    <li>
+    </li>
+    
+    <li>
+      <em>
+        
+        
+        <a href="/tags/cmdchallenge">#cmdchallenge</a>
+        
+      </em>
+    </li>
+    
+  </ul>
+</aside>
+
+    <p>Recently a <a href="https://oops.cmdchallenge.com/#/oops_print_process">challenge was added</a> that asks you to identify a process and kill it. This was a new type of exercise that requires a running process in the docker container where all commands are run. This itself wasn&rsquo;t really an issue except that with caching, it requires that the state of the container to be identical from one run to the next. PIDs however, are not so predictable, even when you only have a very small wrapper.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>PID 1: wrapper that run the command
+</span></span><span style="display:flex;"><span>PID 6 or 7: forked command passed to the wrapper
+</span></span></code></pre></div><p>I&rsquo;m not sure why sometimes the PID would be <code>6</code> and other times <code>7</code>, but this causes bit of a problem since if you executed a command like:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -d /proc/<span style="color:#000;font-weight:bold">[</span>0-9<span style="color:#000;font-weight:bold">]</span>*
+</span></span></code></pre></div><p>You might get a cached result, which doesn&rsquo;t represent the PIDs that are running in the context of your next command.</p>
+<p>So like most, I went to stackoverflow and found <a href="https://stackoverflow.com/questions/18122592/how-to-set-process-id-in-linux-for-a-specific-program">this stackoverflow post</a> it can be done by setting <code>ns_last_pid</code></p>
+<blockquote>
+<ul>
+<li>Open /proc/sys/kernel/ns_last_pid and get fd</li>
+<li>flock it with LOCK_EX</li>
+<li>write PID-1</li>
+<li>fork</li>
+</ul>
+</blockquote>
+<p>But you can&rsquo;t set this in a docker container unless you run it privileged, which is not a great idea for running arbitrary commands passed in by the Internet.</p>
+<p>Instead, this ended up getting solved with a very boring solution. For challenges where we need a running process, the wrapper cycles through all the PIDs up to PID number <code>41</code>, and then forks the process that needed to be killed. The logic is quite simple, and looks something like this:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nim" data-lang="nim"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">proc </span><span style="color:#900;font-weight:bold">start</span><span style="color:#000;font-weight:bold">*</span>(oopsProc: <span style="color:#000;font-weight:bold">var</span> OopsProc, prog: <span style="color:#458;font-weight:bold">string</span> <span style="color:#000;font-weight:bold">=</span> OOPS_PROG, targetPid: <span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">42</span>) <span style="color:#000;font-weight:bold">=</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">not</span> oopsProc.slug.startsWith(<span style="color:#d14">&#34;oops&#34;</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">return</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">while</span> <span style="color:#000;font-weight:bold">true</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">let</span> p <span style="color:#000;font-weight:bold">=</span> startProcess(
+</span></span><span style="display:flex;"><span>      command<span style="color:#000;font-weight:bold">=</span>OOPS_PROG, args<span style="color:#000;font-weight:bold">=[</span><span style="color:#d14">&#34;-t&#34;</span>, <span style="color:#d14">&#34;0&#34;</span><span style="color:#000;font-weight:bold">]</span>, options<span style="color:#000;font-weight:bold">=</span>{poUsePath}
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">let</span> _ <span style="color:#000;font-weight:bold">=</span> p.waitForExit()
+</span></span><span style="display:flex;"><span>    p.close
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">if</span> p.processId <span style="color:#000;font-weight:bold">==</span> targetPid <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#000;font-weight:bold">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  oopsProc.p <span style="color:#000;font-weight:bold">=</span> startProcess(
+</span></span><span style="display:flex;"><span>    command<span style="color:#000;font-weight:bold">=</span>OOPS_PROG, options<span style="color:#000;font-weight:bold">=</span>{poUsePath}
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  oopsProc.pid <span style="color:#000;font-weight:bold">=</span> oopsProc.p.processId
+</span></span></code></pre></div><p>This is how for challenge &ldquo;<a href="https://oops.cmdchallenge.com/#/oops_kill_a_process">kill a process</a>&rdquo;, the answer is always <code>kill -9 42</code>!</p>
+
+</article>
+
+
+        </main>
+        <footer></footer>
+    </body>
+</html>

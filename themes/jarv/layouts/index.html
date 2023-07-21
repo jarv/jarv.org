@@ -1,0 +1,12 @@
+{{ define "main" }}
+<h1>Articles</h1>
+<ul>
+{{ $pages := where site.RegularPages "Type" "posts" }}
+{{ range $pages }}
+<li>
+{{ if .Params.showthedate | default true }}{{ .Date.Format "2006-01-02" }}:{{ end }}
+<a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a>
+</li>
+{{ end }}
+</ul>
+{{ end }}

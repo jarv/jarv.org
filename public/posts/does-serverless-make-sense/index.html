@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><title>John Jarvis</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" />
+<style type="text/css">@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono.woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono-Bold.woff2');
+  font-weight: bold;
+  font-display: block;
+}
+
+main h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+}
+
+html {
+  font-size: 14px;
+  color: black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: fabfont,  monospace;
+  background: #F5F5F0;
+}
+
+body > * {
+  width: 700px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  text-align: left;
+}
+
+@media only screen and (width <= 800px) {
+  body > * {
+    width: auto;
+    margin: 0 1.2em;
+  }
+}
+
+a {
+  font-weight: bold;
+  color: black;
+}
+
+p {
+  text-align: justify;
+}
+
+img {
+  width: 100%;
+}
+
+/* index.html */
+
+main {
+  line-height: 1.5;
+}
+
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* header */
+
+header {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4ch;
+  margin-top: 1em;
+  display: flex;
+}
+
+
+header a {
+  text-decoration: none;
+}
+
+header h2 {
+  font-size: 14px;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+header aside {
+  width: 50%;
+  text-align: right;
+}
+
+header aside ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+
+header aside ul > li {
+  display: inline-block;
+}
+
+/* articles */
+
+main article aside {
+  display: flex;
+  margin: 0;
+  color: gray;
+  font-size: .9em;
+}
+
+main article aside ul li a {
+  color: gray;
+  text-decoration: none;
+}
+
+main article aside time {
+  display: flex;
+  width: 50%;
+}
+
+main article aside ul {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  text-align: right;
+  list-style: none;
+  justify-content: space-between;
+}
+
+main article > pre {
+  background-color: #e1e1e1;
+  overflow-x: auto;
+  padding: .8em;
+  font-size: .9em;
+  box-shadow: 0 -1px 0 #bbb inset;
+}
+
+/* code hylights */
+main article .highlight pre {
+  overflow-x: auto;
+  font-size: .8em;
+  padding: .8em;
+}
+
+main article p code {
+    font-weight: bold;
+    background-color: #e1e1e1;
+    border-radius: 0.5ch;
+    padding-left: 0.3ch;
+    padding-right: 0.3ch;
+}
+
+/* blockquote */
+
+blockquote {
+  font-style:italic;
+  color: #555;
+  padding:1.2em 30px 1.2em 45px;
+  border-left:8px solid #696969;
+  position: relative;
+  background: #EDEDED;
+  line-height: 1.6;
+}
+
+blockquote p {
+  text-align: left;
+
+}
+
+blockquote::before {
+  font-family: Arial, Helvetica, sans-serif;
+  content: "\201C";
+  color: #696969;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: '';
+}
+
+@media only screen and (width <= 800px) {
+  blockquote {
+    margin: 1em 0;
+    padding: .5em;
+  }
+}
+</style>
+</head>
+    <body>
+        <header><h2><a href="/"><b>John Jarvis</b></a></h2>
+<aside>
+  <ul>
+    <li><a href="/about/">ABOUT</a></li>
+    <li><a href="/contact/">CONTACT</a></li>
+    <li><a href="https://jarv.org/index.xml">RSS</a></li>
+  </ul>
+</aside>
+</header>
+        <main>
+<article>
+    <h1>Does Serverless make sense for a side project?</h1>
+    <aside>
+  
+  <time datetime="2020-11-28T00:00:00Z">Nov 28, 2020</time>
+  
+  <ul>
+    <li>
+    </li>
+    
+    <li>
+      <em>
+        
+        
+        <a href="/tags/cmdchallenge">#cmdchallenge</a>
+        
+      </em>
+    </li>
+    
+  </ul>
+</aside>
+
+    <p><a href="https://12days.cmdchallenge.com">Command Challenge</a> has been running for over 3 years now and I would consider it one of those &ldquo;serverless&rdquo; architectures. The front-end services requests using API Gateway and Lambda functions and commands are forwarded to a Docker executor running on a VM.</p>
+<p>Overall, the costs have been minimal thanks to mostly low-ish traffic and keeping it inside the AWS free-tier limits.
+By &ldquo;free-tier&rdquo; I mean the &ldquo;always-free&rdquo; limits of an AWS account, since the 12 month trial period for new accounts expired quite some time ago.</p>
+<p>Here is a 2020 update for the services that are used to run the site and a short explanation of what they do.</p>
+<h2 id="serverless-architecture">Serverless Architecture</h2>
+<p><img src="/img/cmd-architecture.png" alt="cmd-architecture"></p>
+<p>Where we could probably move all of this to a single VM and reduce some of the configuration complexity, I don&rsquo;t think it would be any cheaper except on a shared hosting provider.</p>
+<p>As you can see in the diagram, this project isn&rsquo;t completely &ldquo;serverless&rdquo; because a server is required for executing user-submitted commands in Docker.
+For this, it&rsquo;s a matter of finding the cheapest VM available for this type of workload.</p>
+<h2 id="free-cloud-services">Free Cloud Services</h2>
+<ul>
+<li><strong><a href="https://www.goatcounter.com">GoatCounter</a></strong>: An analytics service <a href="https://www.goatcounter.com/why#what-are-goatcounters-goals">that respects your privacy</a>.</li>
+<li><strong>Slack</strong>: Used to receive notifications for unique submissions and errors, useful to keep an eye on what is going on.</li>
+<li><strong>Grafana Cloud</strong>: Grafana offers a <a href="https://grafana.com/signup/starter/connect-account">free starter plan</a>. This connects to Prometheus which is running on the GCP VM for monitoring Docker and node level metrics.</li>
+<li><strong>Sentry</strong>: <a href="https://sentry.io">Sentry.io</a> is very nice for side-projects, offering a free tier that I found indispensable for tracking down front-end JS errors in different browser configurations.</li>
+<li><strong>GitLab</strong>: <a href="https://gitlab.com">GitLab.com</a> drives the CI pipeline, every new commit on master updates <a href="https://testing.cmdchallenge.com">the testing environment</a>, with a manual promotion to prod.</li>
+</ul>
+<h2 id="aws---2month">AWS - $2/month</h2>
+<ul>
+<li><strong>CloudFront</strong>: Used as the CDN for all requests to the site. HTTP GET requests to <code>/r/*</code> are for command submissions and are forwarded to the API Gateway. These requests are cached here, so if multiple submissions are sent for the same challenge CloudFront will return a cached response. Other requests that are not command, assets and the static page are forwarded to S3.</li>
+<li><strong>S3 bucket</strong>:  Hosts all static content and serves as the origin for CloudFlare. Also receives periodic updates for user solutions, stored as JSON files.</li>
+<li><strong>API Gateway</strong>: Previously REST API, this was <a href="https://jarv.org/posts/http-api-gateway/">recently switched to the HTTP API Gateway</a>. Accepts an HTTP request and forwards it to Lambda function for submissions.</li>
+<li><strong>Lambda</strong>:
+<ul>
+<li><strong>Submission Handling</strong>: Responsible for handling submission and rate-limiting logic. It takes a submission and forwards it to the Docker executor. If it receives the same input for a challenge that has already been evaluated, it will return a cached response</li>
+<li><strong>Solutions Updater</strong>: This is split into multiple Lambda functions that look up solutions and writes them to S3 as <code>json</code> files. It runs in multiple jobs because the queries to DynamoDB span many records and take awhile to run.</li>
+<li><strong>Slack Notfications</strong>: On every unique successful submission, or error a notification is sent to Slack. This is helpful to keep an eye on what is going on and aids troubleshooting when there are problems.</li>
+</ul>
+</li>
+<li><strong>DynamoDB</strong>: Every submission is stored in the database which is used for both rate limiting, and tracking correct/incorrect submissions.</li>
+<li><strong>CloudWatch Logs</strong>: Collects logs from Lambda for debugging.</li>
+<li><strong>Event Bridge</strong>: Previously called CloudWatch Rules, this triggers periodic events that are used to trigger a Lambda function that generates a list of user-submitted solutions.</li>
+<li><strong>Route53</strong>: The one service that doesn&rsquo;t have a free tier, for .50 a month it manages the cmdchallenge.com DNS zone.</li>
+<li><strong>Amazon Certificate Manager</strong>: Free HTTPs certificates for all of cmdchallenge.com</li>
+</ul>
+<h3 id="breakdown-of-a-typical-monthly-bill">Breakdown of a typical monthly bill</h3>
+<p><img src="/img/aws-bill.png" alt="aws-bill"></p>
+<h2 id="gcp---6month">GCP - $6/month</h2>
+<p><img src="/img/gcp-bill.png" alt="gcp-bill"></p>
+<p>The production site uses an <code>e2-micro</code> instance costing around $6/month, this is a bit more than we need typically but it gives us some headroom when the site gets busy.
+There is only a single VM which is a single-point-of-failure for the site. This can cause a bit of disruption if there is a spontaneous reboot or if an upgrade is required.
+Thankfully, in GCP this is very fast, and thanks to the multiple-layers of caching (CloudFlare, DynamoDB) in the serverless stack, it only causes a problem for unique submissions that haven&rsquo;t been seen before.</p>
+<p><img src="/img/cpu-memory.png" alt="cpu-memory"></p>
+<ul>
+<li>Memory utilization hovers around 300MB when there isn&rsquo;t a lot of activity, this means that on smaller shared-core VMS like the <code>f1-micro</code> some swap is necessary.</li>
+<li>CPU Utilization is generally low, though it varies because traffic due to site usage tends to be bursty.</li>
+</ul>
+<h2 id="vm-comparison-for-shared-core-or-burstable-instances">VM Comparison for shared-core or burstable instances</h2>
+<p>This architecture spans cloud providers to keep costs low as I found GCP gives a better value for the money on VMs compared to AWS at this lower tier.
+Here is a current-as-of-now overview of cheap VMs under $15 from the main cloud providers.</p>
+<p>All of these are non-preemptable shared core instances or burst-rate limited in the case of AWS.
+This means that you cannot count on using the full CPU all of the time.</p>
+<table>
+<thead>
+<tr>
+<th>Instance</th>
+<th>vCPUs</th>
+<th>Memory</th>
+<th>Price $/month</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GCP f1-micro</td>
+<td>.2</td>
+<td>.6GB</td>
+<td>$5</td>
+</tr>
+<tr>
+<td>GCP e2-micro</td>
+<td>2</td>
+<td>1GB</td>
+<td>$6</td>
+</tr>
+<tr>
+<td>GCP e2-small</td>
+<td>2</td>
+<td>2GB</td>
+<td>$12</td>
+</tr>
+<tr>
+<td>GCP g1-small</td>
+<td>.5</td>
+<td>1.7GB</td>
+<td>$12</td>
+</tr>
+<tr>
+<td>AWS t2-nano</td>
+<td>1</td>
+<td>.5GB</td>
+<td>$4</td>
+</tr>
+<tr>
+<td>AWS t2-micro</td>
+<td>1</td>
+<td>1GB</td>
+<td>$8</td>
+</tr>
+<tr>
+<td>AWS LightSail</td>
+<td>1</td>
+<td>0.5GB</td>
+<td>$3.50</td>
+</tr>
+<tr>
+<td>AWS LightSail</td>
+<td>1</td>
+<td>1GB</td>
+<td>$5</td>
+</tr>
+<tr>
+<td>AWS LightSail</td>
+<td>1</td>
+<td>2GB</td>
+<td>$10</td>
+</tr>
+<tr>
+<td>Digital Ocean</td>
+<td>1</td>
+<td>1GB</td>
+<td>$5</td>
+</tr>
+<tr>
+<td>Digital Ocean</td>
+<td>1</td>
+<td>2GB</td>
+<td>$10</td>
+</tr>
+<tr>
+<td>Digital Ocean</td>
+<td>2</td>
+<td>2GB</td>
+<td>$15</td>
+</tr>
+</tbody>
+</table>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>For GCP, preemptable instances would be cheaper but with only one it doesn&rsquo;t really work since it would mean a service interruption.</li>
+<li>The <code>f1-micro</code> is a bit too small for the main site, I use it for the <a href="https://testing.cmdchallenge.com">testing environment</a>.</li>
+<li>AWS LightSail / Digital Ocean have basically the same offering and might also be a good fit.</li>
+</ul>
+<p>For now, the main site is powered by an <code>e2-micro</code> instance for $6/month.
+It offers 2 cores, which is more than the other options in the same price-range though it&rsquo;s not uncommon to see stalls due to CPU steal:</p>
+<p><img src="/img/cpu-steal.png" alt="cpu-steal"></p>
+<p>It runs <a href="https://cloud.google.com/container-optimized-os/docs">Container Optimized OS</a> and only runs Docker and a Prometheus exporter for node metrics.</p>
+<h2 id="so-is-it-worth-it">So, is it worth it?</h2>
+<p>From a cost perspective for now I still think so. Of course there is always a risk that something happens where my cloud spend will spiral out of control but if this were to happen I would just shut it down.
+There is the meme &ldquo;Wouldn&rsquo;t it be easier to run this on a $5 DO droplet&rdquo;? I think it might apply here, though the type of workload it runs is ideal for serverless because it is a single-page app where API Gateway requests are only required for submissions.  This keeps the number of Lambda executions low.</p>
+<p>Ignoring spend I think there are two big disadvantages to running servless. One is the complexity of gluing the cloud-native components together and keeping a configuration that is easy to manage and update.
+This is solved by keeping everything in a single <a href="https://gitlab.com/jarv/cmdchallenge/-/blob/master/terraform/site.tf">terraform script</a>, and though updates are automatically applied in CI I think there is a rather big initial investment in getting it to work properly.</p>
+<p>The other, bigger reason I found is that <strong>it&rsquo;s difficult, if not impossible to test everything locally</strong>,  without a lot more work which would be my number one complaint about this setup.
+The way I have worked around this is to have an identical <a href="https://testing.cmdchallenge.com">testing environment</a> running in parallel, this actually doesn&rsquo;t cost anything extra because it doesn&rsquo;t get any usage beyond a small amount of testing.</p>
+<p>To sum up, while it&rsquo;s been fun for someone who enjoys doing infrastructure, I have been thinking about re-writing it all as a single server that run on a single VM, with sqlite as the db. I&rsquo;m pretty sure it would perform better :)</p>
+
+</article>
+
+
+        </main>
+        <footer></footer>
+    </body>
+</html>

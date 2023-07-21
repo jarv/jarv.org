@@ -1,8 +1,7 @@
 +++
 title = "Musical Ms. Pacman Candy Tin Hack"
-date = "2011-12-04 14:53"
-tags = ["avr"]
-category = "Uncategorized"
+date = '2011-12-04'
+tags = ['avr']
 slug = "musical-ms-pacman-candy-tin-hack"
 +++
 

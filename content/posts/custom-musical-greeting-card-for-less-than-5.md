@@ -1,8 +1,7 @@
 +++
 title = "Custom musical greeting card for less than $5"
-date = "2011-11-20 18:03"
+date = '2011-11-20'
 tags = ["avr"]
-category = "Uncategorized"
 slug = "custom-musical-greeting-card-for-less-than-5"
 +++
 

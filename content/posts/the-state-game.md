@@ -1,8 +1,7 @@
 +++
 title = "The State Game"
-date = "2012-07-22 13:16"
+date = '2012-07-22'
 tags = ["python"]
-category = "Uncategorized"
 slug = "the-state-game"
 +++
 
@@ -15,4 +14,3 @@ web.py. Most people who tried it out found the rotation to be annoying
 and difficult; for me it makes it more interesting :)
 
 [![thestategame](/img/thestategame.png)](https://jarv.github.io/thestategame/)
-

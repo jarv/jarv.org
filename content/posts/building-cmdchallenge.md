@@ -88,7 +88,7 @@ One nice thing about using AWS server-less components was that **a single t2.mic
 *See section on caching/performance below.*
 
 
-## Here is what happens when a command is submitted in the [cmdchallenge.com](cmdchallenge.com terminal):
+## Here is what happens when a command is submitted in the [cmdchallenge.com terminal](cmdchallenge.com):
 
 * Javascript code sends an HTTP GET to https://api.cmdchallenge.com
 * If it is cached it returns a response immediately. If not, it forwards the request to the API gateway which in turn sends it to a Lambda function.

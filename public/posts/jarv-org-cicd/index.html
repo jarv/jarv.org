@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><title>John Jarvis</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" />
+<style type="text/css">@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono.woff2');
+  font-display: block;
+}
+
+@font-face {
+  font-family: fabfont;
+  src: url('/font/DejaVuSansMono-Bold.woff2');
+  font-weight: bold;
+  font-display: block;
+}
+
+main h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+}
+
+html {
+  font-size: 14px;
+  color: black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: fabfont,  monospace;
+  background: #F5F5F0;
+}
+
+body > * {
+  width: 700px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  text-align: left;
+}
+
+@media only screen and (width <= 800px) {
+  body > * {
+    width: auto;
+    margin: 0 1.2em;
+  }
+}
+
+a {
+  font-weight: bold;
+  color: black;
+}
+
+p {
+  text-align: justify;
+}
+
+img {
+  width: 100%;
+}
+
+/* index.html */
+
+main {
+  line-height: 1.5;
+}
+
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* header */
+
+header {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4ch;
+  margin-top: 1em;
+  display: flex;
+}
+
+
+header a {
+  text-decoration: none;
+}
+
+header h2 {
+  font-size: 14px;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+header aside {
+  width: 50%;
+  text-align: right;
+}
+
+header aside ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+
+header aside ul > li {
+  display: inline-block;
+}
+
+/* articles */
+
+main article aside {
+  display: flex;
+  margin: 0;
+  color: gray;
+  font-size: .9em;
+}
+
+main article aside ul li a {
+  color: gray;
+  text-decoration: none;
+}
+
+main article aside time {
+  display: flex;
+  width: 50%;
+}
+
+main article aside ul {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  text-align: right;
+  list-style: none;
+  justify-content: space-between;
+}
+
+main article > pre {
+  background-color: #e1e1e1;
+  overflow-x: auto;
+  padding: .8em;
+  font-size: .9em;
+  box-shadow: 0 -1px 0 #bbb inset;
+}
+
+/* code hylights */
+main article .highlight pre {
+  overflow-x: auto;
+  font-size: .8em;
+  padding: .8em;
+}
+
+main article p code {
+    font-weight: bold;
+    background-color: #e1e1e1;
+    border-radius: 0.5ch;
+    padding-left: 0.3ch;
+    padding-right: 0.3ch;
+}
+
+/* blockquote */
+
+blockquote {
+  font-style:italic;
+  color: #555;
+  padding:1.2em 30px 1.2em 45px;
+  border-left:8px solid #696969;
+  position: relative;
+  background: #EDEDED;
+  line-height: 1.6;
+}
+
+blockquote p {
+  text-align: left;
+
+}
+
+blockquote::before {
+  font-family: Arial, Helvetica, sans-serif;
+  content: "\201C";
+  color: #696969;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: '';
+}
+
+@media only screen and (width <= 800px) {
+  blockquote {
+    margin: 1em 0;
+    padding: .5em;
+  }
+}
+</style>
+</head>
+    <body>
+        <header><h2><a href="/"><b>John Jarvis</b></a></h2>
+<aside>
+  <ul>
+    <li><a href="/about/">ABOUT</a></li>
+    <li><a href="/contact/">CONTACT</a></li>
+    <li><a href="https://jarv.org/index.xml">RSS</a></li>
+  </ul>
+</aside>
+</header>
+        <main>
+<article>
+    <h1>Using GitLab CICD for your static blog</h1>
+    <aside>
+  
+  <time datetime="2018-06-05T00:00:00Z">Jun 5, 2018</time>
+  
+  <ul>
+    <li>
+    </li>
+    
+  </ul>
+</aside>
+
+    <p>In the process of making all of my private repositories public on Github and moving off of GitHub
+pages I have also decided to move most of my repos over to GitLab.
+One reason is that setting up a CICD pipeline makes it
+extremely easy to publish these posts automatically. This in combination with GitLab&rsquo;s
+web IDE makes minor changes a little bit easier to make.</p>
+<p>CICD piplines in GitLab are controlled with a single file, <code>.gitlab-ci.yml</code> that is placed
+at the root of the repository.
+Wit this file, on every commit, the following pipeline runs that deploys to <a href="https://draft.jarv.org">draft.jarv.org</a>
+and on the master branch for <a href="https://jarv.org">jarv.org</a>.</p>
+<p>GitLab has integrated CI/CD runners that allow you to execute whatever you want in a docker
+image of your choice for generating a <a href="https://gitlab.com/jarv/jarv.org/-/pipelines/156823353">deployment pipeline</a>.</p>
+<p>Here is what the <code>gitlab-ci.yml</code> configuration looks like for the <a href="https://gitlab.com/jarv/jarv.org/blob/master/.gitlab-ci.yml">jarv.org repository</a>:</p>
+<p>Some notes about the setup:</p>
+<ul>
+<li>There are two stages, build and deploy. Build generates the html for the blog and deploy deploys it to both draft and the main site.</li>
+<li>Deploying to the main site only happens with a manual job</li>
+<li>I am using a custom image that has some of the blog dependencies pre-installed, it is created with <a href="https://gitlab.com/jarv/jarv.org/blob/master/Dockerfile-ci">this docker file</a>.</li>
+<li>Every time the deploy happens, an invalidate is sent to the cloudfront distribution in front of it.</li>
+<li>Since I am no longer using GitHub pages, the blog is hosted in an S3 bucket so the CICD pipeline does an <code>aws s3 sync ...</code> to get the static files on the bucket.</li>
+</ul>
+<p>There is a special key named <code>environment</code> that hints to GitLab that the stage is a deploy step. With this the URL provided will show up under operations-&gt;deployments like this:</p>
+<p><img src="/img/jarv-envs.png" alt=""></p>
+<p>That&rsquo;s it! It couldn&rsquo;t be simpler and I think one of the nicest things about this setup is the ability to use the GitLab web ide to make quick changes.</p>
+<p><em>Disclaimer: I work for GitLab though the opinions here are my own.</em></p>
+
+</article>
+
+
+        </main>
+        <footer></footer>
+    </body>
+</html>

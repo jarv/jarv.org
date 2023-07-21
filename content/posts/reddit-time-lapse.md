@@ -1,6 +1,6 @@
 +++
 title = "Reddit front-page visualization"
-date = "2015-1-21"
+date = '2015-01-21'
 slug = "reddit-time-lapse"
 +++
 
