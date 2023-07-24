@@ -9,9 +9,6 @@
 }
 
 jarv.org {
-  @cache path /font/*
-  header @cache Cache-Control max-age=604800
-
   handle {
           root * /var/opt/www/jarv.org
           file_server {

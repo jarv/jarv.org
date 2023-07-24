@@ -1,39 +1,43 @@
+
 @font-face {
-  font-family: fabfont;
-  src: url('/font/DejaVuSansMono.woff2');
+  font-family: 'atkinson';
+  src: url('/font/AtkinsonHyperlegible-Regular.woff2');
   font-display: block;
 }
 
 @font-face {
-  font-family: fabfont;
-  src: url('/font/DejaVuSansMono-Bold.woff2');
+  font-family: 'atkinson';
+  src: url('/font/AtkinsonHyperlegible-Bold.woff2');
   font-weight: bold;
   font-display: block;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 3em 0 1em;
 }
 
 main h1 {
   font-weight: bold;
-  text-transform: uppercase;
-  font-size: 1.2rem;
   border-bottom: 1px solid black;
 }
 
 html {
-  font-size: 14px;
+  max-width: 70ch;
+  padding: 3em 1em;
+  margin: auto;
+  line-height: 1.75;
+  font-size: 1.25em;
   color: black;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  font-family: fabfont,  monospace;
+  font-family: atkinson, "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
   background: #F5F5F0;
 }
 
-body > * {
-  width: 700px;
-  margin: 0 auto;
+p,ul,ol {
+  margin-bottom: 2em;
+  color: #1d1d1d;
+  font-family: sans-serif;
 }
 
 table {
@@ -70,8 +74,9 @@ main {
   line-height: 1.5;
 }
 
-main ul {
+section#list ul {
   list-style: none;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
 }

@@ -1,3 +1,4 @@
 cache/
 output/*
 .hugo_build.lock
+public/
