@@ -1,6 +1,6 @@
 languageCode = "en-us"
 title = "John Jarvis"
-theme = "jarv"
+theme = "one-post-a-year"
 baseURL = 'https://jarv.org/'
 description = ""
 
