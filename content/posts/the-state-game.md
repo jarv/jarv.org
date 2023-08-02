@@ -1,6 +1,6 @@
 +++
 title = "The State Game"
-date = '2012-07-22'
+date = "2012-07-22"
 tags = ["python"]
 slug = "the-state-game"
 +++

@@ -4,8 +4,14 @@ set -euf -o pipefail
 
 HOST="i.jarv.org"
 dir=$(dirname "$0")
-cfg_dir="$dir/../cfg"
+file_dir="$dir/../files"
+rsync_opts=(
+  --checksum --itemize-changes --human-readable
+  --recursive --links --rsync-path="sudo rsync"
+)
 
-scp "$cfg_dir"/caddy/jarv.caddy root@$HOST:/var/opt/caddy/servers/.
+rsync "${rsync_opts[@]}" "$file_dir"/ root@$HOST:/
 
-ssh root@$HOST 'systemctl reload caddy'
+ssh root@$HOST '
+  systemctl reload caddy
+'

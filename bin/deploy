@@ -6,8 +6,14 @@ HOST="i.jarv.org"
 dir=$(dirname "$0")
 site_dir="/var/opt/www/jarv.org"
 public_dir="$dir"/../public
+rsync_opts=(
+  --checksum --itemize-changes --human-readable
+  --recursive --links --rsync-path="sudo rsync"
+  --exclude ".gitignore"
+  --delete
+)
 
 cd "$dir/.."
 hugo --minify --cleanDestinationDir
-find "$public_dir" -type f -print0 | xargs -0 gzip --keep
-rsync --checksum --itemize-changes -r --exclude ".gitignore" --delete "${public_dir}/" root@$HOST:$site_dir
+find "$public_dir" -type f -print0 | xargs -0 gzip --no-name --keep
+rsync "${rsync_opts[@]}" "${public_dir}/" $HOST:$site_dir

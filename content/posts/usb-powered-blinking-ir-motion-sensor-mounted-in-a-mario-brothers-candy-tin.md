@@ -1,6 +1,6 @@
 +++
 title = "Blinking motion sensor / Mario Brothers Candy Tin"
-date = '2009-09-15'
+date = "2009-09-15"
 tags = ["avr"]
 slug = "usb-powered-blinking-ir-motion-sensor-mounted-in-a-mario-brothers-candy-tin"
 +++
