@@ -12,6 +12,4 @@ rsync_opts=(
 
 rsync "${rsync_opts[@]}" "$file_dir"/ root@$HOST:/
 
-ssh root@$HOST '
-  systemctl reload caddy
-'
+ssh $HOST 'sudo systemctl reload caddy'
