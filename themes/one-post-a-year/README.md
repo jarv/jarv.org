@@ -24,11 +24,17 @@ So you might ask, what makes this theme so special?
 - Only uses semantic html tags, so yeah, it is pretty modern.
 - Maybe you like social media icons? Nothing like that here, so if you like that stuff this is probably not the theme for you.
 - Uses [Atkinson Hyperlegible](https://en.wikipedia.org/wiki/Atkinson_Hyperlegible) as the main font.
+- Light and Dark theme
 - RSS feed shows the full article
 
 Design inspired by [100-bytes-of-css-to-look-great-everywhere](https://dev.to/swyx/100-bytes-of-css-to-look-great-everywhere-19pd)
 
-[<img src="https://user-images.githubusercontent.com/749175/258576133-0308c1ae-8fcf-4a4d-b023-e6b605705acf.png">](https://pagespeed.web.dev/analysis/https-jarv-github-io-one-post-a-year/zdnrq0g8n3?form_factor=mobile)
+## Screenshots
+
+<table>
+<tr><td>⬜️ Light</td><td><img width="600" alt="image" src="https://github.com/jarv/one-post-a-year/assets/749175/b6fd30ae-b35a-40fe-8621-1a9c52b2a458"></td></tr>
+<tr><td>⬛️ Dark</td><td><img width="600" alt="image" src="https://github.com/jarv/one-post-a-year/assets/749175/9016c2c3-778c-4ee5-85d4-98e65775017c"></td></tr>
+</table>
 
 ## Documentation
 
