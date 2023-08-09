@@ -3,7 +3,7 @@ title = "Caddy and containers are my new go-to stack for side projects"
 date = "2023-08-10"
 draft = true
 slug = "caddy-containers"
-tags = ["cmdchallenge", "go"]
+tags = ["pet-ops"]
 +++
 
 
