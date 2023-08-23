@@ -9,7 +9,7 @@ Very recently I switched from running a couple side-projects that were hosted on
 During that transition, this page (jarv.org) was moved to it from GitHub pages.
 Static generation using [Hugo](https://gohugo.io) stayed the same, but in the process of switching VMs I checked out [Caddy](https://caddyserver.com/) as a new webserver.
 After making the switch, this ended up being a great NGINX replacement for all the sites hosted on what is now a single VM.
-The ergonomoics of the config language was particularly impressive so I wanted share how simple and flexible it can be!
+The ergonomics of the config language was particularly impressive so I wanted share how simple and flexible it can be!
 
 ## HTTPs made easy
 
@@ -47,7 +47,7 @@ jarv.org {
 
 This does the following:
 - Sets a cache-control header for `/font/` requests with a long expiry
-- Tells Caddy that files under `/var/opt/www/jarv.org` serve the site, and to also to expect `.gz` files in the same directory so we can serve assets pre-comressed
+- Tells Caddy that files under `/var/opt/www/jarv.org` serve the site, and to also to expect `.gz` files in the same directory so we can serve assets pre-compressed
 - Instead of using the journal for access logs (Caddy is run under systemd), write site specific logs to a directory on disk and rotate them.
 
 This will automatically redirect HTTP requests to HTTPs, which is likely what you want most of the time.
@@ -86,7 +86,7 @@ http://ip.jarv.org {
 ```
 
 - Instead of only `ip.jarv.org` there are two servers, `ip.jarv.org` and `http://ip.jarv.org` for HTTP and HTTPs requests. This is so we don't automatically redirect HTTP to HTTPs which is nice for using `curl` on the command line.
-- `echoIP` is a template, which includes the content in each block. The template is used for both HTTP and HTTPs toadd adds a header and respond with the requester's IP address.
+- `echoIP` is a template, which includes the content in each block. The template is used for both HTTP and HTTPs to respond with the requester's IP address.
 - Again, using the same logging snippet from above, a dedicated request log is created on disk
 
 ## Creating a subdomain that echos a HTTP status code
@@ -94,7 +94,7 @@ http://ip.jarv.org {
 Finally, I was thinking that it would be handy to have a way to echo back an HTTP status code, using `curl <http status code>.resp.jarv.org`.
 This requires a wildcard certificate, which is a bit more involved since it requires a DNS provider module to be compiled into Caddy (only required here for wildcard certs).
 
-I run Caddy on a debian server in Hezner Cloud, with Cloudflare provising DNS.
+I run Caddy on a Debian server in Hetzner Cloud, with Cloudflare provisioning DNS.
 Caddy is installed using the [Caddy debian package](https://caddyserver.com/docs/install#debian-ubuntu-raspbian), and `xcaddy` to install the [Cloudflare DNS provider module](https://github.com/caddy-dns/cloudflare).
 The module is compiled using `xcaddy` and there is [great documentation](https://caddyserver.com/docs/build#package-support-files-for-custom-builds-for-debianubunturaspbian) for how to properly incorporate your custom build using the Debian package.
 
