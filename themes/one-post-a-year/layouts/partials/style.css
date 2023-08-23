@@ -11,6 +11,12 @@
   font-display: block;
 }
 
+div.goat {
+   font-family: Menlo,"Lucida Console",monospace;
+   font-size: .6em;
+   line-height: 1;
+   width: auto;
+}
 
 h1,h2,h3,h4,h5,h6 {
   margin: .5em 0 .2em

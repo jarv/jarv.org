@@ -3,7 +3,7 @@ THEMEDIR=$(BASEDIR)/themes/one-post-a-year
 PUBLICDIR=$(BASEDIR)/public
 
 serve:
-	hugo server -D
+	hugo server -D -F
 
 update-theme:
 	rm -rf "$(THEMEDIR)/"
