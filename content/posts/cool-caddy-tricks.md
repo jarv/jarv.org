@@ -124,7 +124,7 @@ http://*.resp.jarv.org {
 }
 ```
 
-- `$CF_API_TOKEN_CADDY_DNS` is a CloudFlare API token with `Zone Read` and `DNS Write` permissions.
+- `REDACTED` is a CloudFlare API token with `Zone Read` and `DNS Write` permissions.
 - `http.request.host.labels.3` returns whatever is used as the wildcard for `*.resp.jarv.org`.
 - In addition to returning the passed in status code, it will respond in plain text whatever status code was sent.
 
