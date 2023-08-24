@@ -44,10 +44,10 @@ ls > path/to/file
 This is is the same as:
 
 ```bash
-0> /path/to/file ls
+1> /path/to/file ls
 ```
 
-Where `0` refers to STDOUT of `ls`
+Where `1` refers to STDOUT of `ls`
 
 ### Redirecting Output
 
