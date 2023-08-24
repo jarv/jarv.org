@@ -2,9 +2,11 @@ languageCode = "en-us"
 title = "John Jarvis"
 theme = "one-post-a-year"
 baseURL = 'https://jarv.org/'
-description = "random thoughts and posts on tech"
-
 pygmentsCodeFences = true
+
+[params]
+  description = "random thoughts and posts on tech"
+
 [markup.goldmark.renderer]
   unsafe = "true"
 [markup]
