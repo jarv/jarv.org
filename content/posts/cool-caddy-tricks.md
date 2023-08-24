@@ -116,7 +116,7 @@ EOF {http.request.host.labels.3}
 *.resp.jarv.org {
   import echoResp
   tls {
-    dns cloudflare $CF_API_TOKEN_CADDY_DNS
+    dns cloudflare REDACTED
   }
 }
 http://*.resp.jarv.org {
@@ -129,3 +129,127 @@ http://*.resp.jarv.org {
 - In addition to returning the passed in status code, it will respond in plain text whatever status code was sent.
 
 Now, if I have want to generate a `404` I can request [404.resp.jarv.org](https://404.resp.jarv.org), or for a `500` [500.resp.jarv.org](https://500.resp.jarv.org) or any other status code as a subdomain!
+
+**Update**: Below is the more complicated configuration running jarv.org that responds with emojis, short description, and also catches strings that are not valid HTTP response codes. Here are some example responses:
+
+```
+$ curl 200.resp.jarv.org
+200 😃 OK
+
+$ curl 201.resp.jarv.org
+201 🎉 Created
+
+$ curl 499.resp.jarv.org
+499 http status code
+
+$ curl 418.resp.jarv.org
+418 🍵 I'm a teapot
+
+$ curl herpderp.resp.jarv.org
+💥 herpderp doesn't look like a valid HTTP status code!
+```
+
+And this is the Caddy configuration, that utilizes the [`map` directive](https://caddyserver.com/docs/caddyfile/directives/map) to look up the short descriptions for status codes:
+
+```caddy
+(echoResp) {
+  templates
+  header Content-Type "text/html; charset=utf-8"
+
+  @valid header_regexp host Host ^([1-5]\d{2}|599)\..*
+
+  map {http.request.host.labels.3} {status_desc} {
+    100 "Continue"
+    101 "Switching Protocols"
+    102 "Processing"
+    103 "Early Hints"
+    200 "😃 OK"
+    201 "🎉 Created"
+    202 "Accepted"
+    203 "Non-Authoritative Information"
+    204 "🙅 No Content"
+    205 "Reset Content"
+    206 "Partial Content"
+    207 "Multi-Status"
+    208 "Already Reported"
+    226 "IM Used"
+    300 "Multiple Choices"
+    301 "Moved Permanently"
+    302 "Found"
+    303 "See Other"
+    304 "Not Modified"
+    305 "Use Proxy"
+    306 "Switch Proxy"
+    307 "Temporary Redirect"
+    308 "Permanent Redirect"
+    400 "❌ Bad Request"
+    401 "🔒 Unauthorized"
+    402 "Payment Required"
+    403 "🚫 Forbidden"
+    404 "🕳️ Not Found"
+    405 "Method Not Allowed"
+    406 "Not Acceptable"
+    407 "Proxy Authentication Required"
+    408 "Request Timeout"
+    409 "Conflict"
+    410 "Gone"
+    411 "Length Required"
+    412 "Precondition Failed"
+    413 "Payload Too Large"
+    414 "URI Too Long"
+    415 "Unsupported Media Type"
+    416 "Range Not Satisfiable"
+    417 "Expectation Failed"
+    418 "🍵 I'm a teapot"
+    421 "Misdirected Request"
+    422 "Unprocessable Entity"
+    423 "Locked"
+    424 "Failed Dependency"
+    425 "Too Early"
+    426 "Upgrade Required"
+    428 "Precondition Required"
+    429 "Too Many Requests"
+    431 "Request Header Fields Too Large"
+    451 "Unavailable For Legal Reasons"
+    500 "🤯 Internal Server Error"
+    501 "Not Implemented"
+    502 "Bad Gateway"
+    503 "🚧 Service Unavailable"
+    504 "Gateway Timeout"
+    505 "HTTP Version Not Supported"
+    506 "Variant Also Negotiates"
+    507 "Insufficient Storage"
+    508 "Loop Detected"
+    510 "Not Extended"
+    511 "Network Authentication Required"
+    default "http status code"
+  }
+
+  handle @valid {
+    respond <<EOF
+{http.request.host.labels.3} {status_desc}
+
+EOF {http.request.host.labels.3}
+  }
+
+
+  handle {
+    respond <<EOF
+💥 {http.request.host.labels.3} doesn't look like a valid HTTP status code!
+
+EOF 400
+  }
+  import logging resp.jarv.org
+}
+
+*.resp.jarv.org {
+  import echoResp
+  tls {
+    dns cloudflare REDACTED
+  }
+}
+
+http://*.resp.jarv.org {
+  import echoResp
+}
+```
