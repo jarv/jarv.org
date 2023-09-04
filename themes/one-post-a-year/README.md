@@ -2,10 +2,7 @@
 
 The one-post-a-year theme is a lightweight theme for [Hugo](https://gohugo.io), built with simplicity and speed in mind.
 
-- Looking for a similar lightweight theme that is more actively maintained? Check out [hugo-bearblog](https://github.com/janraasch/hugo-bearblog/tree/master).
-- Looking for a full-featured Hugo theme that has everything? Check out [congo](https://github.com/jpanther/congo).
-
-[Demo site](https://jarv.github.io/one-post-a-year/)
+**[Demo site](https://jarv.github.io/one-post-a-year/)**
 
 Are you starting a tech blog or already have one that has posts like this?
 
@@ -16,13 +13,13 @@ If so, then this might be the perfect theme for you!
 So you might ask, what makes this theme so special?
 
 - Some themes have summaries on the main page, you probably don't have time to write a long post anyway so there is none of that, just the links.
-- Like summaries, most themes have some sort of pagination but that isn't necessary here
+- Like article summaries, most Hugo themes have pagination for articles. With only one post per year it is pretty unlikely that it will ever be necessary so there is no pagination.
 - Limited use of dates next to articles because it's probably not something you want to highlight.
 - Only uses semantic html tags, so yeah, it is pretty modern.
 - Maybe you like social media icons? Nothing like that here, so if you like that stuff this is probably not the theme for you.
 - Uses [Atkinson Hyperlegible](https://en.wikipedia.org/wiki/Atkinson_Hyperlegible) as the main font.
-- Light and Dark theme
-- RSS feed shows the full article
+- Light and Dark theme.
+- RSS feed shows the full article.
 
 Design inspired by [100-bytes-of-css-to-look-great-everywhere](https://dev.to/swyx/100-bytes-of-css-to-look-great-everywhere-19pd)
 
@@ -47,8 +44,6 @@ git submodule add https://github.com/jarv/one-post-a-year.git themes/one-post-a-
 echo "theme = 'one-post-a-year'" >> hugo.toml
 hugo server
 ```
----
-Why? I use this for my own site [jarv.org](https://jarv.org) which sometimes occasionally has more than one update in a year.
 
 ### Code Highlighting
 
@@ -63,3 +58,14 @@ To use it, add the following configuration to your `hugo.toml`.
     # https://xyproto.github.io/splash/docs/longer/all.html
     # Classes included in this theme for the 'github' and 'solarized-dark' styles
 ```
+
+### Head and Footer
+
+Allows for inserting additional code directly into the `<head>` and `<footer>` sections of the template.
+These can be useful for providing scripts or other logic that is very likely not configurable as part of this very simple theme.
+
+Create either `layouts/partials/extend-head.html` or `layouts/partials/extend-footer.html` and these will automatically be included in your website build.
+Both partials are injected as the last items in `<head>` and `<footer>`.
+
+---
+Why? I use this for my own site [jarv.org](https://jarv.org) which sometimes occasionally has more than one update in a year.
