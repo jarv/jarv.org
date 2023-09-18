@@ -3,3 +3,27 @@
 <noscript>
     <img src="//s.jarv.org/c?p=/test-noscript">
 </noscript>
+
+<style>
+@media only screen and (width <= 800px) {
+  .about > img {
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+@media only screen and (width > 800px) {
+  .about {
+    display: flex;
+    flex-direction: row;
+  }
+  .about > img {
+    max-width: 200px;
+    max-height: 200px;
+  }
+  .about > .text {
+    padding-left: 1em;
+  }
+}
+</style>
