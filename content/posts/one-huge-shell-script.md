@@ -22,14 +22,15 @@ While some can be extremely helpful for managing configuring for a large distrib
 | Docker registry | ✅ | ❌ |
 | Prebuilt machine images | ✅ | ❌ |
 | Cloud "appliances", load balancers, hosted DB, etc.| ✅ | ❌ |
+| CDN (CloudFlare/CloudFront) | ✅ | ❌ |
 | Hosted Git | ✅ | ✅ |
 | Terraform  | ✅ | ✅ |
 | One friggin huge shell script 😱😱😱 | ❌ | ✅ |
 
 ---
 
-Over time, my approach to using tooling for my personal projects has changed, an evolution over time for how to organize both infrastructure and code.
-From a high level, my major lessons have been:
+Over time, my approach to using tooling for my personal projects has changed.
+From a high level, my own lessons have been:
 
 - Avoid complexity for troubleshooting, monitoring and logging by leaning too much on "severless" components.
 - For the same reason, putting everything on a single VM is "good enough" for most applications.
@@ -70,19 +71,29 @@ The questions above lead me to the following approach for configuration manageme
 - [Caddy](https://caddyserver.com/) is the main webserver. It has a lot of great features including automatic HTTPs and some other great features that I talked about in a [recent post](/posts/cool-caddy-config-tricks/).
 - For packages, add them to the VM and simply [update the packages in cloud-init](https://cloudinit.readthedocs.io/en/latest/reference/examples.html#install-arbitrary-packages) as I go, there is no extra boot logic other than installing packages.
 - For other manual changes, maintain a single bash script that is idempotent, so all changes are made in a single script and the script can be re-run when it is updated.
-- Use Systemd for service management including stopping and starting docker containers.
+- Run almost everything in Docker and use Systemd for service management including stopping and starting docker containers.
 - Use (self-hosted) Prometheus, Grafana for monitoring.
-- All deployments are done from my workstation .
+- Don't lean too much (or at all) on CI pipelines, run deploys locally.
 - To deploy and update individual services that are built using Docker, dump and copy the image directly to the VM instead of pushing it to a public registry.
 
 ## The big shell script
 
-For deploying a new service the workflow looks something like this:
+I keep one repository named `config-mgmt` that has the following content:
+- Terraform for provisioning an instance, and configuring DNS in CloudFlare
+- A directory named `files/`, this has all of my OS configuration files like Systemd unit files, Caddy config files, and a single big shell script called `bootstrap`.
+- A shell script named `configure` that runs `rsync` to sync everything under `files/` to the single VM and then after the sync runs the script named `bootstrap`.
 
-Create a new Git repository
+The `bootstrap` script is transferred to the VM fist and then run, it is idempotent and does all the little shell maintenance stuff like ensuring services are enabled, installing and configuring things that run on the VM and not in Docker, reloads SystemD, etc.
 
-Create a `bin/deploy` script that that dumps the container locally, and loads it into the host
+It ends up being around 500 lines of bash, a dozen or so simple functions that are called in sequence at the end of the script.
 
-Update my `config-mgmt/` repository with config files for Caddy and Systemd
+If I have a new project to deploy to my single VM I simply create a new `config_` function, at it to the script and in most cases create a small `bin/deploy` shell script in the project's repository that dumps and imports the docker container to the host.
 
-Update the configuration script in `config-mgmt/` to configure the script
+## Using Docker and a single VM for side-projects
+
+There is no Docker container orchestration in this setup, just a bunch of Systemd unit files for starting Docker containers with Caddy configurations to route traffic to them.
+I do however not run everything in Docker, on the VM I run the following services:
+
+- Prometheus for collecting node metrics and for scraping application metrics
+- Grafana for dashboarding
+- Self-hosted GoatCounter for web stats
