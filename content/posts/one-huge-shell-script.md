@@ -1,9 +1,8 @@
 +++
 title = "One huge shell script 😱😱😱"
 date = "2023-09-11"
-draft = true
 slug = "one-huge-shell-script"
-tags = ["snowflake", "cmdchallenge"]
+tags = ["snowflake"]
 +++
 
 There are a lot of DevOps tools for managing both configuration and infrastructure as code.
@@ -35,12 +34,13 @@ From a high level, my own lessons have been:
 - Avoid complexity for troubleshooting, monitoring and logging by leaning too much on "severless" components.
 - For the same reason, putting everything on a single VM is "good enough" for most applications.
 - CDN is probably not necessary unless you are very worried about downtime, self-hosting static files is just as easy as hosted options.
-- Put all of the Infrastructure configuration (scripts, IaC, etc) in a single repository.
+- Put all of the infrastructure configuration (scripts, IaC, etc) in a single repository.
 - Avoid cloud dependencies in general, make it work locally and then replicate that on a virtual machine as close as possible.
 - Use a minimal base image and avoid putting complexity or configuration in user-data scripts.
 
-But this article is not so much about this but "the huge shell script" and the last item mentioned above.
-Previously, I would do something like this any time I had an experiment or idea to play around with:
+This resulted in what I have now, which is a single VM provisioned in Hetzner Cloud where everything is configured in a single shell script and most services run in Docker containers.
+
+Before converting to a single VM, I would do something like this any time I had an experiment or idea to play around with:
 
 1. Create a new AWS account.
 1. Create a bucket for Terraform state
@@ -53,10 +53,7 @@ For this to work, A lot of complexity was baked into the user-data script associ
 It also meant keeping track of multiple AWS accounts (usually using the free-tier resources) and then possibly paying money if an EC2 instance was required after the free-tier ended.
 Often, there would be a separate testing environment which was ephemeral, that spun up an identical instance and cloud configuration.
 
-My most recent setup uses a more hefty single VM in Hetzner Cloud, where I run a lot of different services on it.
-This new configuration eliminated the need for AWS, only requiring Hetzner plus Cloudflare for DNS.
-
-For the configuration management part of it, I was confronted with the following questions:
+My current approach of a single VM eliminates the need for AWS and a lot of complexity that comes along with it. For the configuration management part of it, I was confronted with the following questions:
 
 1. How do I deal with configuration drift if manual changes are made on the instance while it is running?
 2. Will it be possible to rebuild a single VM from scratch easily, and without much downtime?
@@ -83,11 +80,11 @@ I keep one repository named `config-mgmt` that has the following content:
 - A directory named `files/`, this has all of my OS configuration files like Systemd unit files, Caddy config files, and a single big shell script called `bootstrap`.
 - A shell script named `configure` that runs `rsync` to sync everything under `files/` to the single VM and then after the sync runs the script named `bootstrap`.
 
-The `bootstrap` script is transferred to the VM fist and then run, it is idempotent and does all the little shell maintenance stuff like ensuring services are enabled, installing and configuring things that run on the VM and not in Docker, reloads SystemD, etc.
+The `bootstrap` script along with all files in `files/` are rsync'd to the VM first.
+Then `bootstrap` is run which does all the little shell maintenance stuff like ensuring services are enabled, installing and configuring things that run on the VM, reloads SystemD, etc.
+The script ends up being around 500 lines of bash, a dozen or so simple functions that are called in sequence at the end of the script.
 
-It ends up being around 500 lines of bash, a dozen or so simple functions that are called in sequence at the end of the script.
-
-If I have a new project to deploy to my single VM I simply create a new `config_` function, at it to the script and in most cases create a small `bin/deploy` shell script in the project's repository that dumps and imports the docker container to the host.
+If I have a new project to deploy to my single VM I simply create a new `config_` function, add it to the script and in most cases create a small `bin/deploy` shell script in the project's repository that dumps and imports the docker container to the host.
 
 ## Using Docker and a single VM for side-projects
 
@@ -97,3 +94,16 @@ I do however not run everything in Docker, on the VM I run the following service
 - Prometheus for collecting node metrics and for scraping application metrics
 - Grafana for dashboarding
 - Self-hosted GoatCounter for web stats
+
+## Rebuilding my single VM from scratch
+
+This is something that is important as you don't want to create a "snowflake" that will be impossible to recreate.
+To make this work in Terraform I maintain a list of servers and an "active server".
+
+```terraform
+locals {
+  servers       = ["lisa", "bart"]
+  active_server = "lisa"
+}
+```
+I can add a new server to the list to create a new one, and then switch the active to the new one I created which points all of the service DNS entries to it.
