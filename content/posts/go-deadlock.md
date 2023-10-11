@@ -79,7 +79,7 @@ Once connections start timing out you will have a deadlock and nothing will get 
 Once it is in this state, try to figure out what caused the deadlock yourself, or read on if you would like to learn how to find the cause.
 
 
-## View stack traces of all Go routines
+## View the stack traces of all Go routines
 
 Once the deadlock occurs, the best way to figure out where your program is stuck is by viewing the stack trace of all Go routines.
 There are two options, one is using [pprof](https://pkg.go.dev/net/http/pprof) which is configured in the example code, another is to issue a `SIGQUIT` (CTRL-`/` in your terminal) which will dump the Go routines to STDERR.
@@ -146,6 +146,8 @@ func (l *Limiter) limitReachedWithTokenBucketTTL(key string, tokenBucketTTL time
 ```
 `GetStatusCode()` stands out here as it is a function we call in the example.
 Also, if we delete `lmt.GetStatusCode()` the deadlock is resolved, but why?
+
+## Fixing the deadlock
 
 To figure this out, we follow the trace up to see how function we pass to `SetOnLimitReached` function is called:
 
