@@ -1,6 +1,7 @@
 ---
 title: "About Me"
 showthedate: false
+showfooter: false
 ---
 
 <div class="about">

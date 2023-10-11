@@ -1,6 +1,7 @@
 ---
 title: "Contact Information"
 showthedate: false
+showfooter: false
 ---
 
 <table>

@@ -1,5 +1,5 @@
 +++
-title = "Update on the Golang rewrite"
+title = "Update on the Go rewrite"
 tags = ["cmdchallenge"]
 date = "2021-09-02"
 slug = "rewrite-update-1"

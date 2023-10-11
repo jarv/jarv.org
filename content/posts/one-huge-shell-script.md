@@ -1,6 +1,6 @@
 +++
 title = "One huge shell script 😱😱😱"
-date = "2023-09-11"
+date = "2023-10-01"
 slug = "one-huge-shell-script"
 tags = ["snowflake"]
 +++

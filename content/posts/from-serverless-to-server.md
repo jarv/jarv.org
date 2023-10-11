@@ -8,7 +8,7 @@ slug = "from-serverless-to-server"
 I'm pleased to announce that the transition from a distributed serverless architecture in Python to a single VM with a service written in Go is done for [CMDChallenge](https://cmdchallenge.com).
 The final patch was merged and there is nothing sweeter than removing close to 100K lines of vendored Python.
 
-It was around [4 months ago](/posts/golang-rewrite-cmdchallenge/) that I started on this adventure but honestly a lot of life got in the way and I probably spent a total of around 4 full days of work for the transition.
+It was around [4 months ago](/posts/go-rewrite-cmdchallenge/) that I started on this adventure but honestly a lot of life got in the way and I probably spent a total of around 4 full days of work for the transition.
 Overall, I'm quite satisfied with the result, as you can see here many of the "cloud native" services went *poof*
 
 ![single server arch](/img/cmd-single-server-arch.png)
