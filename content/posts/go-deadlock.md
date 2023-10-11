@@ -1,5 +1,5 @@
 +++
-title = "Finding the cause for (a simple) deadlock in Go"
+title = "Debugging a deadlock in Go"
 date = "2023-10-11"
 slug = "go-deadlock"
 tags = ["cmdchallenge", "go"]
