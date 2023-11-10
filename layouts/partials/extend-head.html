@@ -40,21 +40,32 @@ div.like button {
   font-weight: bold;
   cursor: pointer;
   box-shadow: none;
+  font-size: 16px;
 }
 
-div.like button.like:active {
+div.like button:active {
   transform: scale(0.96);
 }
 
-div.like button.like:hover {
-  background-color: #e0e0e0; /* Light gray background on hover */
-  outline: 1px solid #333; /* Slightly darker border on hover */
+div.like button:hover {
+  background-color: #e0e0e0;
+  outline: 1px solid gray;
 }
 
 div.like span {
-  filter: grayscale(100%); /* Apply 100% grayscale (desaturation) */
-  color: #888; /* Set the color for the grayscale effect */
-  font-family: 'Courier New', monospace; /* A typewriter-style font */
+  filter: grayscale(100%);
+  color: #888;
+  font-family: 'Courier New', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  div.like button {
+    background-color: black;
+  }
+  div.like button:hover {
+    outline: 1px solid DimGray;
+    background-color: #282828;
+  }
 }
 
 </style>
