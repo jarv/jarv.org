@@ -6,6 +6,7 @@ pygmentsCodeFences = true
 
 [params]
   description = "random thoughts and posts on tech"
+  wshost = "127.0.0.1:8710"
 
 [markup.goldmark.renderer]
   unsafe = "true"

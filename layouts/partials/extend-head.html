@@ -26,4 +26,35 @@
     padding-left: 1em;
   }
 }
+
+div.like {
+  font-size: 14px;
+}
+
+div.like button {
+  font-family: 'Courier New', monospace;
+  border: 0px solid #333;
+  border-radius: 50%;
+  padding: 5px 10px;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+div.like button.like:active {
+  transform: scale(0.96);
+}
+
+div.like button.like:hover {
+  background-color: #e0e0e0; /* Light gray background on hover */
+  outline: 1px solid #333; /* Slightly darker border on hover */
+}
+
+div.like span {
+  filter: grayscale(100%); /* Apply 100% grayscale (desaturation) */
+  color: #888; /* Set the color for the grayscale effect */
+  font-family: 'Courier New', monospace; /* A typewriter-style font */
+}
+
 </style>
