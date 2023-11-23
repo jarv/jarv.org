@@ -5,10 +5,11 @@ function resetCnt() {
 }
 (function() {
   var cnt = document.getElementById("cnt");
+  var like = document.getElementById("like");
   var wss = (window.location.protocol == "https:") ? "wss:" : "ws:"
   var conn = new WebSocket(wss + "//{{ .Site.Params.WSHost }}/ws");
   conn.onclose = function(evt) {
-      cnt.textContent = '';
+      like.style.display = "none"
   }
   conn.onmessage = function(evt) {
       cnt.textContent = evt.data;

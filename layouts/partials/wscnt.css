@@ -22,12 +22,12 @@
   }
 }
 
-div.like {
+div#like {
   font-size: 14px;
   margin-bottom: 1em;
 }
 
-div.like button {
+div#like button {
   font-family: 'Courier New', monospace;
   border: 0 solid #333;
   border-radius: 50%;
@@ -39,27 +39,27 @@ div.like button {
   font-size: 16px;
 }
 
-div.like button:active {
+div#like button:active {
   transform: scale(0.96);
 }
 
-div.like button:hover {
+div#like button:hover {
   background-color: #e0e0e0;
   outline: 1px solid gray;
 }
 
-div.like span {
+div#like span {
   filter: grayscale(100%);
   color: #888;
   font-family: 'Courier New', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
-  div.like button {
+  div#like button {
     background-color: black;
   }
 
-  div.like button:hover {
+  div#like button:hover {
     outline: 1px solid dimgray;
     background-color: #282828;
   }

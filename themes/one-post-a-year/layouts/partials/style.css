@@ -11,12 +11,6 @@
   font-display: block;
 }
 
-div.goat {
-  font-size: 14px;
-  font-family: monospace;
-  letter-spacing:5px;
-}
-
 h1,h2,h3,h4,h5,h6 {
   margin: .5em 0 .2em
 }
