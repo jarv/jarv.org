@@ -31,21 +31,26 @@ div#like button {
   font-family: 'Courier New', monospace;
   border: 0 solid #333;
   border-radius: 50%;
-  padding: 5px 10px;
+  padding: 5px;
   color: #333;
   font-weight: bold;
   cursor: pointer;
   box-shadow: none;
   font-size: 16px;
+  height: 35px;
+  width: 35px;
+  background-color: #F0F0F4;
 }
 
 div#like button:active {
   transform: scale(0.96);
+  border: 1px solid gray;
 }
 
-div#like button:hover {
-  background-color: #e0e0e0;
-  outline: 1px solid gray;
+@media (hover: hover) {
+  div#like button:hover {
+    border: 1px solid gray;
+  }
 }
 
 div#like span {
@@ -59,8 +64,13 @@ div#like span {
     background-color: black;
   }
 
-  div#like button:hover {
-    outline: 1px solid dimgray;
-    background-color: #282828;
+  div#like button:active {
+    border: 1px solid dimgray;
+  }
+
+  @media (hover: hover) {
+    div#like button:hover {
+      border: 1px solid dimgray;
+    }
   }
 }
