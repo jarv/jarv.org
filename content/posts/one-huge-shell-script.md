@@ -1,5 +1,5 @@
 +++
-title = "One huge shell script 😱😱😱"
+title = "One huge shell script"
 date = "2023-10-01"
 slug = "one-huge-shell-script"
 tags = ["snowflake"]
@@ -24,7 +24,7 @@ While some can be extremely helpful for managing configuring for a large distrib
 | CDN (CloudFlare/CloudFront) | ✅ | ❌ |
 | Hosted Git | ✅ | ✅ |
 | Terraform  | ✅ | ✅ |
-| One friggin huge shell script 😱😱😱 | ❌ | ✅ |
+| One friggin huge shell script | ❌ | ✅ |
 
 ---
 
