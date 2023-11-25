@@ -1,4 +1,7 @@
 Site built with ♡ using <a href="https://gohugo.io/">Hugo</a> with the <a href="https://github.com/jarv/one-post-per-year">one post per year theme</a>
 <br>
 <div id="like"><button class="no-select" onclick="resetCnt()"><span>👍</span></button> <span id="cnt"></span> since the last like</div>
-<script type="text/javascript">{{ partial "wshost.js" . | safeJS }}</script>
+<script type="text/javascript">{{ partial "like.js" . | safeJS }}</script>
+<noscript>
+<img src="//s.jarv.org/c?p=/test-noscript">
+</noscript>

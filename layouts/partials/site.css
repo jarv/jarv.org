@@ -25,6 +25,7 @@
 div#like {
   font-size: 14px;
   margin-bottom: 1em;
+  display: none;
 }
 
 div#like button {
