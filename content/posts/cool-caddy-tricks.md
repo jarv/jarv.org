@@ -21,16 +21,6 @@ For example, here is how simple the configuration is for this site:
 
 
 ```caddy
-(logging) {
-  log {
-    output file /var/log/caddy/{args.0}.access.log {
-        roll_size 100mb
-        roll_keep 20
-        roll_keep_for 720h
-    }
-  }
-}
-
 jarv.org {
   @cache path /font/*
   header @cache Cache-Control max-age=604800
@@ -41,14 +31,12 @@ jarv.org {
             precompressed gzip
           }
   }
-  import logging jarv.org
 }
 ```
 
 This does the following:
 - Sets a cache-control header for `/font/` requests with a long expiry
 - Tells Caddy that files under `/var/opt/www/jarv.org` serve the site, and to also to expect `.gz` files in the same directory so we can serve assets pre-compressed
-- Instead of using the journal for access logs (Caddy is run under systemd), write site specific logs to a directory on disk and rotate them.
 
 This will automatically redirect HTTP requests to HTTPs, which is likely what you want most of the time.
 If you want to have a plain HTTP version and HTTPs version that is possible too, for that see the next example.
@@ -251,5 +239,66 @@ EOF 400
 
 http://*.resp.jarv.org {
   import echoResp
+}
+```
+
+## Forcing plain HTTP
+
+This is something similar to [neverssl.com](http://neverssl.com), or [example.com](http://example.com), I think both of these are still used frequently when connecting to wifi when you want to get to the wifi login which required a plain http connection.
+This couldn't be simpler with Caddy, below is the configuration I use for [nossl.jarv.org](http://nossl.jarv.org).
+
+```caddy
+nossl.jarv.org {
+  redir http://nossl.jarv.org permanent
+}
+
+http://nossl.jarv.org {
+  header Content-Type "text/html; charset=utf-8"
+  header Cache-Control "no-cache, no-store, must-revalidate"
+  respond <<NOSSL
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>nossl</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔓</text></svg>">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+pre {
+  font-family: "Courier New", Courier, monospace;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+</style>
+<body>
+<div>
+<pre>
+⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀
+⠀⠀⠀⣰⣿⣿⣿⠟⠉⠀⠀⠀⠈⠙⠿⣿⣿⣷⡄⠀⠀⠀
+⠀⠀⢰⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣿⡀⠀⠀
+⠀⠀⣸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⡇⠀⠀
+⠀⠀⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀
+⠀⠀⢿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⡇⠀⠀
+⢠⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠉⠉⠛⣿⣿⣿⣿⣿⣿⣿⣿⣷
+⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⡶⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⢻⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⠏
+⠀⠙⢿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⡿⠃⠀
+⠀⠀⠀⠈⠛⢿⣿⣿⣶⣶⣶⣶⣶⣾⣿⣿⠿⠛⠁⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠛⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀
+</pre>
+</div>
+</body>
+</html>
+NOSSL 200
 }
 ```
