@@ -1,6 +1,6 @@
 +++
 title = "The joys of self-hosting and tiny side-projects"
-date = "2024-12-01"
+date = "2023-12-01"
 slug = "joys-self-hosting"
 tags = ["go", "snowflake"]
 +++
