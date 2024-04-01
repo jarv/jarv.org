@@ -6,7 +6,7 @@ pygmentsCodeFences = true
 
 [params]
   description = "random thoughts and posts on tech"
-  wshost = "127.0.0.1:8710"
+  dutUrl = "http://localhost:8730/view/DEMO"
 
 [markup.goldmark.renderer]
   unsafe = "true"
@@ -19,3 +19,5 @@ pygmentsCodeFences = true
       # style = 'github'
       # style = 'solarized-dark'
     tabWidth = 2
+    lineNos = false
+    lineNumbersInTable = false
