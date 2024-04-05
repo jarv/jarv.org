@@ -10,13 +10,15 @@ Go channels pair nicely with SEE as they allow easy communication between Go rou
 This post will examine using SSE in a recent side-project and the implementation of a ring buffer in Go.
 
 If you aren't already familiar with SSE, like WebSockets they enable updates on the web browser without having to poll or refresh the browser.
-However unlike WebSockets, they don't support bidirectional communication.
+However, unlike WebSockets, they don't support bidirectional communication.
 This makes them more suitable for sending updates in one direction.
-The main advantage of SSE is that it builds on top of HTTP (normal HTTP request with additional headers) which allows requests to pass through firewalls and proxies.
+The main advantage of using SSE is that it builds on top of HTTP (normal HTTP request with additional headers).
+This allows requests to pass through firewalls and proxies.
 
 [DidUThink.com](https://diduthink.com) sets up a reaction poll that users access with a QR code.
 The idea is that during a presentation or a video call you can collect feedback from an audience.
-From the poll, users select an emoji reaction to a question; the reactions get tallied and sent to one or more connected clients listening for results.
+From the poll, users select an emoji reaction to a question.
+The reactions get tallied and sent to one or more connected clients listening for results.
 
 It looks something like this:
 
@@ -28,13 +30,13 @@ It looks something like this:
 For simplicity, we will assume a large number of clients are sending reactions, and there is a single client receiving the tallies.
 
 1. The browser makes an SSE request to get real-time updates for the emoji tallies and blocks on a Go channel.
-1. Emoji presses send a PUT request, the server takes that request and updates emoji tallies in an SQLite database and sends it to the channel.
+1. Emoji presses send a PUT request; the server takes that request and updates emoji tallies in an SQLite database and sends it to the channel.
 1. The browser displays the tally result after receiving the tallies via the SSE request.
 
 <img src="/img/tallies.png" alt="tallies" class="light">
 <img src="/img/tallies-dark.png" alt="tallies" class="dark">
 
-On the server, sending the tallies in real-time is the easy since all we need is a regular HTTP handler and headers set on the response:
+On the server, sending the tallies in real-time is the easy part since all it requires is a HTTP handler and headers set on the response:
 
 ```go
 mux.HandleFunc("GET /events", func(w http.ResponseWriter, r *http.Request) {
@@ -55,10 +57,10 @@ mux.HandleFunc("GET /events", func(w http.ResponseWriter, r *http.Request) {
 
 The trickier part is how to send the SSE data through a Go channel.
 By default a Go channel blocks on send until the other side receives data.
-Obviously for web clients, we cannot assume that the receiver will be continuously available for receiving the tallies.
+Obviously for web clients, we cannot assume that the receiver will be continuously available for receiving tallies.
 
-For this a [buffered channel](https://go.dev/tour/concurrency/3) is useful.
-It takes a buffer length parameter and the channel won't block until the buffer full.
+For this reason a [buffered channel](https://go.dev/tour/concurrency/3) is necessary.
+It takes a buffer length parameter on initialization and when data is received the channel won't block until it's full.
 Because we only care about the most recent tally data, it's fine to discard old tallies as newer tallies come in.
 This is essentially a [ring buffer](https://en.wikipedia.org/wiki/Circular_buffer) with a buffer length of one, that discards the oldest value when new data comes.
 
