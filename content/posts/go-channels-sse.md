@@ -225,4 +225,4 @@ One valuable take-away from me is that it is very important to add concurrency w
 This helps a lot with tracking down bugs that might not be immediately apparent.
 
 If you like this post check out my other post on [debugging a deadlock in Go](/posts/go-deadlock/) or subscribe to the RSS feed.
-If you would like a fun way to send out a reaction poll during your next video or call or conference, check out [DidUThink.com](https://diduthink.com).
+If you would like a fun way to send out a reaction poll during your next video or conference presentation, check out [DidUThink.com](https://diduthink.com).
