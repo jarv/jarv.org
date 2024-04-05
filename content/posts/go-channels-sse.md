@@ -31,7 +31,8 @@ For simplicity, we will assume a large number of clients are sending reactions, 
 1. Emoji presses send a PUT request, the server takes that request and updates emoji tallies in an SQLite database and sends it to the channel.
 1. The browser displays the tally result after receiving the tallies via the SSE request.
 
-<img src="/img/tallies.png" alt="tallies">
+<img src="/img/tallies.png" alt="tallies" class="light">
+<img src="/img/tallies-dark.png" alt="tallies" class="dark">
 
 On the server, sending the tallies in real-time is the easy since all we need is a regular HTTP handler and headers set on the response:
 

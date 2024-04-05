@@ -272,7 +272,23 @@ blockquote::after {
   }
 }
 
+/* Styles to toggle elements for dark/light mode */
+.light {
+    display: block;
+}
+
+.dark {
+    display: none;
+}
+
 @media (prefers-color-scheme: dark) {
+  .light {
+      display: none;
+  }
+  .dark {
+      display: block;
+  }
+
   html {
     background-color: #333;
     color: #ddd;
