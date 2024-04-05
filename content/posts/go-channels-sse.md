@@ -220,9 +220,10 @@ Notice that in first benchmark test it slows down considerably when we add paral
 
 ## Conclusion
 
-Figuring out how to use channels for SSE was a lot of fun as it gave the opportunity to learn a lot more about thinking about programs that run concurrently.
-One valuable take-away from me is that it is very important to add concurrency with synchronization to unit tests.
-This helps a lot with tracking down bugs that might not be immediately apparent.
+Figuring out how to use channels for SSE was a lot of fun!
+It gave me the opportunity to learn a bit more about how to troubleshoot and think better about concurrency in Go.
+One valuable take-away from me is that it's important to validate background Go routines in unit tests.
+This was essential to uncover bugs that were not immediately apparent.
 
 If you like this post check out my other post on [debugging a deadlock in Go](/posts/go-deadlock/) or subscribe to the RSS feed.
 If you would like a fun way to send out a reaction poll during your next video or conference presentation, check out [DidUThink.com](https://diduthink.com).
