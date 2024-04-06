@@ -228,4 +228,4 @@ One valuable takeaway for me is that it's important to validate background Go ro
 This was essential to uncover bugs that were not immediately apparent.
 
 If you like this post, check out my other post on debugging a deadlock in Go or subscribe to the RSS feed.
-If you would like a fun way to send out a reaction poll during your next video or conference presentation, check out DidUThink.com.
+If you would like a fun way to send out a reaction poll during your next video or conference presentation, check out [DidUThink.com](https://diduthink.com).
