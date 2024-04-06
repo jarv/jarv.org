@@ -1,22 +1,22 @@
 +++
-title = "Using Go Channels for Server-Sent Events"
+title = "Creating a ring buffer using Go Channels for Server-Sent Events"
 date = "2024-04-05"
 slug = "go-channels-sse"
 tags = ["go", "diduthink"]
 +++
 
 Server-Sent Events (SSE) are a simple way to send real-time updates from the server to the browser.
-Go channels pair nicely with SEE as they allow easy communication between Go routines.
-This post will examine using SSE in a recent side-project and the implementation of a ring buffer in Go.
+Go channels pair nicely with SSE as they allow easy communication between Go routines.
+This post will examine using SSE in a recent side project and the implementation of a ring buffer in Go.
 
-If you aren't already familiar with SSE, like WebSockets they enable updates on the web browser without having to poll or refresh the browser.
+If you aren't already familiar with SSE, like WebSockets, they enable updates on the web browser without having to poll or refresh the browser.
 However, unlike WebSockets, they don't support bidirectional communication.
 This makes them more suitable for sending updates in one direction.
 The main advantage of using SSE is that it builds on top of HTTP (normal HTTP request with additional headers).
 This allows requests to pass through firewalls and proxies.
 
 [DidUThink.com](https://diduthink.com) sets up a reaction poll that users access with a QR code.
-The idea is that during a presentation or a video call you can collect feedback from an audience.
+The idea is that during a presentation or a video call, you can collect feedback from an audience.
 From the poll, users select an emoji reaction to a question.
 The reactions get tallied and sent to one or more connected clients listening for results.
 
@@ -194,7 +194,7 @@ https://github.com/jarv/ringbuffer/tree/master .
 After writing these impelementations, I was curious which one can move data faster.
 Not surprisignly, a background Go routine that moves data between channels is much slower than calling moving data in and out of a channel in the call to `Send()`.
 
-Here are benchmarks of both ring buffer implementationswith a buffer length of `1`:
+Here are benchmarks of both ring buffer implementations with a buffer length of `1`:
 
 ```sh
 $ go test -bench=. ./...
@@ -218,14 +218,14 @@ The two channel implementation is slower because when the buffer is full, sends 
 It is exacerbated by a short buffer because it's necessary for the background Go routine to move data between channels frequently.
 While performance improves when the buffer length increases, it's generally slower than discarding data in the call to `Send()` even though it requires a locking Mutex.
 
-Notice that in first benchmark test it slows down considerably when we add parallelism which is likely due to contention because of the locking Mutex.
+Notice that in the first benchmark test, it slows down considerably when we add parallelism, which is likely due to contention because of the locking Mutex.
 
 ## Conclusion
 
 Figuring out how to use channels for SSE was a lot of fun!
 It gave me the opportunity to learn a bit more about how to troubleshoot and think better about concurrency in Go.
-One valuable take-away from me is that it's important to validate background Go routines in unit tests.
+One valuable takeaway for me is that it's important to validate background Go routines in unit tests.
 This was essential to uncover bugs that were not immediately apparent.
 
-If you like this post check out my other post on [debugging a deadlock in Go](/posts/go-deadlock/) or subscribe to the RSS feed.
-If you would like a fun way to send out a reaction poll during your next video or conference presentation, check out [DidUThink.com](https://diduthink.com).
+If you like this post, check out my other post on debugging a deadlock in Go or subscribe to the RSS feed.
+If you would like a fun way to send out a reaction poll during your next video or conference presentation, check out DidUThink.com.
