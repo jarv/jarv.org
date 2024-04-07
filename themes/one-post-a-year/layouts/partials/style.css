@@ -11,12 +11,6 @@
   font-display: block;
 }
 
-div.goat {
-  font-size: 14px;
-  font-family: monospace;
-  letter-spacing:5px;
-}
-
 h1,h2,h3,h4,h5,h6 {
   margin: .5em 0 .2em
 }
@@ -76,6 +70,15 @@ section#list ul {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+}
+
+
+section#list ul li:nth-child(even) {
+  background-color: #f5f1f0; /* Light gray */
+}
+
+section#list ul li:nth-child(odd) {
+  background-color: #f5f5f0; /* White */
 }
 
 /* header */
