@@ -18,6 +18,8 @@ h1,h2,h3,h4,h5,h6 {
 main h1 {
   font-weight: bold;
   border-bottom: 1px solid black;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 html {
@@ -73,12 +75,12 @@ section#list ul {
 }
 
 
-section#list ul li:nth-child(even) {
-  background-color: #f5f1f0; /* Light gray */
+section#list ul li {
+  padding: 0.25rem;
 }
 
-section#list ul li:nth-child(odd) {
-  background-color: #f5f5f0; /* White */
+section#list ul li {
+  border-bottom: 1px solid #ededf0;
 }
 
 /* header */
@@ -207,7 +209,7 @@ main article > pre {
 
 @media only screen and (width <= 800px) {
   main {
-    margin: 0 .5em;
+    margin: 0;
   }
 
   main article aside {
@@ -295,6 +297,10 @@ blockquote::after {
   html {
     background-color: #333;
     color: #ddd;
+  }
+
+  section#list ul li {
+    border-bottom: 1px solid black;
   }
 
   h1,
