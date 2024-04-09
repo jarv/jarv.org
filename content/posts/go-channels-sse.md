@@ -273,5 +273,5 @@ It gave me the opportunity to learn a bit more about how to troubleshoot and thi
 One valuable takeaway for me is that it's important to validate background Go routines in unit tests.
 This was essential to uncover bugs that were not immediately apparent.
 
-If you like this post, check out my other post on debugging a deadlock in Go or subscribe to the RSS feed.
+If you like this post, check out my other post on [debugging a deadlock in Go](/posts/go-deadlock/) or subscribe to the [RSS feed](/index.xml).
 If you would like a fun way to send out a reaction poll during your next video or conference presentation, check out [DidUThink.com](https://diduthink.com).
