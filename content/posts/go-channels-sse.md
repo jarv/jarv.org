@@ -199,7 +199,7 @@ func main() {
 Now the `Send()` function does not have the same issue.
 To setup the ring buffer we call `go rb.Run()` before sending data that in the background will move data from the input channel to the output channel.
 
-Note that in this version we print both values instead of the last one.
+Note that in this version you might see both values printed or just the first one printed instead.
 This is because we are reading from the output channel while a background Go routine moves the messages to it.
 
 ### Second issue: Concurrent reads and calls to Send()
