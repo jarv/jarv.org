@@ -69,7 +69,7 @@ This is essentially a [ring buffer](https://en.wikipedia.org/wiki/Circular_buffe
 Below we will discuss two implementations of a ring buffer that pass messages using channels for SSE notifications.
 Here is the first implementation that has a couple issues, can you spot them?
 
-{{< highlight go "linenos=true,hl_lines=18 21" >}}
+```go {linenos=true,hl_lines=[18 21]}
 package main
 
 import "fmt"
@@ -113,7 +113,8 @@ func main() {
       complete = true
     }
   }
-}{{< / highlight >}}
+}
+```
 
 [run on the go playground](https://go.dev/play/p/5q1AkSklE8z)
 
@@ -136,7 +137,7 @@ Option (2) creates an input and output channel and moves data between them.
 
 Here is an implementation using two channels:
 
-{{< highlight go "linenos=true,hl_lines=23 48" >}}
+```go {linenos=true,hl_lines=[23 48]}
 package main
 
 import "fmt"
@@ -190,7 +191,8 @@ func main() {
       complete = true
     }
   }
-}{{< / highlight >}}
+}
+```
 
 [run on the go playground](https://go.dev/play/p/m2D_7DkMEmr)
 
