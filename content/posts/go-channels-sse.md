@@ -69,7 +69,7 @@ This is essentially a [ring buffer](https://en.wikipedia.org/wiki/Circular_buffe
 Below we will discuss two implementations of a ring buffer that pass messages using channels for SSE notifications.
 Here is the first implementation that has a couple issues, can you spot them?
 
-{{< highlight go "linenos=true,hl_lines=20-21 38" >}}
+{{< highlight go "linenos=true,hl_lines=18 21" >}}
 package main
 
 import "fmt"
@@ -126,13 +126,13 @@ Two race conditions exist in this code, one is fairly obvious and other one migh
 ### First issue: Concurrent calls to Send()
 
 If we have a large number of clients, calling `Send()` concurrently then we may end up in a race condition causing the channel to block.
-In the above code if one sender is adding an item to the channel on line `21` just as another sender reaches that line after line `20` the channel will block because it's trying to add to a full channel.
+In the above code if one sender adds an item to the channel on line `18` as another sender adds an item on line `21` the channel will block because it's trying to add to a full channel.
 
 Here are two possible options to resolve it:
 1. Wrap `Send()` in a locking Mutex
 2. Use a single Go routine that moves data in and out of the channel
 
-Option (2) (also shown in [this blog post](https://tanzu.vmware.com/content/blog/a-channel-based-ring-buffer-in-go)) creates an input and output channel and moves data between them.
+Option (2) creates an input and output channel and moves data between them.
 
 Here is an implementation using two channels:
 
