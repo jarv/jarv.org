@@ -8,8 +8,6 @@ pygmentsCodeFences = true
   description = "random thoughts and posts on tech"
   dutUrl = "http://localhost:8730/view/DEMO"
 
-[markup.goldmark.renderer]
-  unsafe = "true"
 [markup]
   defaultMarkdownHandler = 'goldmark'
   [markup.highlight]
@@ -21,3 +19,5 @@ pygmentsCodeFences = true
     tabWidth = 2
     lineNos = false
     lineNumbersInTable = false
+[markup.goldmark.renderer]
+  unsafe = "true"

@@ -1,7 +1,7 @@
 {{ define "main" }}
 <section id="list">
 <h1>Articles</h1>
-<ul>
+<ul class="gradient-list">
 {{ $pages := where site.RegularPages "Type" "posts" }}
 {{ range $pages }}
 <li>

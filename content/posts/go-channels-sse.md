@@ -67,17 +67,20 @@ This is essentially a [ring buffer](https://en.wikipedia.org/wiki/Circular_buffe
 ## A channel based ring buffer in Go
 
 Below we will discuss two implementations of a ring buffer that pass messages using channels for SSE notifications.
-Here is one implementation that has a couple issues, can you spot them?
+Here is the first implementation that has a couple issues, can you spot them?
 
-```go {linenos=true}
+{{< highlight go "linenos=true,hl_lines=20-21 38" >}}
+package main
+
+import "fmt"
+
 type RingBuffer struct {
-  ch      chan string
+  ch chan string
 }
 
 func NewRingBuffer() *RingBuffer {
   return &RingBuffer{
-    ch: make(chan string, 1)
-    maxSize: defaultBufSize,
+    ch: make(chan string, 1),
   }
 
 }
@@ -95,7 +98,24 @@ func (r *RingBuffer) C() <-chan string {
   return r.ch
 }
 
-```
+func main() {
+  rb := NewRingBuffer()
+
+  rb.Send("some value")
+  rb.Send("some other value")
+
+  complete := false
+  for !complete {
+    select {
+    case v := <-rb.C():
+      fmt.Println(v)
+    default:
+      complete = true
+    }
+  }
+}{{< / highlight >}}
+
+[run on the go playground](https://go.dev/play/p/5q1AkSklE8z)
 
 - When an item is sent, we call `select { ... }` on the channel.
 - If the channel is empty, we add the item
@@ -106,7 +126,7 @@ Two race conditions exist in this code, one is fairly obvious and other one migh
 ### First issue: Concurrent calls to Send()
 
 If we have a large number of clients, calling `Send()` concurrently then we may end up in a race condition causing the channel to block.
-In the above code if one sender is adding an item to the channel on line `18` just as another sender reaches that line after line `17` the channel will block because it's trying to add to a full channel.
+In the above code if one sender is adding an item to the channel on line `21` just as another sender reaches that line after line `20` the channel will block because it's trying to add to a full channel.
 
 Here are two possible options to resolve it:
 1. Wrap `Send()` in a locking Mutex
@@ -114,10 +134,13 @@ Here are two possible options to resolve it:
 
 Option (2) (also shown in [this blog post](https://tanzu.vmware.com/content/blog/a-channel-based-ring-buffer-in-go)) creates an input and output channel and moves data between them.
 
-
 Here is an implementation using two channels:
 
-```go {linenos=true}
+{{< highlight go "linenos=true,hl_lines=23 48" >}}
+package main
+
+import "fmt"
+
 type RingBuffer struct {
   inputChannel  chan string
   outputChannel chan string
@@ -125,8 +148,8 @@ type RingBuffer struct {
 
 func NewRingBuffer() *RingBuffer {
   return &RingBuffer{
-    inputChannel: make(chan string),
-    outputChannel: make(chan string, 1)
+    inputChannel:  make(chan string),
+    outputChannel: make(chan string, 1),
   }
 }
 
@@ -151,16 +174,37 @@ func (r *RingBuffer) Send(item string) {
   r.inputChannel <- item
 }
 
-```
+func main() {
+  rb := NewRingBuffer()
+  go rb.Run()
+
+  rb.Send("some value")
+  rb.Send("some other value")
+
+  complete := false
+  for !complete {
+    select {
+    case v := <-rb.C():
+      fmt.Println(v)
+    default:
+      complete = true
+    }
+  }
+}{{< / highlight >}}
+
+[run on the go playground](https://go.dev/play/p/m2D_7DkMEmr)
 
 Now the `Send()` function does not have the same issue.
 To setup the ring buffer we call `go rb.Run()` before sending data that in the background will move data from the input channel to the output channel.
+
+Note that in this version we print both values instead of the last one.
+This is because we are reading from the output channel while a background Go routine moves the messages to it.
 
 ### Second issue: Concurrent reads and calls to Send()
 
 As I mentioned earlier, there is another race condition that is also present in this version.
 Not only do we have to account for clients sending concurrently, but also sending and receiving concurrently!
-In the above code, if the last item in the buffer is read from the channel (line `26`) right before the Go routine is on line `19`, then it will block forever since the channel will be empty.
+In the above code, if we read all the data from the channel (line `48`) while trying to Send simultaneously on line `23`, then it will block forever since the channel will be empty.
 
 Here is a modification to `Run()` that resolves it:
 

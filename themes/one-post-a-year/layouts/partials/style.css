@@ -76,11 +76,14 @@ section#list ul {
 
 
 section#list ul li {
-  padding: 0.25rem;
+  padding-right: 0.25rem;
+  padding-left: 0.25rem;
 }
 
-section#list ul li {
-  border-bottom: 1px solid #ededf0;
+@media only screen and (width <= 800px) {
+  section#list ul li {
+    border-bottom: 1px solid #ededf0;
+  }
 }
 
 /* header */
@@ -299,10 +302,11 @@ blockquote::after {
     color: #ddd;
   }
 
-  section#list ul li {
-    border-bottom: 1px solid black;
+  @media only screen and (width <= 800px) {
+    section#list ul li {
+      border-bottom: 1px solid black;
+    }
   }
-
   h1,
   h2,
   h3,
