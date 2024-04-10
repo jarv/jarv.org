@@ -43,7 +43,6 @@ Below are some examples of tiny side-projects, some no more than webserver confi
 | 🤯 [\*.resp.jarv.org](//500.resp.jarv.org) | Generates an http response based on the subdomain. E.g., [200](//200.resp.jarv.org), [404](//404.resp.jarv.org), [418](//418.resp.jarv.org), etc. |
 | 🔓 [nossl.jarv.org](//nossl.jarv.org) | Forces an http connection, sometimes useful for getting to the wifi login page, same as `neverssl.com` or `example.com`.|
 | 💤 [sleep.jarv.org](//sleep.jarv.org) | Sleeps for an arbitrary number of seconds or milliseconds. E.g., [1s](//sleep.jarv.org/1), [100ms](//sleep.jarv.org/100ms). |
-| 👍 [like.jarv.org](//like.jarv.org) | Timer that resets when pressed that serves no purpose other than I wanted to play with implementing a websocket in Go. |
 
 </div>
 
