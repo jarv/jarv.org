@@ -57,9 +57,9 @@ showfooter: false
 <section class="projects">
   I'm continually thinking of fun things to create in my spare time.
   More often than not, there is little time spare and no time to hack on things outside of work.
-  Among a bunch of unfinished work, some of the smaller projects actually make it.
 
-  Here is a list them I have put online over the years:
+  In a sea of unfinished work, here is list of small projects that I have put online over the years:
+
 
 |
 | --- | --- |  --- |
