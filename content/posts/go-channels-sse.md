@@ -25,7 +25,7 @@ It looks something like this:
 <h3 style="text-align:center">How are you feeling today?</h3>
 <div style="text-align:center;font-style:italic">Press one of the reactions, see tallies in real-time.</div>
 
-<iframe id="diduthink" src="{{<duturl>}}" style="width:100%;border:0"></iframe>
+<iframe id="diduthink" src="{{<duturl>}}" style="width:100%;height:500px;border:0"></iframe>
 
 For simplicity, we will assume a large number of clients are sending reactions, and there is a single client receiving the tallies.
 
