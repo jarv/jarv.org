@@ -63,8 +63,8 @@ showfooter: false
 
 |
 | --- | --- |  --- |
-| 🍪 | [samesite](//samesite.diduthink.com) | Explore how the `SameSite` attribute on cookies affects browser behavior |
-| 🤔 | [diduthink](//diduthink.com) | Generate a feedback poll with QR code using emoji reactions |
+| 🍪 | [samesite](//samesite.surveymoji.com) | Explore how the `SameSite` attribute on cookies affects browser behavior |
+| 💡 | [surveymoji](//surveymoji.com) | Generate a feedback poll with QR code using emoji reactions |
 | <img src="/img/cmd.png"> | [cmdchallenge](//cmdchallenge.com) | Challenges on the command line |
 | 🌐 | [ip](//ip.jarv.org) | Responds with the IP address of the request. |
 | 🤯 | [\*.resp](//500.resp.jarv.org) | Generates an http response based on the subdomain. E.g., [200](//200.resp.jarv.org), [404](//404.resp.jarv.org), [418](//418.resp.jarv.org), etc. |
