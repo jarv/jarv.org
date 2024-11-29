@@ -2,7 +2,7 @@
 title = "I am unable to center an emoji character on a button"
 date = "2024-08-15"
 slug = "unable-to-center-an-emoji"
-tags = ["diduthink"]
+tags = ["surveymoji"]
 +++
 
 One of my emoji-based side-projects has button elements and centering emoji characters on them is a key part of the design.
@@ -28,11 +28,4 @@ As an alternative, I thought to bundle a font like [Noto Emoji](https://fonts.go
 In the end I only needed around 30 emojis, so the simplest workaround was to take my emojis used for the layout and convert them to images.
 Following that all was well again and I was even able to let people select multiple emoji types (google, apple, facebook, openemoji).
 
-If you want to see the new image based emoji layout in action [check it out here](https://diduthink.com).
-
-
-
-
-
-
-
+If you want to see the new image based emoji layout in action [check it out here](https://surveymoji.com).

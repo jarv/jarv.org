@@ -6,7 +6,7 @@ pygmentsCodeFences = true
 
 [params]
   description = "random thoughts and posts on tech"
-  dutUrl = "http://localhost:8730/view/DEMO"
+  dutUrl = "http://localhost:8760/view/DEMO"
 
 [markup]
   defaultMarkdownHandler = 'goldmark'
