@@ -1,0 +1,16 @@
+[tasks.serve]
+run = "hugo server -D -F"
+
+[tasks.rebuild]
+run = """
+#!/usr/bin/env bash
+
+set -e
+
+ssh root@i.jarv.org '/usr/local/bin/rebuild-jarv-org'
+"""
+
+[tools]
+golang = "1.22"
+hugo = "0.124.1"
+vale = "3.0.7"

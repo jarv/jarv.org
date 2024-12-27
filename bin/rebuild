@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-ssh root@i.jarv.org '/usr/local/bin/rebuild-jarv-org'
