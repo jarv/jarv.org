@@ -2,6 +2,7 @@
 title = "Using Mise for all the things"
 date = "2024-12-27"
 slug = "mise"
+draft = true
 tags = ["TIL"]
 +++
 
