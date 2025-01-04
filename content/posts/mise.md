@@ -66,12 +66,7 @@ sources = [
   "src/**/*",
   "package.json",
 ]
-run = """
-#!/usr/bin/env bash
-shopt -s globstar extglob
-go_app=(!(*_test).go)
-go run ${go_app[*]} -dbFile /tmp/db.sqlite3
-"""
+run = "go run . -dbFile /tmp/db.sqlite3"
 ```  
 
 `mise watch -r run` will start watching files and rebuild everything whenever one of the files in `sources` is modified.  
