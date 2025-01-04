@@ -1,5 +1,5 @@
 +++
-title = "TIL: Using Strict for the SameSite attribute"
+title = "Using Strict for the SameSite attribute"
 date = "2024-05-27"
 slug = "samesite"
 tags = ["TIL"]
