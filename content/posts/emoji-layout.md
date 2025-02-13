@@ -1,5 +1,5 @@
 +++
-title = "I am unable to center an emoji character on a button"
+title = "Centering an emoji character on a button"
 date = "2024-08-15"
 slug = "unable-to-center-an-emoji"
 tags = ["surveymoji"]
