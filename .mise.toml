@@ -11,6 +11,9 @@ ssh root@i.jarv.org '/usr/local/bin/rebuild-jarv-org'
 """
 
 [tools]
-golang = "1.22"
+golang = "1.24"
 hugo = "0.124.1"
-vale = "3.0.7"
+vale = "3.3.0"
+nodejs = "22.14.0"
+shellcheck = "0.9.0"
+watchexec = "latest"
