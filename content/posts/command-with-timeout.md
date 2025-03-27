@@ -40,6 +40,7 @@ log.Println("finished")
 ```
 
 ```go
+log.Println("starting")
 ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 defer cancel()
 
@@ -55,12 +56,12 @@ log.Println("finished")
 // 2022/09/27 19:10:15 signal: killed
 ```
 
-Note how the first example reports that the program is killed, but not until a full 10 seconds.
-Here, setting the timeout doesn't seem to do anything at all.
+Note how the first example reports that the program is killed, but not until a full 10 seconds despite setting a 2 second timout on the context.
+Passing the context doesn't seem to do anything at all!
 In the second example, the program resumes after the 2 second timeout as we would expect.
+The key difference is that in the first example we are using `CombinedOutput()`.
 
-The key difference is that in the second example, we fetch the output.
-Let's take a closer look at what process is being killed and what happens to the `sleep 10`.
+Let's take a closer look at the process tree and what happens to the `sleep 10`.
 Assuming our program is called `timeouttest`, the process tree starts like this:
 
 ```
@@ -80,13 +81,13 @@ bash,1
 
 As seen above, `sleep 10` becomes an orphan that is adopted by PID 1.
 `sleep 10` is not killed, because the kill was sent to `sh`, and the signal is not propagated to its child.
-The main difference between calling `.Run()` and `.CombinedOutput()` is that the latter creates a buffer for `Stdout` for the process and its children, and that the program will wait for that descriptor to close.
-This causes Go to hang, while it waits to copy sleep's standard output to the buffer.
+The main difference between calling `.Run()` and `.CombinedOutput()` is that the latter creates a buffer for `Stdout` for the process and its children.
+The progrem will will wait for that descriptor to close. This causes Go to hang, while it waits to copy sleep's standard output to the buffer.
 
 To ensure we can timeout properly, and that the `sleep 10` is also killed, we will need to send a `SIGKILL` to the process group.
 This solves the problem because children created via fork will inherit the parent's process group ID, and a kill sent to the group ID will kill the process and all of its descendants.
 
-Here is code to kill the group ID after a 2 second timeout. There are multiple ways to implement this, here we are using a channel with select:
+Here is code to kill the group ID after a 2 second timeout. The implementation below uses a channel with select:
 
 ```go
 log.Println("starting")
@@ -113,7 +114,7 @@ case <-cmdDone:
 }
 ```
 
-Here we are sending a `SIGKILL` to the process ID negated, from the [kill man page](https://man7.org/linux/man-pages/man2/kill.2.html)
+This sends a `SIGKILL` to the process ID (negated) which is how you send a signal to the process group, which is documented on the [kill man page](https://man7.org/linux/man-pages/man2/kill.2.html).
 
 ```
 If pid is less than -1, then sig is sent to every process in the
