@@ -26,7 +26,7 @@ It looks something like this:
 <div style="text-align:center;font-style:italic">Press one of the reactions, see tallies in real-time.</div>
 
 <div style="width:300px;margin:auto">
-<iframe id="surveymoji" src="{{<duturl>}}" style="width:300px;height:250px;border:0;margin:auto"></iframe>
+<iframe id="surveymoji" src="{{<smdemo>}}" style="width:300px;height:250px;border:0;margin:auto"></iframe>
 </div>
 
 For simplicity, we will assume a large number of clients are sending reactions, and there is a single client receiving the tallies.
@@ -132,6 +132,7 @@ If we have a large number of clients, calling `Send()` concurrently then we may 
 In the above code if one sender adds an item to the channel on line `18` as another sender adds an item on line `21` the channel will block because it's trying to add to a full channel.
 
 Here are two possible options to resolve it:
+
 1. Wrap `Send()` in a locking Mutex
 2. Use a single Go routine that moves data in and out of the channel
 
@@ -236,7 +237,6 @@ This adds an additional `select {...}` to catch the scenario where the channel i
 For the full implementations of both the good and bad ring buffers see
 https://github.com/jarv/ringbuffer/tree/master .
 
-
 ## Benchmarks
 
 After writing these impelementations, I was curious which one can move data faster.
@@ -260,6 +260,7 @@ BenchmarkParallelSendReceive/BufSize:1-10                4342477               2
 BenchmarkSendReceive/BufSize:1-10                        5103054               229.2 ns/op
 
 ```
+
 https://github.com/jarv/ringbuffer/tree/master/good
 
 The two channel implementation is slower because when the buffer is full, sends will block until the Go routine moves the data to the output channel.
