@@ -17,6 +17,8 @@ With the recent addition of Mise [hooks](https://mise.jdx.dev/hooks.html) and [t
 
 ## Environment and Secrets  
 
+**Note**: See my updated post on [using mise and 1Password](/mise-and-1password).
+
 In this example, I have an environment variable named `CLOUDFLARE_EMAIL` and a secret `CLOUDFLARE_API_KEY`.  
 Both are now set in my `Mise` configuration and loaded when I enter the project directory.  
 
