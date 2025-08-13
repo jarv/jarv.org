@@ -60,3 +60,5 @@ fi
 ```
 
 It uses a temp file, `.mise-env-vars-set.<groud id>` in the root of the project directory (git ignored) that when it exists, will prevent the secrets from being set again (so they are only set when you cd into the dir)
+
+I've also posted this [on the GitHub discussion](https://github.com/jdx/mise/discussions/3542#discussioncomment-14071436).
