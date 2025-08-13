@@ -17,7 +17,7 @@ CLOUDFLARE_EMAIL = "john@jarv.org"
 
 [hooks.leave]
 script = """
-rm -f ${MISE_PROJECT_ROOT}/.mise-env-vars-set
+rm -f ${MISE_PROJECT_ROOT}/.mise-env-vars-set.$(ps -o pgid= -p $$)
 """
 ```
 
@@ -30,7 +30,8 @@ This approach is a bit better
 Here is the `.1pass.sh` script that is sourced:
 
 ```sh
-if [ -f .mise-env-vars-set ]; then
+gid=$(ps -o pgid= -p $$)
+if [ -f .mise-env-vars-set.$gid ]; then
         return
 fi
 
@@ -51,11 +52,11 @@ export AWS_SECRET_ACCESS_KEY={{ op://personal/direnv/CF_R2_SECRET_KEY }}
 ENV
 ); then
         echo -e '☑️  Done!' >&2
-        : >.mise-env-vars-set
+        : >".mise-env-vars-set.$gid"
 else
         echo "error: failed to inject/source secrets" >&2
         return 1
 fi
 ```
 
-It uses a temp file, `.mise-env-vars-set` in the root of the project directory (git ignored) that when it exists, will prevent the secrets from being set again (so they are only set when you cd into the dir)
+It uses a temp file, `.mise-env-vars-set.<groud id>` in the root of the project directory (git ignored) that when it exists, will prevent the secrets from being set again (so they are only set when you cd into the dir)
