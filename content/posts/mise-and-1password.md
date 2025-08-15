@@ -30,7 +30,7 @@ This approach is a bit better
 Here is the `.1pass.sh` script that is sourced:
 
 ```sh
-gid=$(ps -o pgid= -p $$)
+gid=$(ps -o pgid= -p $$ | tr -d ' ')
 if [ -f .mise-env-vars-set.$gid ]; then
         return
 fi
