@@ -37,6 +37,7 @@ showfooter: false
   text-align: right;
   padding: 0;
   padding-top: 8px;
+  padding-left: 8px;
 }
 
 .projects td:nth-child(2) {
@@ -60,14 +61,41 @@ showfooter: false
 
   In a sea of unfinished work, here is list of small projects that I have put online over the years:
 
-
-|
-| --- | --- |  --- |
-| 🍪 | [samesite](//samesite.surveymoji.com) | Explore how the `SameSite` attribute on cookies affects browser behavior |
-| 💡 | [surveymoji](//surveymoji.com) | Generate a feedback poll with QR code using emoji reactions |
-| <img src="/img/cmd.png"> | [cmdchallenge](//cmdchallenge.com) | Challenges on the command line |
-| 🌐 | [ip](//ip.jarv.org) | Responds with the IP address of the request. |
-| 🤯 | [\*.resp](//500.resp.jarv.org) | Generates an http response based on the subdomain. E.g., [200](//200.resp.jarv.org), [404](//404.resp.jarv.org), [418](//418.resp.jarv.org), etc. |
-| 🔓 | [nossl](//nossl.jarv.org) | Forces an http connection, sometimes useful for getting to the wifi login page, same as `neverssl.com` or `example.com`.|
-| 💤 | [sleep](//sleep.jarv.org) | Sleeps for an arbitrary number of seconds or milliseconds. E.g., [1s](//sleep.jarv.org/1), [100ms](//sleep.jarv.org/100ms). |
+  <table>
+    <tr>
+      <td>🍪</td>
+      <td><a href="//samesite.surveymoji.com">samesite</a></td>
+      <td>Explore how the `SameSite` attribute on cookies affects browser behavior</td>
+    </tr>
+    <tr>
+      <td>💡</td>
+      <td><a href="//surveymoji.com">surveymoji</a></td>
+      <td>Generate a feedback poll with QR code using emoji reactions</td>
+    </tr>
+    <tr>
+      <td><img src="/img/cmd.png"></td>
+      <td><a href="//cmdchallenge.com">cmdchallenge</a></td>
+      <td>Challenges on the command line</td>
+    </tr>
+    <tr>
+      <td>🌐</td>
+      <td><a href="//ip.jarv.org">ip</a></td>
+      <td>Responds with the IP address of the request.</td>
+    </tr>
+    <tr>
+      <td>🤯</td>
+      <td><a href="//500.resp.jarv.org">*.resp</a></td>
+      <td>Generates an http response based on the subdomain. E.g., <a href="//200.resp.jarv.org">200</a>, <a href="//404.resp.jarv.org">404</a>, <a href="//418.resp.jarv.org">418</a>, etc.</td>
+    </tr>
+    <tr>
+      <td>🔓</td>
+      <td><a href="//nossl.jarv.org">nossl</a></td>
+      <td>Forces an http connection, sometimes useful for getting to the wifi login page, same as `neverssl.com` or `example.com`.</td>
+    </tr>
+    <tr>
+      <td>💤</td>
+      <td><a href="//sleep.jarv.org">sleep</a></td>
+      <td>Sleeps for an arbitrary number of seconds or milliseconds. E.g., <a href="//sleep.jarv.org/1">1s</a>, <a href="//sleep.jarv.org/100ms">100ms</a>.</td>
+    </tr>
+  </table>
 </section>
