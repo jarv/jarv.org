@@ -73,7 +73,7 @@ showfooter: false
       <td>Generate a feedback poll with QR code using emoji reactions</td>
     </tr>
     <tr>
-      <td><img src="/img/cmd.png"></td>
+      <td><img src="/img/cmd.png" alt="Command line terminal icon"></td>
       <td><a href="//cmdchallenge.com">cmdchallenge</a></td>
       <td>Challenges on the command line</td>
     </tr>

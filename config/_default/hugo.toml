@@ -5,7 +5,7 @@ baseURL = 'https://jarv.org/'
 pygmentsCodeFences = true
 
 [params]
-  description = "random thoughts and posts on tech"
+  description = "Random thoughts and posts on tech"
   smDemo = "http://localhost:8790/view/DEMO"
   smEmbed = "http://localhost:8790/embed/DEMO?question=false"
 [markup]
