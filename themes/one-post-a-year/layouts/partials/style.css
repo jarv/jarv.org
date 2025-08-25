@@ -254,6 +254,7 @@ main article > pre {
 @media only screen and (width <= 800px) {
   main {
     margin: 0;
+    padding: 0 0.5rem;
   }
 
   main article aside {
