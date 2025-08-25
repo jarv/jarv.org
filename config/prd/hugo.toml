@@ -1,4 +1,4 @@
 publishDir = "/srv/jarv-org/www"
 [params]
-  smDemo = "https://surveymoji.com/view/DEMO"
-  smEmbed = "https://surveymoji.com/embed/DEMO?question=false"
+  smDemo = "https://flyemoji.com/view/DEMO"
+  smEmbed = "https://flyemoji.com/embed/DEMO?question=false"

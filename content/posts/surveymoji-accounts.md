@@ -1,11 +1,11 @@
 +++
-title = "Accounts and Centralized Survey View for SurveyMoji"
+title = "Accounts and Centralized Survey View for FlyEmoji"
 date = "2025-07-12"
-slug = "surveymoji-accounts"
-tags = ["surveymoji"]
+slug = "flyemoji-accounts"
+tags = ["flyemoji"]
 +++
 
-A quick update about some new features recently added to [SurveyMoji](https://surveymoji.com).
+A quick update about some new features recently added to [FlyEmoji](https://flyemoji.com).
 These are a couple of changes that should make the site easier to use, especially for anyone running multiple surveys or wanting to track what they've participated in.
 
 1. **User accounts and login**
@@ -24,5 +24,5 @@ Another piece that's now live is a consolidated view of your surveys. Once logge
 
 ---
 
-If you want to try it out, head over to [https://surveymoji.com](https://surveymoji.com) and register for an account.
+If you want to try it out, head over to [https://flyemoji.com](https://flyemoji.com) and register for an account.
 If you have any feedback please let me know!

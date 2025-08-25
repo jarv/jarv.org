@@ -58,4 +58,4 @@ The solution was to set the `SameSite` attribute to `Lax`.
 This covers this QR code navigation scenario.
 After fixing the issue, I was curious about what other things don't count as direct navigation in the context of `SameSite`.
 This led me create a sandbox for testing SameSite behavior.
-[Check it out here](https://samesite.surveymoji.com).
+[Check it out here](https://samesite.flyemoji.com).

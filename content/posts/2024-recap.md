@@ -19,7 +19,7 @@ No more intermediate js files, no map files, it's a lot simpler and the reduced 
 
 For all js I now only use [esbuild](https://esbuild.github.io/getting-started/) for minifying and bundling with `es2017` as a target.
 This last year I also stumbled into using [htmx](https://htmx.org/) and [Alpine.js](https://alpinejs.dev/) for handling all state logic in the browser.
-The latter has been great for projects like [samesite](https://samesite.surveymoji.com) and [surveymoji](https://surveymoji.com) where there is suprisigingly little js needed on the frontend for creating sites that are interactive.
+The latter has been great for projects like [samesite](https://samesite.flyemoji.com) and [flyemoji](https://flyemoji.com) where there is suprisigingly little js needed on the frontend for creating sites that are interactive.
 
 2. Go backend development for websites
 
@@ -69,7 +69,7 @@ This [was already a separate blog post](https://jarv.org/posts/mise/) which cove
 
 I learned some new things this year that maybe I should have known, or maybe not? Some things always seem more obvious in hindsight.
 
-A lot of painful moments were had over the `SameSite` attribute in browser cookies which led me to write a [playground](https://samesite.surveymoji.com). 
+A lot of painful moments were had over the `SameSite` attribute in browser cookies which led me to write a [playground](https://samesite.flyemoji.com). 
 What led me there was the Cookie behavior when entering a site via a QR code, which is something I talk about in a bit more detail [in a blog post](https://jarv.org/posts/samesite/).
 
 I never had written program that used websockets. My first attempt was a simple counter, and from that I learned about server sent events and realized I didn't need websockets.

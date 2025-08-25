@@ -43,7 +43,7 @@ tr:last-child td {
 
 This table shows what cookies are stored with different values for `SameSite` in the browser after a web request.
 
-(These screenshots are taken from one of the [SameSite scenarios on this cookie playground](https://samesite.surveymoji.com/#explain1))
+(These screenshots are taken from one of the [SameSite scenarios on this cookie playground](https://samesite.flyemoji.com/#explain1))
 | (S) | (P) | Chrome (131.0.6778.205) | Firefox (133.0.3)* |
 | --- | --- | --- | --- |
 | **t**  | **t** | <img src="/img/S=trueP=true-Chrome.png" style="width:200px"> | <img src="/img/S=trueP=true-Firefox.png" style="width:200px"> |
@@ -74,4 +74,4 @@ What I found a bit confusing is why we need a `partitioned` attribute on cookies
 > cookie has been rejected because it is foreign and does not have the “Partitioned“ attribute.
 
 Before, I believe this was just a warning. 
-I've updated the [samesite testing sandbox](https://samesite.surveymoji.com) with the option to enable and disable `partitioned` cookies to play around with this.
+I've updated the [samesite testing sandbox](https://samesite.flyemoji.com) with the option to enable and disable `partitioned` cookies to play around with this.

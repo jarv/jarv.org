@@ -64,12 +64,12 @@ showfooter: false
   <table>
     <tr>
       <td>🍪</td>
-      <td><a href="//samesite.surveymoji.com">samesite</a></td>
+      <td><a href="//samesite.flyemoji.com">samesite</a></td>
       <td>Explore how the `SameSite` attribute on cookies affects browser behavior</td>
     </tr>
     <tr>
       <td>💡</td>
-      <td><a href="//surveymoji.com">surveymoji</a></td>
+      <td><a href="//flyemoji.com">flyemoji</a></td>
       <td>Generate a feedback poll with QR code using emoji reactions</td>
     </tr>
     <tr>

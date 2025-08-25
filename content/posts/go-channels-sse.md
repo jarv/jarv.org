@@ -2,7 +2,7 @@
 title = "Creating a ring buffer using Go Channels for Server-Sent Events"
 date = "2024-04-05"
 slug = "go-channels-sse"
-tags = ["go", "surveymoji"]
+tags = ["go", "flyemoji"]
 +++
 
 Server-Sent Events (SSE) are a simple way to send real-time updates from the server to the browser.
@@ -15,7 +15,7 @@ This makes them more suitable for sending updates in one direction.
 The main advantage of using SSE is that it builds on top of HTTP (normal HTTP request with additional headers).
 This allows requests to pass through firewalls and proxies.
 
-[surveymoji.com](https://surveymoji.com) sets up a reaction poll that users access with a QR code.
+[flyemoji.com](https://flyemoji.com) sets up a reaction poll that users access with a QR code.
 The idea is that during a presentation or a video call, you can collect feedback from an audience.
 From the poll, users select an emoji reaction to a question.
 The reactions get tallied and sent to one or more connected clients listening for results.
@@ -26,7 +26,7 @@ It looks something like this:
 <div style="text-align:center;font-style:italic">Press one of the reactions, see tallies in real-time.</div>
 
 <div style="width:300px;margin:auto">
-<iframe id="surveymoji" src="{{<smdemo>}}" style="width:300px;height:250px;border:0;margin:auto"></iframe>
+<iframe id="flyemoji" src="{{<smdemo>}}" style="width:300px;height:250px;border:0;margin:auto"></iframe>
 </div>
 
 For simplicity, we will assume a large number of clients are sending reactions, and there is a single client receiving the tallies.
@@ -277,4 +277,4 @@ One valuable takeaway for me is that it's important to validate background Go ro
 This was essential to uncover bugs that were not immediately apparent.
 
 If you like this post, check out my other post on [debugging a deadlock in Go](/posts/go-deadlock/) or subscribe to the [RSS feed](/index.xml).
-If you would like a fun way to send out a reaction poll during your next video or conference presentation, check out [surveymoji.com](https://surveymoji.com).
+If you would like a fun way to send out a reaction poll during your next video or conference presentation, check out [flyemoji.com](https://flyemoji.com).
