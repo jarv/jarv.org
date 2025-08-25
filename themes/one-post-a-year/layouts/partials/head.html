@@ -6,8 +6,9 @@
   <meta name="author" content="{{ .Params.Author | default .Site.Author.name }}">
   
   <!-- Preload critical fonts -->
-  <link rel="preload" href="{{ .Site.BaseURL | default "/" }}/font/AtkinsonHyperlegible-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="{{ .Site.BaseURL | default "/" }}/font/AtkinsonHyperlegible-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  {{- $baseURL := .Site.BaseURL | default "/" | strings.TrimSuffix "/" -}}
+  <link rel="preload" href="{{ $baseURL }}/font/AtkinsonHyperlegible-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="{{ $baseURL }}/font/AtkinsonHyperlegible-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   
   <!-- Canonical URL -->
   <link rel="canonical" href="{{ .Permalink }}">

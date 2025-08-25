@@ -1,22 +1,29 @@
+{{- $baseURL := .Site.BaseURL | default "/" | strings.TrimSuffix "/" -}}
 @font-face {
   font-family: atkinson;
-  src: url('{{ .Site.BaseURL | default "/" }}/font/AtkinsonHyperlegible-Regular.woff2');
-  font-display: block;
+  src: url('{{ $baseURL }}/font/AtkinsonHyperlegible-Regular.woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: atkinson;
-  src: url('{{ .Site.BaseURL | default "/" }}/font/AtkinsonHyperlegible-Bold.woff2');
+  src: url('{{ $baseURL }}/font/AtkinsonHyperlegible-Bold.woff2');
   font-weight: bold;
-  font-display: block;
+  font-display: swap;
 }
 
 h1,h2,h3,h4,h5,h6 {
-  margin: .5em 0 .2em
+  margin: .5em 0 .2em;
+  font-size: 1.5em;
+}
+
+h1 {
+  font-size: 2em;
 }
 
 main h1 {
   font-weight: bold;
+  font-size: 2em;
   border-bottom: 1px solid black;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
