@@ -30,5 +30,3 @@ Here has been my experience with this and other projects to efficiently create n
 - Create the barebones scaffolding of the project in addition to the README. This includes bringing in all the common dependencies for lint checking and [mise](https://mise.jdx.dev/) for task management.
 
 I've been doing this so often recently that I even created a [vibe-kickstart](https://github.com/jarv/vibe-kickstart/) template for bootstrapping new (web-based) projects that use Go and JavaScript.
-
-That's it, and if you want to try out a kick-ass terminal-based RSS reader try [NewsGoat](https://github.com/jarv/newsgoat)!
