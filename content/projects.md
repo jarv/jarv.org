@@ -63,6 +63,11 @@ showfooter: false
 
   <table>
     <tr>
+      <td>🐐</td>
+      <td><a href="//github.com/jarv/newsgoat">NewsGoat</a></td>
+      <td>Terminal-based RSS reader written in Go</td>
+    </tr>
+    <tr>
       <td>🍪</td>
       <td><a href="//samesite.flyemoji.com">samesite</a></td>
       <td>Explore how the `SameSite` attribute on cookies affects browser behavior</td>
