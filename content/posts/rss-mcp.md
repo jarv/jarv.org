@@ -5,10 +5,10 @@ slug = "rss-mcp"
 tags = ["newsgoat"]
 +++
 
-Although the glory days of RSS are fare behind us, I think it is one of the few ways left to curate your own garden of content on the internet.
-There's no algorithm deciding what you see or optimized feed pushing rage bait to the top (like the terrible trend of short-form video content)
+Although the days of RSS are far behind us, it remains one of the few ways left to curate your own garden of content on the internet.
+There's no algorithm deciding what you see or optimized feed pushing rage bait to the top (like the terrible trend of short-form video content).
 
-In [a previous post](/posts/use-rss) I mentioned how I am using RSS to monitor individual files or directories in GitHub and GitLab repositories, like tracking changes to a `CHANGELOG`, a `package.json`.
+In [a previous post](/posts/use-rss), I mentioned how I am using RSS to monitor individual files or directories in GitHub and GitLab repositories, like tracking changes to a `CHANGELOG`, a `package.json`.
 My RSS client is configured with tech blogs belonging to people I know, some interesting ones I find randomly, YouTube channel feeds, GitLab activity feeds, and some traditional news sources.
 
 Because for me, all of this content sits in a local database, already fetched and cached it makes it a perfect candidate for an [MCP](https://modelcontextprotocol.io/) server.
