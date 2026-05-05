@@ -1,6 +1,6 @@
 +++
 title = "Every RSS client should have an MCP server"
-date = "2026-05-06"
+date = "2026-05-05"
 slug = "rss-mcp"
 tags = ["newsgoat"]
 +++
