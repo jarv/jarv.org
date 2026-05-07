@@ -5,7 +5,7 @@ slug = "rss-mcp"
 tags = ["newsgoat"]
 +++
 
-Although the days of RSS are far behind us, it remains one of the few ways left to curate your own garden of content on the internet.
+Although the days of every site having an RSS feed have long past, I still find that it remains one of the few ways left to curate your own garden of content on the internet.
 There's no algorithm deciding what you see or optimized feed pushing rage bait to the top (like the terrible trend of short-form video content).
 
 In [a previous post](/posts/use-rss), I mentioned how I am using RSS to monitor individual files or directories in GitHub and GitLab repositories, like tracking changes to a `CHANGELOG`, a `package.json`.
